@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ShuttleSchedule;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 
-class ShuttleScheduleController extends Controller
+class DriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ShuttleScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ShuttleSchedule  $shuttleSchedule
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function show(ShuttleSchedule $shuttleSchedule)
+    public function show(Driver $driver)
     {
         //
     }
@@ -52,10 +52,10 @@ class ShuttleScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ShuttleSchedule  $shuttleSchedule
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function edit(ShuttleSchedule $shuttleSchedule)
+    public function edit(Driver $driver)
     {
         //
     }
@@ -64,10 +64,10 @@ class ShuttleScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ShuttleSchedule  $shuttleSchedule
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShuttleSchedule $shuttleSchedule)
+    public function update(Request $request, Driver $driver)
     {
         //
     }
@@ -75,10 +75,10 @@ class ShuttleScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ShuttleSchedule  $shuttleSchedule
+     * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShuttleSchedule $shuttleSchedule)
+    public function destroy(Driver $driver)
     {
         //
     }

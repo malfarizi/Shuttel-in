@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ShuttleScheduleFactory extends Factory
+class ScheduleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,9 @@ class ShuttleScheduleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'date_of_depature' => $this->faker->date(),
+            'depature_time'    => $this->faker->time('H:i'),
+            'route_id'         => \App\Models\Route::inRandomOrder()->first()->id
         ];
     }
 }

@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings');
-            $table->string('status');
+            $table->string('status')->default('unpaid');
             $table->integer('total');
             $table->timestamps();
         });

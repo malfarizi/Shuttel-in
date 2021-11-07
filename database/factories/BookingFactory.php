@@ -14,7 +14,8 @@ class BookingFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'schedule_id' => \App\Models\Schedule::inRandomOrder()->first()->id
         ];
     }
 }

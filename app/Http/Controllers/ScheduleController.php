@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Driver;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
-class DriverController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DriverController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Driver  $driver
+     * @param  \App\Models\Schedule  $Schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Driver $driver)
+    public function show(Schedule $Schedule)
     {
         //
     }
@@ -52,10 +52,10 @@ class DriverController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Driver  $driver
+     * @param  \App\Models\Schedule  $Schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Driver $driver)
+    public function edit(Schedule $Schedule)
     {
         //
     }
@@ -64,10 +64,10 @@ class DriverController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Driver  $driver
+     * @param  \App\Models\Schedule  $Schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Driver $driver)
+    public function update(Request $request, Schedule $Schedule)
     {
         //
     }
@@ -75,10 +75,10 @@ class DriverController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Driver  $driver
+     * @param  \App\Models\Schedule  $Schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Driver $driver)
+    public function destroy(Schedule $Schedule)
     {
         //
     }

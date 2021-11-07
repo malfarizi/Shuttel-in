@@ -17,10 +17,10 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('shuttle_schedule_id');
-            $table->foreign('shuttle_schedule_id')->references('id')->on('shuttle_schedules');
+            $table->unsignedBigInteger('schedule_id');
+            $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->string('snap_token')->nullable();
-            $table->string('booking_code');
+            $table->string('booking_code')->nullable();
             $table->timestamps();
         });
     }

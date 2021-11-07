@@ -10,4 +10,9 @@ class Driver extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function shuttle()
+    {
+        return $this->hasOne(Shuttle::class);
+    }
 }

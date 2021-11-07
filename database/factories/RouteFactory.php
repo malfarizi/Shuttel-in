@@ -14,7 +14,10 @@ class RouteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'depature' => $this->faker->city(),
+            'arrival' => $this->faker->city(),
+            'price' => str_pad(rand(1,99), 4, "0", STR_PAD_RIGHT),
+            'shuttle_id' => \App\Models\Shuttle::inRandomOrder()->first()->id,
         ];
     }
 }

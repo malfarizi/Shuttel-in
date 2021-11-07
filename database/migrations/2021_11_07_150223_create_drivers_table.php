@@ -16,10 +16,10 @@ class CreateDriversTable extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('driver_name');
-            $table->string('driver_status');
+            $table->string('driver_status')->default('aktif');
             $table->text('address');
             $table->string('number_phone');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
