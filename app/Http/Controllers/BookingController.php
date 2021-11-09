@@ -8,6 +8,16 @@ use DB;
 
 class BookingController extends Controller
 {
+    public function __construct() {
+          // Set your Merchant Server Key
+          \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+          // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+          \Midtrans\Config::$isProduction = false;
+          // Set sanitization on (default)
+          \Midtrans\Config::$isSanitized = true;
+          // Set 3DS transaction for credit card to true
+          \Midtrans\Config::$is3ds = true;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,18 +38,7 @@ class BookingController extends Controller
         //
     }
 
-    public function initPayementGateway()
-    {
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -48,8 +47,6 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->initPayementGateway();
-
         DB::transaction(function () use($request) {
             $cretae =Booking::create([
                 'user_id' => '1',
