@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use DB;
 
 class BookingController extends Controller
 {
@@ -27,6 +28,18 @@ class BookingController extends Controller
         //
     }
 
+    public function initPayementGateway()
+    {
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,10 +48,12 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        $this->initPayementGateway();
+
         DB::transaction(function () use($request) {
             $cretae =Booking::create([
-                'user_id' => $request->id_user,
-                'schedule_id' => $request->id_user,
+                'user_id' => '1',
+                'schedule_id' => '1',
             ]);
       
               $payload = [
@@ -49,33 +64,18 @@ class BookingController extends Controller
                       'order_id' => 'ORDER-101',
                       'gross_amount' => 10000
                    ],
-                  "item_details" => [
-                      "id" =>  "ITEM1",
-                      "price" =>  10000,
-                      "quantity" =>  1,
-                      "name" =>  "Midtrans Bear",
-                      "brand" =>  "Midtrans",
-                      "category" =>  "Toys",
-                      "merchant_name" =>  "Midtrans"
-                   ],
+                
               
               
                 ];
-                // Set your Merchant Server Key
-                \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
-                // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-                \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
-                // Set sanitization on (default)
-                \Midtrans\Config::$isSanitized = config('services.midtrans.isSanitized');
-                // Set 3DS transaction for credit card to true
-                \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
-        
+                        
                 $snapToken = \Midtrans\Snap::getSnapToken($payload);
                 $cretae->snap_token = $snapToken;
                 $cretae->save();
                 
                 
                 $this->response['snap_token']= $snapToken;
+                //dd($snapToken);
         });
         return response()->json($this->response);
     }
