@@ -9,6 +9,12 @@ class Booking extends Model
 {
     use HasFactory;
 
+    public $primaryKey = 'id';
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     protected $guarded = [];
 
     public function user() 

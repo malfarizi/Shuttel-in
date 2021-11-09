@@ -8,6 +8,8 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        return view('admin.dashboard', [
+            'title' => 'Dashboard'
+        ]);
     }
 }

@@ -15,7 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('booking_id');
+            $table->string('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings');
             $table->string('status')->default('pending');
             $table->integer('total');

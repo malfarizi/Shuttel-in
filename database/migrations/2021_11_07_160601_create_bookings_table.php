@@ -14,11 +14,9 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('schedule_id');
-            $table->foreign('schedule_id')->references('id')->on('schedules');
+            $table->string('id', 20)->primary();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('schedule_id')->constrained();
             $table->string('snap_token')->nullable();
             $table->string('booking_code')->nullable();
             $table->timestamps();

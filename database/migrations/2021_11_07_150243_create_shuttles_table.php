@@ -17,8 +17,7 @@ class CreateShuttlesTable extends Migration
             $table->id();
             $table->string('shuttle_status')->default('aktif');
             $table->string('nopol');
-            $table->unsignedBigInteger('driver_id');
-            $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->foreignId('driver_id')->constrained();
             $table->timestamps();
         });
     }

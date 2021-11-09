@@ -48,32 +48,29 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use($request) {
-            $cretae =Booking::create([
-                'user_id' => '1',
+            $cretae = Booking::create([
+                'user_id'     => '1',
                 'schedule_id' => '1',
             ]);
       
-              $payload = [
-                  'customer_details'=> [
-                  'first_name'=> 'TEST',
-                   ],
-                  'transaction_details' => [
-                      'order_id' => 'ORDER-101',
-                      'gross_amount' => 10000
-                   ],
-                
-              
-              
-                ];
+            $payload = [
+                'customer_details' => [
+                    'first_name' => 'TEST',
+                ],
+                'transaction_details' => [
+                    'order_id' => 'ORDER-101',
+                    'gross_amount' => 10000
+                ],
+            ];
                         
-                $snapToken = \Midtrans\Snap::getSnapToken($payload);
-                $cretae->snap_token = $snapToken;
-                $cretae->save();
+            $snapToken = \Midtrans\Snap::getSnapToken($payload);
+            $cretae->snap_token = $snapToken;
+            $cretae->save();
                 
-                
-                $this->response['snap_token']= $snapToken;
-                //dd($snapToken);
+            $this->response['snap_token'] = $snapToken;
+            //dd($snapToken);
         });
+
         return response()->json($this->response);
     }
 

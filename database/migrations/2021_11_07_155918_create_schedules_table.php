@@ -19,8 +19,7 @@ class CreateSchedulesTable extends Migration
             $table->string('schedule_status')->default('aktif');
             $table->string('depature_time');
             $table->integer('seat_capasity')->default('7');
-            $table->unsignedBigInteger('route_id');
-            $table->foreign('route_id')->references('id')->on('routes');
+            $table->foreignId('route_id')->constrained();
             $table->timestamps();
         });
     }

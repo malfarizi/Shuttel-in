@@ -18,8 +18,7 @@ class CreateRoutesTable extends Migration
             $table->string('depature');
             $table->string('arrival');
             $table->integer('price');
-            $table->unsignedBigInteger('shuttle_id');
-            $table->foreign('shuttle_id')->references('id')->on('shuttles');
+            $table->foreignId('shuttle_id')->constrained();
             $table->timestamps();
         });
     }
