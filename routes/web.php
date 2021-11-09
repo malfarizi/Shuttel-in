@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +15,7 @@ use App\Http\Controllers\BookingController;
 */
 
 Route::get('booking',[BookingController::class, 'store']);
+
+
+// Landing Page
+Route::get('/landingpage',[UserController::class,'landingpage']);
