@@ -13,5 +13,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
 
+=======
+Route::get('/',[UserController::class,'dashboard']);
+Route::get('/login',[UserController::class,'login']);
+>>>>>>> 064dd2c0ee3220be7fce66044c13fb406bb67ab0
