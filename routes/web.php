@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +15,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-<<<<<<< HEAD
 Route::get('/generateAccount', function() {
     $admin = \App\Models\User::create([
         'name' => 'admin',
@@ -35,10 +34,5 @@ Route::get('/generateAccount', function() {
 });
 
 Route::get('booking', [BookingController::class, 'store']);
-=======
-Route::get('booking',[BookingController::class, 'store']);
 
-
-// Landing Page
-Route::get('/landingpage',[UserController::class,'landingpage']);
->>>>>>> 064dd2c0ee3220be7fce66044c13fb406bb67ab0
+Route::get('/landingpage', [UserController::class, 'landingpage']);

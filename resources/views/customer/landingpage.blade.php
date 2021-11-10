@@ -1,7 +1,5 @@
 @extends('customer.template')
 
-@section('title', 'Shuttle-In')
-
 @section('content')
 
 <!-- ======= Pricing Section ======= -->
