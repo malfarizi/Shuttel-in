@@ -36,3 +36,6 @@ Route::get('/generateAccount', function() {
 Route::get('booking', [BookingController::class, 'store']);
 
 Route::get('/landingpage', [UserController::class, 'landingpage']);
+Route::get('/logincustomer', [UserController::class, 'logincustomer']);
+Route::get('/register', [UserController::class, 'register']);
+

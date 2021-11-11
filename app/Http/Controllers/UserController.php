@@ -22,4 +22,14 @@ class UserController extends Controller
     {
         return view('customer.landingpage');
     }
+
+    public function logincustomer()
+    {
+        return view('logincustomer');
+    }
+
+    public function register()
+    {
+        return view('register');
+    }
 }
