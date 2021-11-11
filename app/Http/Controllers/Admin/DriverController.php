@@ -15,7 +15,10 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return view('admin.driver');
+        return view('admin.driver', [
+            'title'   => 'Data Driver',
+            'drivers' => Driver::all()
+        ]);
     }
 
     /**

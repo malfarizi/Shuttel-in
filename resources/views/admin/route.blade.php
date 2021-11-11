@@ -3,28 +3,14 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        <div class="section-header">
-            <h1>Data Rute</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item">Data Rute</div>
-            </div>
-        </div>
+        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Rute'])
 
         <div class="section-body">
-
-            {{-- <h2 class="section-title">DataTables</h2>
-            <p class="section-lead">
-                We use 'DataTables' made by @SpryMedia. You can check the full documentation <a
-                    href="https://datatables.net/">here</a>.
-            </p> --}}
-
             <!-- DataTable with Hover -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                 data-target="#exampleModal" id="#myBtn">
                                 <span class="icon text-white-50">
@@ -34,12 +20,10 @@
                             </button>
                         </div>
 
-
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="dataTable">
+                                <table class="table table-striped" id="table-1">
                                     <thead>
-
                                         <tr>
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
@@ -64,32 +48,28 @@
                                             <td>Edinburgh</td>
                                             <td>61</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#edit-data">
+                                                <button type="button" class="btn btn-primary" 
+                                                    data-toggle="modal" data-target="#edit-data">
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
                                                 <form action="" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
                                                 </form>
                                             </td>
-            
                                         </tr>
-                                        
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--Row-->
-
             </div>
+        </div>
     </section>
 </div>
 <!--Modal tambah-->

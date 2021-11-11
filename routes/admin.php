@@ -17,17 +17,18 @@ use App\Http\Controllers\ScheduleController;
 |
 */
 
+//User
 Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
-Route::get('/login', [UserController::class,'login']);
+Route::get('/login', [UserController::class, 'login']);
 
 //Shuttle
-Route::get('shuttle', [ShuttleController::class,'index']);
+Route::get('shuttle', [ShuttleController::class, 'index']);
 
 //Driver
-Route::get('driver', [DriverController::class,'index']);
+Route::get('driver', [DriverController::class, 'index']);
 
 //Route
-Route::get('route', [RouteController::class,'routeadmin']);
+Route::get('route', [RouteController::class, 'routeadmin']);
 
 //Schedule
-Route::get('schedule', [ScheduleController::class,'scheduleadmin']);
+Route::get('schedule', [ScheduleController::class, 'scheduleadmin']);

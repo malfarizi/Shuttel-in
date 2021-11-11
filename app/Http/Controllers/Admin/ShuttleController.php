@@ -15,7 +15,10 @@ class ShuttleController extends Controller
      */
     public function index()
     {
-        return view('admin.shuttle');
+        return view('admin.shuttle', [
+            'title'    => 'Data Shuttle',
+            'shuttles' => Shuttle::all()
+        ]);
     }
 
     /**

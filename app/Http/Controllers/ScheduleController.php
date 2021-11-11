@@ -14,7 +14,10 @@ class ScheduleController extends Controller
      */
     public function scheduleadmin()
     {
-        return view('admin.schedule');
+        return view('admin.schedule', [
+            'title'     => 'Data Driver',
+            'schedules' => Schedule::all()
+        ]);
     }
 
     public function index()

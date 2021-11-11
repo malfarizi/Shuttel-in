@@ -120,8 +120,7 @@
                                     <td>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-icon icon-left btn-primary" 
-                                            data-toggle="modal" data-target="#exampleModal"
-                                        >
+                                            data-toggle="modal" data-target="#exampleModal">
                                             <i class="fas fa-info-circle"></i> Detail
                                         </button>    
                                         <!-- Modal -->
