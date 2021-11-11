@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\ShuttleController;
+use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\ScheduleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +19,15 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/login', [UserController::class,'login']);
+
+//Shuttle
+Route::get('shuttle', [ShuttleController::class,'index']);
+
+//Driver
+Route::get('driver', [DriverController::class,'index']);
+
+//Route
+Route::get('route', [RouteController::class,'routeadmin']);
+
+//Schedule
+Route::get('schedule', [ScheduleController::class,'scheduleadmin']);

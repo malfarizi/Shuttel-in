@@ -12,6 +12,11 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function scheduleadmin()
+    {
+        return view('admin.schedule');
+    }
+
     public function index()
     {
         //

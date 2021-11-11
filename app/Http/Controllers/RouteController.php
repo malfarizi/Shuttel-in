@@ -12,7 +12,12 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function routeadmin()
+    {
+        return view('admin.route');
+    }
+
+     public function index()
     {
         //
     }

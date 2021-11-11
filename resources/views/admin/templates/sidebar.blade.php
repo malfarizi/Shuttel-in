@@ -36,44 +36,20 @@
             <ul class="sidebar-menu">
                 <li class="menu-header">Dashboard</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    <a href="{{url('admin')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 </li>
-                <li class="menu-header">Data Master</li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-bars"></i></i>
-                    <span>Data</span></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="nav-link" href="layout-default.html">
-                                Driver
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="layout-transparent.html">
-                                Shuttle
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="layout-top-navigation.html">
-                                Rute
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="layout-top-navigation.html">
-                                Jadwal
-                            </a>
-                        </li>
-                    </ul>
+                <li class="menu-header">Menu</li>
+                <li class="dropdown">
+                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data</span></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{url('admin/driver')}}">Driver</a></li>
+                    <li><a class="nav-link" href="{{url('admin/shuttle')}}">Shuttle</a></li>
+                    <li><a class="nav-link" href="{{url('admin/route')}}">Rute</a></li>
+                    <li><a class="nav-link" href="{{url('admin/schedule')}}">Jadwal</a></li>
+                  </ul>
                 </li>
-            </ul>
-            <li class="menu-header">Data</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-address-card"></i><span>Customer</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-file-alt"></i><span>Reservasi</span>
-                </a>
-            </li>
+                <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Customer</span></a></li>
+                <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Reservasi</span></a></li>
+
         </aside>
     </div>

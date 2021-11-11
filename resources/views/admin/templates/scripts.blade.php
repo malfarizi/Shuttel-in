@@ -13,3 +13,10 @@
 
 <!-- Page Specific JS File -->
 <script src="../assets/js/page/index.js"></script>
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('#dataTable').DataTable();
+  });
+</script> 
