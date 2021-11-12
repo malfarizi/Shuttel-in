@@ -20,6 +20,7 @@
                         </div>
 
                         <div class="card-body">
+                            @include('admin.templates.components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -82,7 +83,6 @@
                 </button>
             </div>
             <div class="modal-body">
-            
                 <div class="form-group">
                     <label for="">Nopol Shuttle</label>
                     <input type="text" class="form-control" id="" name="nopol"
@@ -104,9 +104,7 @@
                     <label for="">Pilih Driver</label>
                     <select name="driver_id" id="" class="form-control">
                         <option>Pilih Driver</option>
-                       
-                        <option value="">Nama Driver</option>
-                        
+                        <option value="">Nama Driver</option>                
                     </select>
                 </div>
 

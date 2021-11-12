@@ -42,13 +42,13 @@
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data</span></a>
                 <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{url('admin/driver')}}">Driver</a></li>
+                <li><a class="nav-link" href="{{route('admin.drivers.index')}}">Driver</a></li>
                 <li><a class="nav-link" href="{{url('admin/shuttle')}}">Shuttle</a></li>
                 <li><a class="nav-link" href="{{url('admin/route')}}">Rute</a></li>
                 <li><a class="nav-link" href="{{url('admin/schedule')}}">Jadwal</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Customer</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-square"></i> <span>Customer</span></a></li>
             <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Reservasi</span></a></li>
     </aside>
 </div>

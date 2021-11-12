@@ -45,10 +45,10 @@ class ShuttleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shuttel  $shuttel
+     * @param  \App\Models\Shuttle  $shuttle
      * @return \Illuminate\Http\Response
      */
-    public function show(Shuttel $shuttel)
+    public function show(Shuttle $shuttle)
     {
         //
     }
@@ -56,10 +56,10 @@ class ShuttleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shuttel  $shuttel
+     * @param  \App\Models\Shuttle  $shuttle
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shuttel $shuttel)
+    public function edit(Shuttle $shuttle)
     {
         //
     }
@@ -68,10 +68,10 @@ class ShuttleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shuttel  $shuttel
+     * @param  \App\Models\Shuttle  $shuttle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shuttel $shuttel)
+    public function update(Request $request, Shuttle $shuttle)
     {
         //
     }
@@ -79,11 +79,12 @@ class ShuttleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shuttel  $shuttel
+     * @param  \App\Models\Shuttle  $shuttle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shuttel $shuttel)
+    public function destroy(Shuttle $shuttle)
     {
-        //
+        $shuttle->delete();
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

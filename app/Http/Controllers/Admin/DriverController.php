@@ -17,6 +17,7 @@ class DriverController extends Controller
     {
         return view('admin.driver', [
             'title'   => 'Data Driver',
+            'i'       => 0,
             'drivers' => Driver::all()
         ]);
     }
@@ -50,7 +51,7 @@ class DriverController extends Controller
      */
     public function show(Driver $driver)
     {
-        //
+        dd($driver->driver_name);
     }
 
     /**
@@ -84,6 +85,7 @@ class DriverController extends Controller
      */
     public function destroy(Driver $driver)
     {
-        //
+        $driver->delete();
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

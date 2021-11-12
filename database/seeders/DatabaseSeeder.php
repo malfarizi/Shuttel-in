@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
-        \App\Models\Driver::factory(10)->create();
+        \App\Models\Driver::factory(100)->create();
         \App\Models\Shuttle::factory(10)->create();
         \App\Models\Route::factory(10)->create();
         \App\Models\Schedule::factory(10)->create();

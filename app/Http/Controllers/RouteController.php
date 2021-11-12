@@ -88,6 +88,7 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        $route->delete();
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

@@ -19,13 +19,15 @@ use App\Http\Controllers\ScheduleController;
 
 //User
 Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
+Route::get('/customers', [UserController::class, 'index'])->name('customers');
+
 Route::get('/login', [UserController::class, 'login']);
 
 //Shuttle
 Route::get('shuttle', [ShuttleController::class, 'index']);
 
 //Driver
-Route::get('driver', [DriverController::class, 'index']);
+Route::resource('drivers', DriverController::class);
 
 //Route
 Route::get('route', [RouteController::class, 'routeadmin']);

@@ -49,10 +49,10 @@ class ScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Schedule  $Schedule
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $Schedule)
+    public function show(Schedule $schedule)
     {
         //
     }
@@ -60,10 +60,10 @@ class ScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Schedule  $Schedule
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schedule $Schedule)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -72,10 +72,10 @@ class ScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Schedule  $Schedule
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $Schedule)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -83,11 +83,12 @@ class ScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Schedule  $Schedule
+     * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $Schedule)
+    public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

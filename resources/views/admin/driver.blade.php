@@ -20,10 +20,12 @@
                         </div>
 
                         <div class="card-body">
+                            @include('admin.templates.components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
+                                            <th>No. </th>
                                             <th>Nama Driver</th>
                                             <th>Status Driver</th>
                                             <th>No Telephone</th>
@@ -34,6 +36,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>No. </th>
                                             <th>Nama Driver</th>
                                             <th>Status Driver</th>
                                             <th>No Telephone</th>
@@ -45,6 +48,7 @@
                                     <tbody>
                                         @foreach($drivers as $driver)
                                             <tr>
+                                                <td>{{ ++$i }}</td>
                                                 <td>{{ $driver->driver_name }}</td>
                                                 <td>{{ $driver->driver_status }}</td>
                                                 <td>{{ $driver->number_phone }}</td>
@@ -58,9 +62,16 @@
                                                             data-toggle="modal" data-target="#edit-data">
                                                             <i class="fas fa-user-edit"></i>
                                                         </button>
-                                                        <form action="" method="POST">
+                                                        <form 
+                                                            action="{{route('admin.drivers.destroy', $driver->id)}}" 
+                                                            method="POST">
                                                             @csrf
-                                                            <button class="btn btn-danger btn-md">
+                                                            @method('DELETE')
+
+                                                            <button 
+                                                                id="deleteDriver"
+                                                                class="btn btn-danger btn-md"
+                                                            >
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
@@ -80,6 +91,33 @@
     </section>
 </div>
 
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('#deleteDriver').on('click', function(e){
+            e.preventDefault();
+            var form = $(this).closest("form");
+            Swal.fire({
+                title: 'Apakah kamu yakin hapus data ini?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus saja!'
+                }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                    Swal.fire(
+                        'Terhapus!',
+                        'Data kamu berhasi dihapus.',
+                        'success'
+                    )
+                }
+            })
+        })
+    </script>
+@endpush
 
 <!--Modal tambah-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -23,3 +23,5 @@
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" type="text/javascript"></script> 
+
+@stack('scripts')

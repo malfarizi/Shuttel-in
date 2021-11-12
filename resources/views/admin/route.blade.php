@@ -21,6 +21,7 @@
                         </div>
 
                         <div class="card-body">
+                            @include('admin.templates.components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
