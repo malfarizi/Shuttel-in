@@ -48,12 +48,11 @@
                                             <td>Edinburgh</td>
                                             <td>61</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" 
-                                                    data-toggle="modal" data-target="#edit-data">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#edit-data">
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <form action="" method="POST"
-                                                    class="d-inline">
+                                                <form action="" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger">
@@ -85,7 +84,80 @@
                 </button>
             </div>
             <div class="modal-body">
-            ...
+
+                <div class="form-group">
+                    <label for="">Keberangkatan</label>
+                    <input type="text" class="form-control" id="" name="departure"
+                        placeholder="Masukan Keberangkatan">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Kedatangan</label>
+                    <input type="text" class="form-control" id="" name="arrival" placeholder="Masukan Kedatangan">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Harga</label>
+                    <input type="text" class="form-control" id="" name="price" placeholder="Masukan Harga">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Pilih Shuttle</label>
+                    <select name="id_shuttle" id="" class="form-control">
+                        <option>Pilih Shuttle</option>
+                       
+                        <option value="">ID - Nopol</option>
+                        
+                    </select>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="sumbit" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Edit-->
+<div class="modal fade" id="edit-data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Edit Rute
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Keberangkatan</label>
+                    <input type="text" class="form-control" id="" name="departure"
+                        placeholder="Masukan Keberangkatan">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Kedatangan</label>
+                    <input type="text" class="form-control" id="" name="arrival" placeholder="Masukan Kedatangan">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Harga</label>
+                    <input type="text" class="form-control" id="" name="price" placeholder="Masukan Harga">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Pilih Shuttle</label>
+                    <select name="id_shuttle" id="" class="form-control">
+                        <option>Pilih Shuttle</option>
+                       
+                        <option value="">ID - Nopol</option>
+                        
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

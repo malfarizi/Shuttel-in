@@ -94,7 +94,102 @@
                 </button>
             </div>
             <div class="modal-body">
-            ...
+            
+                <div class="form-group">
+                    <label for="">Nama Driver</label>
+                    <input type="text" class="form-control" id="" name="driver_name"
+                        placeholder="Masukan nama Driver">
+                </div>
+
+                <div class="form-group">
+                    <label for="">No Telephone</label>
+                    <input type="text" class="form-control" id="" name="phone_number" 
+                        placeholder="Masukan No Telephone">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Alamat</label>
+                    <textarea input type="text" class="form-control" id="" name="address" placeholder="Masukan Alamat">
+                    </textarea>   
+                </div>
+
+                <div class="form-group">
+                    <label for="">Foto</label>
+                    <input type="file" class="form-control" id="" name="photo"
+                        placeholder="Masukan Foto Driver">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="">Pilih Status Driver</label>
+                    <select name="driver_status" id="" class="form-control">
+                        <option>Pilih Status Driver</option>
+                       
+                        <option value="Aktif">Aktif</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                        
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="sumbit" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Edit-->
+<div class="modal fade" id="edit-data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Edit Driver
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+             
+                <div class="form-group">
+                    <label for="">Nama Driver</label>
+                    <input type="text" class="form-control" id="" name="driver_name"
+                        placeholder="Masukan nama Driver">
+                </div>
+
+                <div class="form-group">
+                    <label for="">No Telephone</label>
+                    <input type="text" class="form-control" id="" name="phone_number" 
+                        placeholder="Masukan No Telephone">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Alamat</label>
+                    <textarea input type="text" class="form-control" id="" name="address" placeholder="Masukan Alamat">
+                    </textarea>   
+                </div>
+
+                <div class="form-group">
+                    <label for="">Foto</label>
+                    <input type="file" class="form-control" id="" name="photo"
+                        placeholder="Masukan Foto Driver">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="">Pilih Status Driver</label>
+                    <select name="driver_status" id="" class="form-control">
+                        <option>Pilih Status Driver</option>
+                       
+                        <option value="Aktif">Aktif</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                        
+                    </select>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

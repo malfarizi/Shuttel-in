@@ -15,7 +15,7 @@ class RouteController extends Controller
     public function routeadmin()
     {
         return view('admin.route', [
-            'title'   => 'Data Driver',
+            'title'   => 'Data Rute',
             'routes'  => Route::all()
         ]);
     }

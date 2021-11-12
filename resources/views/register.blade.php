@@ -78,17 +78,17 @@
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="number_phone" id="floatingInput" placeholder="Nama Anda">
+                    <input type="text" class="form-control" name="number_phone" id="floatingInput" placeholder="Nomor Telephone">
                     <label for="floatingInput">Nomor Telephone</label>
                   </div>
                   
                   <div class="form-floating mb-3">
-                    <input type="textarea" class="form-control" name="address" id="floatingInput" placeholder="Nama Anda">
+                    <textarea input type="text" class="form-control" name="address" id="floatingInput" placeholder="Alamat"></textarea>
                     <label for="floatingInput">Alamat</label>
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Nama Anda">
+                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Email">
                     <label for="floatingInput">Email</label>
                   </div>
 
