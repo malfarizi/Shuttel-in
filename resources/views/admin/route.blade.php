@@ -22,6 +22,14 @@
 
                         <div class="card-body">
                             @include('admin.templates.components.alert')
+                            <div class="form-group">
+                                <label>Keberangkatan</label>
+                                <select class="form-control select2">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -72,6 +80,7 @@
         </div>
     </section>
 </div>
+
 <!--Modal tambah-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -85,16 +94,24 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div class="form-group">
-                    <label for="">Keberangkatan</label>
-                    <input type="text" class="form-control" id="" name="departure"
-                        placeholder="Masukan Keberangkatan">
+                    <label>Keberangkatan</label>
+                    <select class="select2-single-placeholder form-control">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Kedatangan</label>
-                    <input type="text" class="form-control" id="" name="arrival" placeholder="Masukan Kedatangan">
+                    <select class="form-control city" name="arrival">
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->type. ' - ' .$city->city_name }}">
+                                {{ $city->type. ' - ' .$city->city_name }}
+                            </option>    
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -168,3 +185,18 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{asset('/assets/css/select2.min.css')}}"> 
+@endpush
+
+@push('scripts')
+    <script src="{{asset('/assets/js/select2.full.min.js')}}"></script> 
+    <script src="{{asset('/assets/js/jquery.selectrict.min.js')}}"></script>
+    <script>
+        $("#depature").select2({
+            placeholder: "Select a state",
+            allowClear: true
+        });
+    </script>
+@endpush

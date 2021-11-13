@@ -14,9 +14,16 @@ class RouteController extends Controller
      */
     public function routeadmin()
     {
+        //get File json
+        $path = public_path() . "/json/cities.json";   
+        //decode to get data json
+        $cities = json_decode(file_get_contents($path));
+        
         return view('admin.route', [
             'title'   => 'Data Rute',
-            'routes'  => Route::all()
+            'i'       => 0,
+            'routes'  => Route::all(),
+            'cities'  => $cities 
         ]);
     }
 

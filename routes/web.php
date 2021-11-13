@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\BookingController;
 
 /*
@@ -16,30 +15,10 @@ use App\Http\Controllers\BookingController;
 |
 */
 
-Route::get('/generateAccount', function() {
-    $admin = \App\Models\User::create([
-        'name' => 'admin',
-        'email' => 'admin@gmail.com',
-        'email_verified_at' => now(),
-        'address' => 'Bandung',
-        'number_phone' => '0898779821',
-        'role' => 'Admin',
-        'password' => bcrypt('password'), // password
-        'remember_token' => Str::random(10),
-    ]);
-    
-    return response()->json([
-        'status' => 'berhasil',
-        'admin'  => $admin
-    ]);
-});
+Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
 Route::get('booking', [BookingController::class, 'store']);
 
 Route::get('/landingpage', [UserController::class, 'landingpage']);
 Route::get('/logincustomer', [UserController::class, 'logincustomer']);
 Route::get('/register', [UserController::class, 'register']);
-
-// City
-Route::get('/cities', CityController::class);
-

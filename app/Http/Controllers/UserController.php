@@ -13,6 +13,25 @@ class UserController extends Controller
             'customers' => User::where('role', 'Customer')->get()
         ]);
     }
+
+    public function generateAccountAdmin() {
+        $admin = \App\Models\User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'address' => 'Bandung',
+            'number_phone' => '0898779821',
+            'role' => 'Admin',
+            'password' => bcrypt('password'), // password
+            'remember_token' => Str::random(10),
+        ]);
+        
+        return response()->json([
+            'status' => 'berhasil',
+            'admin'  => $admin
+        ]);
+    }
+
     public function login()
     {
         return view('loginadmin');
