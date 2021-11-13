@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\BookingController;
 
 /*
@@ -38,4 +39,7 @@ Route::get('booking', [BookingController::class, 'store']);
 Route::get('/landingpage', [UserController::class, 'landingpage']);
 Route::get('/logincustomer', [UserController::class, 'logincustomer']);
 Route::get('/register', [UserController::class, 'register']);
+
+// City
+Route::get('/cities', CityController::class);
 

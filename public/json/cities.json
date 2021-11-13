@@ -1,0 +1,2006 @@
+[
+    {
+      "city_name": "Aceh Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Barat Daya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Besar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Jaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Singkil",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Tamiang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Tenggara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Aceh Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Agam",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Alor",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ambon",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Asahan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Asmat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Badung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Balangan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Balikpapan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Banda Aceh",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bandar Lampung",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bandung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bandung",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bandung Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banggai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banggai Kepulauan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangka",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangka Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangka Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangka Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangkalan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bangli",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banjar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banjar",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Banjarbaru",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Banjarmasin",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Banjarnegara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bantaeng",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bantul",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banyuasin",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banyumas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Banyuwangi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Barito Kuala",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Barito Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Barito Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Barito Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Barru",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Batam",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Batang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Batang Hari",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Batu",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Batu Bara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bau-Bau",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bekasi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bekasi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Belitung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Belitung Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Belu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bener Meriah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bengkalis",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bengkayang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bengkulu",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bengkulu Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bengkulu Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bengkulu Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Berau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Biak Numfor",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bima",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bima",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Binjai",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bintan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bireuen",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bitung",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Blitar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Blitar",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Blora",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Boalemo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bogor",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bogor",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Bojonegoro",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bolaang Mongondow (Bolmong)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bolaang Mongondow Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bolaang Mongondow Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bolaang Mongondow Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bombana",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bondowoso",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bone",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bone Bolango",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bontang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Boven Digoel",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Boyolali",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Brebes",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bukittinggi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Buleleng",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bulukumba",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bulungan (Bulongan)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Bungo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Buol",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Buru",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Buru Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Buton",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Buton Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ciamis",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Cianjur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Cilacap",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Cilegon",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Cimahi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Cirebon",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Cirebon",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Dairi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Deiyai (Deliyai)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Deli Serdang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Demak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Denpasar",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Depok",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Dharmasraya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Dogiyai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Dompu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Donggala",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Dumai",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Empat Lawang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ende",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Enrekang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Fakfak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Flores Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Garut",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gayo Lues",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gianyar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gorontalo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gorontalo",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Gorontalo Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gowa",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gresik",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Grobogan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gunung Kidul",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gunung Mas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Gunungsitoli",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Halmahera Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Halmahera Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Halmahera Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Halmahera Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Halmahera Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Hulu Sungai Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Hulu Sungai Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Hulu Sungai Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Humbang Hasundutan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Indragiri Hilir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Indragiri Hulu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Indramayu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Intan Jaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jakarta Barat",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jakarta Pusat",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jakarta Selatan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jakarta Timur",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jakarta Utara",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jambi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jayapura",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jayapura",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Jayawijaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jember",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jembrana",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jeneponto",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jepara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Jombang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kaimana",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kampar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kapuas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kapuas Hulu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Karanganyar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Karangasem",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Karawang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Karimun",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Karo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Katingan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kaur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kayong Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kebumen",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kediri",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kediri",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Keerom",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kendal",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kendari",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Kepahiang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Anambas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Aru",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Mentawai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Meranti",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Sangihe",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Seribu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Siau Tagulandang Biaro (Sitaro)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Sula",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Talaud",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kepulauan Yapen (Yapen Waropen)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kerinci",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ketapang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Klaten",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Klungkung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kolaka",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kolaka Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Konawe",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Konawe Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Konawe Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kotabaru",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kotamobagu",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Kotawaringin Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kotawaringin Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kuantan Singingi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kubu Raya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kudus",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kulon Progo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kuningan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kupang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kupang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Kutai Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kutai Kartanegara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Kutai Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Labuhan Batu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Labuhan Batu Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Labuhan Batu Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lahat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lamandau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lamongan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lampung Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lampung Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lampung Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lampung Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lampung Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Landak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Langkat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Langsa",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Lanny Jaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lebak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lebong",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lembata",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lhokseumawe",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Lima Puluh Koto/Kota",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lingga",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lombok Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lombok Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lombok Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lombok Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Lubuk Linggau",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Lumajang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Luwu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Luwu Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Luwu Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Madiun",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Madiun",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Magelang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Magelang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Magetan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Majalengka",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Majene",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Makassar",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Malang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Malang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Malinau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Maluku Barat Daya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Maluku Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Maluku Tenggara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Maluku Tenggara Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mamasa",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mamberamo Raya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mamberamo Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mamuju",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mamuju Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manado",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Mandailing Natal",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manggarai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manggarai Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manggarai Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manokwari",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Manokwari Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mappi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Maros",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mataram",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Maybrat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Medan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Melawi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Merangin",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Merauke",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mesuji",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Metro",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Mimika",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Minahasa",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Minahasa Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Minahasa Tenggara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Minahasa Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mojokerto",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Mojokerto",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Morowali",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Muara Enim",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Muaro Jambi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Muko Muko",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Muna",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Murung Raya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Musi Banyuasin",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Musi Rawas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nabire",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nagan Raya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nagekeo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Natuna",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nduga",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ngada",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nganjuk",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ngawi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nias",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nias Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nias Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nias Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Nunukan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ogan Ilir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ogan Komering Ilir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ogan Komering Ulu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ogan Komering Ulu Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ogan Komering Ulu Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pacitan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Padang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Padang Lawas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Padang Lawas Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Padang Panjang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Padang Pariaman",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Padang Sidempuan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pagar Alam",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pakpak Bharat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Palangka Raya",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Palembang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Palopo",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Palu",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pamekasan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pandeglang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pangandaran",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pangkajene Kepulauan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pangkal Pinang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Paniai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Parepare",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pariaman",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Parigi Moutong",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pasaman",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pasaman Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Paser",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pasuruan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pasuruan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pati",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Payakumbuh",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pegunungan Arfak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pegunungan Bintang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pekalongan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pekalongan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pekanbaru",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pelalawan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pemalang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pematang Siantar",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Penajam Paser Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pesawaran",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pesisir Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pesisir Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pidie",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pidie Jaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pinrang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pohuwato",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Polewali Mandar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ponorogo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pontianak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pontianak",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Poso",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Prabumulih",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pringsewu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Probolinggo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Probolinggo",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Pulang Pisau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Pulau Morotai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Puncak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Puncak Jaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Purbalingga",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Purwakarta",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Purworejo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Raja Ampat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Rejang Lebong",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Rembang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Rokan Hilir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Rokan Hulu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Rote Ndao",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sabang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sabu Raijua",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Salatiga",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Samarinda",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sambas",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Samosir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sampang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sanggau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sarmi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sarolangun",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sawah Lunto",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sekadau",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Selayar (Kepulauan Selayar)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Seluma",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Semarang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Semarang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Seram Bagian Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Seram Bagian Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Serang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Serang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Serdang Bedagai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Seruyan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Siak",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sibolga",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sidenreng Rappang/Rapang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sidoarjo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sigi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sijunjung (Sawah Lunto Sijunjung)",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sikka",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Simalungun",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Simeulue",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Singkawang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sinjai",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sintang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Situbondo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sleman",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Solok",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Solok",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Solok Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Soppeng",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sorong",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sorong",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sorong Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sragen",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Subang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Subulussalam",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sukabumi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sukabumi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Sukamara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sukoharjo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumba Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumba Barat Daya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumba Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumba Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumbawa",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumbawa Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumedang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sumenep",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Sungaipenuh",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Supiori",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Surabaya",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Surakarta (Solo)",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tabalong",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tabanan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Takalar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tambrauw",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tana Tidung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tana Toraja",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanah Bumbu",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanah Datar",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanah Laut",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tangerang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tangerang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tangerang Selatan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tanggamus",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanjung Balai",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tanjung Jabung Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanjung Jabung Timur",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tanjung Pinang",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tapanuli Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tapanuli Tengah",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tapanuli Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tapin",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tarakan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tasikmalaya",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tasikmalaya",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tebing Tinggi",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tebo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tegal",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tegal",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Teluk Bintuni",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Teluk Wondama",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Temanggung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Ternate",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tidore Kepulauan",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Timor Tengah Selatan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Timor Tengah Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Toba Samosir",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tojo Una-Una",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Toli-Toli",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tolikara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tomohon",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Toraja Utara",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Trenggalek",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tual",
+      "type": "Kota"
+    },
+    {
+      "city_name": "Tuban",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tulang Bawang",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tulang Bawang Barat",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Tulungagung",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Wajo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Wakatobi",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Waropen",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Way Kanan",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Wonogiri",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Wonosobo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Yahukimo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Yalimo",
+      "type": "Kabupaten"
+    },
+    {
+      "city_name": "Yogyakarta",
+      "type": "Kota"
+    }
+]
