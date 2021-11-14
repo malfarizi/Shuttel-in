@@ -68,10 +68,8 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-
                                                             <button 
-                                                                id="deleteDriver"
-                                                                class="btn btn-danger btn-md"
+                                                                class="btn btn-danger btn-md delete"
                                                             >
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
@@ -95,9 +93,9 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('#deleteDriver').on('click', function(e){
+        $('.delete').on('click', function(e){
             e.preventDefault();
-            var form = $(this).closest("form");
+            var form =  $(this).closest("form");
             Swal.fire({
                 title: 'Apakah kamu yakin hapus data ini?',
                 text: "Data yang sudah dihapus tidak bisa dikembalikan!",
@@ -107,16 +105,11 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                if (result.value) {
-                    form.submit();
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data kamu berhasi dihapus.',
-                        'success'
-                    )
-                }
+                    if (result) {
+                        form.submit();
+                    }
             })
-        })
+        });
     </script>
 @endpush
 

@@ -118,7 +118,11 @@ class DriverController extends Controller
      */
     public function destroy(Driver $driver)
     {
-        $driver->delete();
-        return back()->withSuccess('Data berhasil dihapus');
+        try {
+            $driver->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch(\Throwable $th) {
+            return back()->withError('Data gagal dihapus karena berketergantungan dengan tabel lain');
+        }
     }
 }
