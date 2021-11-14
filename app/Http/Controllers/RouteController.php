@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Route;
+use App\Models\Shuttle;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -18,12 +19,15 @@ class RouteController extends Controller
         $path = public_path() . "/json/cities.json";   
         //decode to get data json
         $cities = json_decode(file_get_contents($path));
+
+        $routes = Route::all();
         
         return view('admin.route', [
-            'title'   => 'Data Rute',
-            'i'       => 0,
-            'routes'  => Route::all(),
-            'cities'  => $cities 
+            'title'    => 'Data Rute',
+            'i'        => 0,
+            'routes'   => $routes->load('shuttle'),
+            'shuttles' => Shuttle::all(),
+            'cities'   => $cities 
         ]);
     }
 
@@ -50,7 +54,16 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'depature'   => 'required',
+            'arrival'    => 'required',
+            'price'      => 'required|numeric',
+            'shuttle_id' => 'required'
+        ]);
+
+        $requests = $request->only('depature', 'arrival', 'price', 'shuttle_id');
+        Route::create($requests);
+        return back()->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -84,7 +97,16 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        //
+        $request->validate([
+            'depature'   => 'required',
+            'arrival'    => 'required',
+            'price'      => 'required|numeric',
+            'shuttle_id' => 'required'
+        ]);
+
+        $requests = $request->only('depature', 'arrival', 'price', 'shuttle_id');
+        $route->update($requests);
+        return back()->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -95,7 +117,11 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        $route->delete();
-        return back()->withSuccess('Data berhasil dihapus');
+        try {
+            $route->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch(\Throwable $th) {
+            return back()->withError('Data gagal dihapus karena berketergantungan dengan tabel lain');
+        }
     }
 }

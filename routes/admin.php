@@ -32,6 +32,9 @@ Route::resource('drivers', DriverController::class);
 
 //Route
 Route::get('route', [RouteController::class, 'routeadmin']);
+Route::post('routes', [RouteController::class, 'store'])->name('routes.store');
+Route::put('routes/{route}', [RouteController::class, 'update'])->name('routes.update');
+Route::delete('routes/{route}', [RouteController::class, 'destroy'])->name('routes.destroy');
 
 //Schedule
 Route::get('schedule', [ScheduleController::class, 'scheduleadmin']);
