@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\ShuttleController;
 use App\Http\Controllers\Admin\DriverController;
-use App\Http\Controllers\RouteController;
+use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\ScheduleController;
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +30,7 @@ Route::get('shuttle', [ShuttleController::class, 'index']);
 Route::resource('drivers', DriverController::class);
 
 //Route
-Route::get('route', [RouteController::class, 'routeadmin']);
-Route::post('routes', [RouteController::class, 'store'])->name('routes.store');
-Route::put('routes/{route}', [RouteController::class, 'update'])->name('routes.update');
-Route::delete('routes/{route}', [RouteController::class, 'destroy'])->name('routes.destroy');
+Route::resource('routes', RouteController::class);
 
 //Schedule
 Route::get('schedule', [ScheduleController::class, 'scheduleadmin']);

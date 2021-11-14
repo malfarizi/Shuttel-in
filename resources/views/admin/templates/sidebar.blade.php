@@ -44,7 +44,7 @@
                 <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{route('admin.drivers.index')}}">Driver</a></li>
                 <li><a class="nav-link" href="{{url('admin/shuttle')}}">Shuttle</a></li>
-                <li><a class="nav-link" href="{{url('admin/route')}}">Rute</a></li>
+                <li><a class="nav-link" href="{{route('admin.routes.index')}}">Rute</a></li>
                 <li><a class="nav-link" href="{{url('admin/schedule')}}">Jadwal</a></li>
                 </ul>
             </li>

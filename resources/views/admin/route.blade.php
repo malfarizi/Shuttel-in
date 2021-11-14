@@ -26,6 +26,7 @@
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
@@ -35,6 +36,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
@@ -45,6 +47,7 @@
                                     <tbody>
                                         @foreach ($routes as $route)
                                         <tr>
+                                            <td>{{ ++$i }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
                                             <td>{{ $route->price }}</td>
@@ -57,7 +60,8 @@
                                                 </button>
                                                 <form action="{{route('admin.routes.destroy', $route->id)}}" 
                                                     method="POST" 
-                                                    class="d-inline">
+                                                    class="d-inline"
+                                                >
                                                     @csrf
                                                     @method('DELETE')
                                                     <button 
@@ -122,7 +126,8 @@
 
                     <div class="form-group">
                         <label for="">Harga</label>
-                        <input type="text" class="form-control" id="" name="price" placeholder="Masukan Harga">
+                        <input type="text" name="price"
+                            class="form-control integerInput" placeholder="Masukan harga">
                     </div>
 
                     <div class="form-group">
@@ -139,7 +144,7 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -210,7 +215,8 @@
                     
                     <div class="form-group">
                         <label for="">Harga</label>
-                        <input type="text" class="form-control" name="price" value="{{ $route->price }}">
+                        <input type="text" name="price" 
+                            class="form-control integerInput" value="{{ $route->price }}">
                     </div>
                     
                     <div class="form-group">
@@ -233,7 +239,7 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -256,6 +262,7 @@
         $('.select2').select2({
             dropdownParent: $('#exampleModal')
         });
+
         $('.delete').on('click', function(e){
             e.preventDefault();
             var form =  $(this).closest("form");
@@ -273,7 +280,12 @@
                     }
             })
         });
-    </script>
 
-  
+        $(function() {
+            $('.integerInput').on('input', function() {
+                // numbers and decimals only
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
+        });
+    </script>
 @endpush

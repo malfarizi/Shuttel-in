@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Route;
 use App\Models\Shuttle;
@@ -13,10 +15,10 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function routeadmin()
+    public function index()
     {
         //get File json
-        $path = public_path() . "/json/cities.json";   
+        $path = public_path("/json/cities.json");   
         //decode to get data json
         $cities = json_decode(file_get_contents($path));
 
@@ -24,16 +26,10 @@ class RouteController extends Controller
         
         return view('admin.route', [
             'title'    => 'Data Rute',
-            'i'        => 0,
             'routes'   => $routes->load('shuttle'),
             'shuttles' => Shuttle::all(),
             'cities'   => $cities 
-        ]);
-    }
-
-     public function index()
-    {
-        //
+        ])->with('i');
     }
 
     /**
