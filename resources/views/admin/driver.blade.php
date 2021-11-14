@@ -134,7 +134,7 @@
             </div>
 
             <form method="POST" action="{{route('admin.drivers.store')}}" enctype="multipart/form-data">
-                @csrf
+            @csrf
             <div class="modal-body">
             
                 <div class="form-group">
