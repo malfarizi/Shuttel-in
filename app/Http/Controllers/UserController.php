@@ -11,7 +11,7 @@ class UserController extends Controller
         return view('admin.customer', [
             'title'     => 'Data Customer',
             'customers' => User::where('role', 'Customer')->get()
-        ]);
+        ])->with('i');
     }
 
     public function generateAccountAdmin() {

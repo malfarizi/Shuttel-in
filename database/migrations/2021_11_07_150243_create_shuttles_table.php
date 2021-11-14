@@ -15,7 +15,7 @@ class CreateShuttlesTable extends Migration
     {
         Schema::create('shuttles', function (Blueprint $table) {
             $table->id();
-            $table->string('shuttle_status')->default('aktif');
+            $table->string('shuttle_status')->default('Aktif');
             $table->string('nopol');
             $table->foreignId('driver_id')->constrained();
             $table->timestamps();

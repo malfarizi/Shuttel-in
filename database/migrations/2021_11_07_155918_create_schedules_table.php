@@ -16,9 +16,9 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->date('date_of_depature');
-            $table->string('schedule_status')->default('aktif');
+            $table->string('schedule_status')->default('Aktif');
             $table->string('depature_time');
-            $table->integer('seat_capasity')->default('7');
+            $table->integer('seat_capacity')->default('7');
             $table->foreignId('route_id')->constrained();
             $table->timestamps();
         });

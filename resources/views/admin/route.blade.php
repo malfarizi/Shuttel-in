@@ -30,7 +30,7 @@
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
-                                            <th>Shuttle</th>
+                                            <th>Nopol Shuttle</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -40,7 +40,7 @@
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
-                                            <th>Shuttle</th>
+                                            <th>Nopol Shuttle</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -50,7 +50,7 @@
                                             <td>{{ ++$i }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
-                                            <td>{{ $route->price }}</td>
+                                            <td>@money($route->price)</td>
                                             <td>{{ $route->shuttle->nopol }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 
@@ -133,7 +133,7 @@
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option>Pilih Shuttle</option>
+                            <option value="">Pilih Shuttle</option>
                             @foreach ($shuttles as $shuttle)
                                 <option value="{{ $shuttle->id }}">
                                     {{ $shuttle->nopol }}
@@ -144,7 +144,9 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -222,10 +224,10 @@
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option>Pilih Shuttle</option>
+                            <option value="">Pilih Shuttle</option>
                             @foreach ($shuttles as $shuttle)
                                 @if($route->shuttle_id === $shuttle->id)
-                                    <option value="{{$shuttle->id}}" selected>
+                                    <option value="{{ $shuttle->id }}" selected>
                                         {{ $shuttle->nopol }}
                                     </option>
                                 @else 
@@ -275,7 +277,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                    if (result) {
+                    if (result.value) {
                         form.submit();
                     }
             })
