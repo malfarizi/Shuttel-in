@@ -40,7 +40,19 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Driver();
+    	$data->driver_name = $request->driver_name;
+    	$data->driver_status = $request->driver_status;
+        $data->address = $request->address;
+        $data->number_phone = $request->number_phone;
+
+        $image      = $request->file('photo');
+        $imageName  = time() . "_" . $image->getClientOriginalName();
+        $image->move(public_path('images/driver_photos/'), $imageName);
+        $data->photo = $imageName;
+        
+        $data->save();
+        return redirect()->back();
     }
 
     /**
@@ -72,9 +84,30 @@ class DriverController extends Controller
      * @param  \App\Models\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Driver $driver)
+    public function update(Request $request, $driver)
     {
-        //
+        $data = Driver::findOrFail($driver);
+    	$data->driver_name = $request->driver_name;
+    	$data->driver_status = $request->driver_status;
+        $data->address = $request->address;
+        $data->number_phone = $request->number_phone;
+        
+        
+        if (empty($request->file('photo')))
+        {
+            $data->photo = $data->photo;
+        }
+        else{
+            unlink('images/driver_photos/'.$data->photo); //menghapus file lama
+            $photo = $request->file('photo');
+            $ext = $photo->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $photo->move('images/driver_photos/',$newName);
+            $data->photo = $newName;
+        }
+        $data->save();
+        return redirect()->back();
+
     }
 
     /**

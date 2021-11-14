@@ -22,14 +22,7 @@
 
                         <div class="card-body">
                             @include('admin.templates.components.alert')
-                            <div class="form-group">
-                                <label>Keberangkatan</label>
-                                <select class="form-control select2">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                </select>
-                            </div>
+                            
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -82,7 +75,7 @@
 </div>
 
 <!--Modal tambah-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -96,7 +89,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Keberangkatan</label>
-                    <select class="select2-single-placeholder form-control">
+                    <select class="select2 form-control">
                         <option>Option 1</option>
                         <option>Option 2</option>
                         <option>Option 3</option>
@@ -193,10 +186,11 @@
 @push('scripts')
     <script src="{{asset('/assets/js/select2.full.min.js')}}"></script> 
     <script src="{{asset('/assets/js/jquery.selectrict.min.js')}}"></script>
-    <script>
-        $("#depature").select2({
-            placeholder: "Select a state",
-            allowClear: true
-        });
+    
+    <script>   
+    $('.select2').select2({
+        dropdownParent: $('#exampleModal')
+    });
     </script>
+  
 @endpush

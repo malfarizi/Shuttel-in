@@ -18,7 +18,7 @@
                                 <span class="text">Tambah Driver</span>
                             </button>
                         </div>
-
+                        
                         <div class="card-body">
                             @include('admin.templates.components.alert')
                             <div class="table-responsive">
@@ -53,13 +53,14 @@
                                                 <td>{{ $driver->driver_status }}</td>
                                                 <td>{{ $driver->number_phone }}</td>
                                                 <td>{{ $driver->address }}</td>
-                                                <td>
-                                                    <img src='https://via.placeholder.com/75'>
+                                                <td><img src="{{ url('images/driver_photos/'.$driver->photo) }}"
+                                                    style="width: 75px; height: 75px;">
                                                 </td>
+                                               
                                                 <td>
                                                     <div class="input-group">
                                                         <button type="button" class="btn btn-primary btn-md" 
-                                                            data-toggle="modal" data-target="#edit-data">
+                                                            data-toggle="modal" data-target="#edit-data-{{$driver->id}}">
                                                             <i class="fas fa-user-edit"></i>
                                                         </button>
                                                         <form 
@@ -131,6 +132,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <form method="POST" action="{{route('admin.drivers.store')}}" enctype="multipart/form-data">
+                @csrf
             <div class="modal-body">
             
                 <div class="form-group">
@@ -141,7 +145,7 @@
 
                 <div class="form-group">
                     <label for="">No Telephone</label>
-                    <input type="text" class="form-control" id="" name="phone_number" 
+                    <input type="text" class="form-control" id="" name="number_phone" 
                         placeholder="Masukan No Telephone">
                 </div>
 
@@ -174,12 +178,15 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="sumbit" class="btn btn-primary">Simpan</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
 
+
 <!--Modal Edit-->
-<div class="modal fade" id="edit-data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach($drivers as $driver)
+<div class="modal fade" id="edit-data-{{$driver->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -190,37 +197,45 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <form action="{{route('admin.drivers.update', $driver)}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
+
             <div class="modal-body">
-             
+                
                 <div class="form-group">
                     <label for="">Nama Driver</label>
                     <input type="text" class="form-control" id="" name="driver_name"
-                        placeholder="Masukan nama Driver">
+                        value="{{$driver->driver_name}}">
                 </div>
 
                 <div class="form-group">
                     <label for="">No Telephone</label>
-                    <input type="text" class="form-control" id="" name="phone_number" 
-                        placeholder="Masukan No Telephone">
+                    <input type="text" class="form-control" id="" name="number_phone" 
+                        value="{{$driver->number_phone}}">
                 </div>
 
                 <div class="form-group">
                     <label for="">Alamat</label>
-                    <textarea input type="text" class="form-control" id="" name="address" placeholder="Masukan Alamat">
-                    </textarea>   
+                    <input type="text" class="form-control" id="" name="address" value="{{$driver->address}}">
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="">Foto</label>
+                    <br>
+                    <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
+                        style="width: 75px; height: 75px;">
                     <input type="file" class="form-control" id="" name="photo"
-                        placeholder="Masukan Foto Driver">
+                        value="Masukan Foto Driver">
                 </div>
 
 
                 <div class="form-group">
                     <label for="">Pilih Status Driver</label>
                     <select name="driver_status" id="" class="form-control">
-                        <option>Pilih Status Driver</option>
+                        <option>{{$driver->driver_status}}</option>
                        
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>
@@ -228,6 +243,7 @@
                     </select>
                 </div>
 
+           
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -236,4 +252,6 @@
         </div>
     </div>
 </div>
+</form>
+@endforeach
 @endsection
