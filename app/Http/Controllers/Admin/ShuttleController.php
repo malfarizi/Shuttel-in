@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shuttle;
+use App\Models\Driver;
 use Illuminate\Http\Request;
+use DB;
 
 class ShuttleController extends Controller
 {
@@ -13,11 +15,16 @@ class ShuttleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+
     public function index()
     {
+        $shuttles = Shuttle::all();
         return view('admin.shuttle', [
             'title'    => 'Data Shuttle',
-            'shuttles' => Shuttle::all()
+            'shuttles'   => $shuttles->load('driver'),
+            'drivers' => Driver::all()
+
         ]);
     }
 
@@ -39,7 +46,20 @@ class ShuttleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nopol'   => 'required',
+            'shuttle_status'    => 'required',
+            'driver_id'      => 'required',
+        ]);
+
+        $data = new Shuttle();
+    	$data->nopol = $request->nopol;
+    	$data->shuttle_status = $request->shuttle_status;
+        $data->driver_id = $request->driver_id;
+
+        $data->save();
+
+        return back()->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -73,7 +93,16 @@ class ShuttleController extends Controller
      */
     public function update(Request $request, Shuttle $shuttle)
     {
-        //
+
+        $request->validate([
+            'nopol'             => 'required',
+            'shuttle_status'    => 'required',
+            'driver_id'         => 'required',
+        ]);
+
+        $data = $request->only('nopol', 'shuttle_status', 'driver_id');
+        $shuttle->update($data);
+        return back()->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -84,7 +113,11 @@ class ShuttleController extends Controller
      */
     public function destroy(Shuttle $shuttle)
     {
-        $shuttle->delete();
-        return back()->withSuccess('Data berhasil dihapus');
+        try {
+            $shuttle->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch(\Throwable $th) {
+            return back()->withError('Data gagal dihapus karena berketergantungan dengan tabel lain');
+        }
     }
 }

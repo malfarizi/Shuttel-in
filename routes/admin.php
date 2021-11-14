@@ -24,7 +24,8 @@ Route::get('/customers', [UserController::class, 'index'])->name('customers');
 Route::get('/login', [UserController::class, 'login']);
 
 //Shuttle
-Route::get('shuttle', [ShuttleController::class, 'index']);
+Route::resource('shuttle', ShuttleController::class);
+Route::put('shuttle/{shuttles}', [ShuttleController::class, 'update'])->name('shuttle.update'); 
 
 //Driver
 Route::resource('drivers', DriverController::class);
