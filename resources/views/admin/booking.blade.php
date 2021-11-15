@@ -55,10 +55,10 @@
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $booking->name }}</td>
                                                 <td>{{ $booking->date_of_depature }} - {{$booking->depature_time }}</td>
-                                                <td>{{ $booking->snap_token }}</td>
-                                                <td>{{ $booking->booking_code }}</td>
+                                                <td>{{ $booking->snap_token ?? '-' }}</td>
+                                                <td>{{ $booking->booking_code ?? '-' }}</td>
                                                 <td>{{ $booking->seat_number }}</td>
-                                                <td>{{ $booking->booking_code }}</td>
+                                                <td>@money($booking->subtotal)</td>
                                                 <td><button type="button" class="btn btn-success btn-md" 
                                                     data-toggle="modal" data-target="#modaldetail-{{$booking->id}}">
                                                     Detail

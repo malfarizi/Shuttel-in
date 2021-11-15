@@ -108,6 +108,13 @@
                     }
             })
         });
+
+        $(function() {
+            $('.integerInput').on('input', function() {
+                // numbers and decimals only
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
+        });
     </script>
 @endpush
 
@@ -128,7 +135,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama Driver</label>
-                        <input type="text" class="form-control" name="driver_name"
+                        <input type="text" class="form-control integerInput" name="driver_name"
                             placeholder="Masukan nama Driver">
                     </div>
 
@@ -196,7 +203,7 @@
 
                     <div class="form-group">
                         <label for="">No Telephone</label>
-                        <input type="text" class="form-control" name="number_phone" 
+                        <input type="text" class="form-control integerInput" name="number_phone" 
                             value="{{$driver->number_phone}}">
                     </div>
 
