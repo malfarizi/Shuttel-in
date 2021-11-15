@@ -103,7 +103,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                    if (result) {
+                    if (result.value) {
                         form.submit();
                     }
             })
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label for="">Pilih Status Driver</label>
                         <select name="driver_status" class="form-control">
-                            <option value="" disabled>Pilih Status Driver</option>
+                            <option value="">Pilih Status Driver</option>
                             <option value="Aktif">Aktif</option>
                             <option value="Tidak Aktif">Tidak Aktif</option>
                         </select>
@@ -220,13 +220,13 @@
                         <select name="driver_status" class="form-control">
                             <option 
                                 value="Aktif" 
-                                {{$driver->driver_status === 'Aktif' ? selected : '' }}
+                                {{$driver->driver_status === 'Aktif' ? 'selected' : '' }}
                             >
                                 Aktif
                             </option>
                             <option 
                                 value="Tidak Aktif"
-                                {{$driver->driver_status === 'Tidak Aktif' ? selected : '' }}
+                                {{$driver->driver_status === 'Tidak Aktif' ? 'selected' : '' }}
                             >
                                 Tidak Aktif
                             </option>
