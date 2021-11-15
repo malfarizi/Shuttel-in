@@ -140,7 +140,8 @@
 
                     <div class="form-group">
                         <label for="">Alamat</label>
-                        <textarea class="form-control" name="address" placeholder="Masukan Alamat"></textarea>   
+                        <textarea class="form-control h-25" rows="5" 
+                            name="address" placeholder="Masukan Alamat"></textarea>   
                     </div>
 
                     <div class="form-group">
@@ -201,8 +202,8 @@
 
                     <div class="form-group">
                         <label for="">Alamat</label>
-                        <input type="text" class="form-control" name="address" value="{{$driver->address}}">
-                        
+                        <textarea class="form-control h-25" rows="5" 
+                            name="address" value="{{$driver->address}}"></textarea>
                     </div>
 
                     <div class="form-group">

@@ -22,12 +22,12 @@ class RouteController extends Controller
         //decode to get data json
         $cities = json_decode(file_get_contents($path));
 
-        $routes = Route::all();
+        $routes = Route::latest()->get();
         
         return view('admin.route', [
             'title'    => 'Data Rute',
             'routes'   => $routes->load('shuttle'),
-            'shuttles' => Shuttle::all(),
+            'shuttles' => Shuttle::isActiveStatus()->get(),
             'cities'   => $cities 
         ])->with('i');
     }

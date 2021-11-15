@@ -15,4 +15,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Booking::class);
     }
+
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
 }

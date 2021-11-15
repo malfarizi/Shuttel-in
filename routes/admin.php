@@ -41,4 +41,4 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 
 //Profile
 Route::get('/profile/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('profile.edit');
-Route::get('/profile/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('profile.update');
+Route::put('/profile/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('profile.update');

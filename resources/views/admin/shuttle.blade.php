@@ -53,8 +53,9 @@
                                                     data-toggle="modal" data-target="#edit-data-{{$shuttle->id}}">
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
+                                                
                                                 <form action="{{route('admin.shuttles.destroy', $shuttle->id)}}" 
-                                                    method="POST">
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger delete">

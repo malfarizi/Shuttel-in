@@ -19,11 +19,11 @@ class ShuttleController extends Controller
 
     public function index()
     {
-        $shuttles = Shuttle::all();
+        $shuttles = Shuttle::latest()->get();
         return view('admin.shuttle', [
             'title'    => 'Data Shuttle',
             'shuttles' => $shuttles->load('driver'),
-            'drivers'  => Driver::all()
+            'drivers'  => Driver::isActiveStatus()->get(),
         ])->with('i');
     }
 
