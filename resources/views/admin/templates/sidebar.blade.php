@@ -51,7 +51,7 @@
                 <li><a class="nav-link" href="{{route('admin.schedules.index')}}">Jadwal</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-square"></i> <span>Customer</span></a></li>
-            <li><a class="nav-link" href="{{route('admin.booking')}}"><i class="far fa-square"></i> <span>Reservasi</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-user"></i> <span>Customer</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.booking')}}"><i class="fas fa-receipt"></i> <span>Booking</span></a></li>
     </aside>
 </div>
