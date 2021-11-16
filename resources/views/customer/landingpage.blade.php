@@ -1,88 +1,69 @@
 @extends('customer.template')
 
 @section('content')
-
-<!-- ======= Pricing Section ======= -->
-<section id="pricing" class="pricing">
-
-    <div class="container" data-aos="fade-up">
-
-      <header class="section-header">
-        <h2>Pricing</h2>
-        <p>Check our Pricing</p>
-      </header>
-
-      <div class="row gy-4" data-aos="fade-left">
-
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <h3 style="color: #07d5c0;">Free Plan</h3>
-            <div class="price"><sup>$</sup>0<span> / mo</span></div>
-            <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
-            <ul>
-              <li>Aida dere</li>
-              <li>Nec feugiat nisl</li>
-              <li>Nulla at volutpat dola</li>
-              <li class="na">Pharetra massa</li>
-              <li class="na">Massa ultricies mi</li>
-            </ul>
-            <a href="#" class="btn-buy">Buy Now</a>
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <h1 data-aos="fade-up">Shuttle-In</h1>
+        <h2 data-aos="fade-up" data-aos-delay="400">Travel antar kota Point to point dengan custom seat yang nyaman
+          dan lega. Bisa langsung Booking Online lho..
+        </h2>
+        <div data-aos="fade-up" data-aos-delay="600">
+          <div class="text-center text-lg-start">
+            <a href="#about" class="btn-get-started scrollto 
+              d-inline-flex align-items-center justify-content-center align-self-center">
+              <span>Daftar Sekarang</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-          <div class="box">
-            <span class="featured">Featured</span>
-            <h3 style="color: #65c600;">Starter Plan</h3>
-            <div class="price"><sup>$</sup>19<span> / mo</span></div>
-            <img src="assets/img/pricing-starter.png" class="img-fluid" alt="">
-            <ul>
-              <li>Aida dere</li>
-              <li>Nec feugiat nisl</li>
-              <li>Nulla at volutpat dola</li>
-              <li>Pharetra massa</li>
-              <li class="na">Massa ultricies mi</li>
-            </ul>
-            <a href="#" class="btn-buy">Buy Now</a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-          <div class="box">
-            <h3 style="color: #ff901c;">Business Plan</h3>
-            <div class="price"><sup>$</sup>29<span> / mo</span></div>
-            <img src="assets/img/pricing-business.png" class="img-fluid" alt="">
-            <ul>
-              <li>Aida dere</li>
-              <li>Nec feugiat nisl</li>
-              <li>Nulla at volutpat dola</li>
-              <li>Pharetra massa</li>
-              <li>Massa ultricies mi</li>
-            </ul>
-            <a href="#" class="btn-buy">Buy Now</a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-          <div class="box">
-            <h3 style="color: #ff0071;">Ultimate Plan</h3>
-            <div class="price"><sup>$</sup>49<span> / mo</span></div>
-            <img src="assets/img/pricing-ultimate.png" class="img-fluid" alt="">
-            <ul>
-              <li>Aida dere</li>
-              <li>Nec feugiat nisl</li>
-              <li>Nulla at volutpat dola</li>
-              <li>Pharetra massa</li>
-              <li>Massa ultricies mi</li>
-            </ul>
-            <a href="#" class="btn-buy">Buy Now</a>
-          </div>
-        </div>
-
       </div>
-
+      <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+        <div class="box">
+          <h5>Cek Reservasi</h5>
+          <div class="row">
+            <form>
+              <div class="input-group ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validatedInputGroupPrepend"><i class="bi bi-card-list"></i></span>
+                </div>
+                <input type="text" class="form-control">
+                <button class="btn btn-outline-primary" type="submit">Cari</button>
+              </div>
+            </form>
+          </div>
+          <div class="row mt-4">
+            <h5>Reservasi Online</h5>
+            <form>
+              <div class="input-group ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validatedInputGroupPrepend"><i
+                      class="bi bi-arrow-up-right-square"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Cari Keberangkatan">
+              </div>
+              <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validatedInputGroupPrepend"><i
+                      class="bi bi-arrow-down-right-square"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Cari Tujuan">
+              </div>
+              <h5 class="mt-4">Tanggal Keberangkatan</h5>
+              <div class="input-group ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validatedInputGroupPrepend"><i class="bi bi-calendar3"></i></span>
+                </div>
+                <input type="date" class="form-control">
+              </div>
+              {{-- <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</button> --}}
+              <a href="/jadwal" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</a>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </section><!-- End Pricing Section -->
-
-  @endsection
+  </div>
+</section><!-- End Hero -->
+@endsection

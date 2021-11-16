@@ -96,4 +96,19 @@ class UserController extends Controller
     {
         return view('register');
     }
+  
+    public function jadwal()
+    {
+        return view('customer.jadwal');
+    }
+  
+    public function reservasi()
+    {
+        return view('customer.reservasi');
+    }
+   
+    public function riwayat()
+    {
+        return view('customer.riwayat');
+    }
 }
