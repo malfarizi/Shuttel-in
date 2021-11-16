@@ -25,7 +25,7 @@
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
-                                            <th>No. </th>
+                                            <th>No.</th>
                                             <th>Nama Driver</th>
                                             <th>Status Driver</th>
                                             <th>No Telephone</th>
@@ -36,7 +36,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No. </th>
+                                            <th>No.</th>
                                             <th>Nama Driver</th>
                                             <th>Status Driver</th>
                                             <th>No Telephone</th>
@@ -48,7 +48,7 @@
                                     <tbody>
                                         @foreach($drivers as $driver)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ ++$i }}.</td>
                                                 <td>{{ $driver->driver_name }}</td>
                                                 <td>{{ $driver->driver_status }}</td>
                                                 <td>{{ $driver->number_phone }}</td>
@@ -68,9 +68,7 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button 
-                                                                class="btn btn-danger btn-md delete"
-                                                            >
+                                                            <button class="btn btn-danger btn-md delete">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
@@ -105,10 +103,17 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                    if (result) {
+                    if (result.value) {
                         form.submit();
                     }
             })
+        });
+
+        $(function() {
+            $('.integerInput').on('input', function() {
+                // numbers and decimals only
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
         });
     </script>
 @endpush
@@ -125,57 +130,51 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <form method="POST" action="{{route('admin.drivers.store')}}" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-body">
-            
-                <div class="form-group">
-                    <label for="">Nama Driver</label>
-                    <input type="text" class="form-control" id="" name="driver_name"
-                        placeholder="Masukan nama Driver">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Nama Driver</label>
+                        <input type="text" class="form-control integerInput" name="driver_name"
+                            placeholder="Masukan nama Driver">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">No Telephone</label>
+                        <input type="text" class="form-control" name="number_phone" 
+                            placeholder="Masukan No Telephone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Alamat</label>
+                        <textarea class="form-control h-25" rows="5" 
+                            name="address" placeholder="Masukan Alamat"></textarea>   
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Foto</label>
+                        <input type="file" class="form-control" name="photo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Pilih Status Driver</label>
+                        <select name="driver_status" class="form-control">
+                            <option value="">Pilih Status Driver</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Tidak Aktif">Tidak Aktif</option>
+                        </select>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="">No Telephone</label>
-                    <input type="text" class="form-control" id="" name="number_phone" 
-                        placeholder="Masukan No Telephone">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
-
-                <div class="form-group">
-                    <label for="">Alamat</label>
-                    <textarea input type="text" class="form-control" id="" name="address" placeholder="Masukan Alamat">
-                    </textarea>   
-                </div>
-
-                <div class="form-group">
-                    <label for="">Foto</label>
-                    <input type="file" class="form-control" id="" name="photo"
-                        placeholder="Masukan Foto Driver">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="">Pilih Status Driver</label>
-                    <select name="driver_status" id="" class="form-control">
-                        <option>Pilih Status Driver</option>
-                       
-                        <option value="Aktif">Aktif</option>
-                        <option value="Tidak Aktif">Tidak Aktif</option>
-                        
-                    </select>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="sumbit" class="btn btn-primary">Simpan</button>
-            </div>
-        </form>
+            </form>
         </div>
     </div>
 </div>
-
 
 <!--Modal Edit-->
 @foreach($drivers as $driver)
@@ -192,59 +191,65 @@
             </div>
 
             <form action="{{route('admin.drivers.update', $driver)}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
+                @csrf
+                @method('PATCH')
 
-            <div class="modal-body">
-                
-                <div class="form-group">
-                    <label for="">Nama Driver</label>
-                    <input type="text" class="form-control" id="" name="driver_name"
-                        value="{{$driver->driver_name}}">
+                <div class="modal-body">    
+                    <div class="form-group">
+                        <label for="">Nama Driver</label>
+                        <input type="text" class="form-control" name="driver_name"
+                            value="{{$driver->driver_name}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">No Telephone</label>
+                        <input type="text" class="form-control integerInput" name="number_phone" 
+                            value="{{$driver->number_phone}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Alamat</label>
+                        <textarea class="form-control h-25" rows="5" 
+                            name="address" value="{{$driver->address}}"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Foto</label>
+                        <br>
+                        <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
+                            style="width: 75px; height: 75px;">
+                        <input type="file" class="form-control" name="photo"
+                            value="Masukan Foto Driver">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Pilih Status Driver</label>
+                        <select name="driver_status" class="form-control">
+                            <option 
+                                value="Aktif" 
+                                {{$driver->driver_status === 'Aktif' ? 'selected' : '' }}
+                            >
+                                Aktif
+                            </option>
+                            <option 
+                                value="Tidak Aktif"
+                                {{$driver->driver_status === 'Tidak Aktif' ? 'selected' : '' }}
+                            >
+                                Tidak Aktif
+                            </option>
+                        </select>
+                    </div> 
                 </div>
-
-                <div class="form-group">
-                    <label for="">No Telephone</label>
-                    <input type="text" class="form-control" id="" name="number_phone" 
-                        value="{{$driver->number_phone}}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
-
-                <div class="form-group">
-                    <label for="">Alamat</label>
-                    <input type="text" class="form-control" id="" name="address" value="{{$driver->address}}">
-                    
-                </div>
-
-                <div class="form-group">
-                    <label for="">Foto</label>
-                    <br>
-                    <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
-                        style="width: 75px; height: 75px;">
-                    <input type="file" class="form-control" id="" name="photo"
-                        value="Masukan Foto Driver">
-                </div>
-
-
-                <div class="form-group">
-                    <label for="">Pilih Status Driver</label>
-                    <select name="driver_status" id="" class="form-control">
-                        <option>{{$driver->driver_status}}</option>
-                       
-                        <option value="Aktif">Aktif</option>
-                        <option value="Tidak Aktif">Tidak Aktif</option>
-                        
-                    </select>
-                </div>
-
-           
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="sumbit" class="btn btn-primary">Simpan</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-</form>
 @endforeach
 @endsection

@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+
+use App\Models\Route;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -12,17 +15,14 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function scheduleadmin()
-    {
-        return view('admin.schedule', [
-            'title'     => 'Data Jadwal',
-            'schedules' => Schedule::all()
-        ]);
-    }
-
     public function index()
     {
-        //
+        $schedules = Schedule::latest()->get();
+        return view('admin.schedule', [
+            'title'     => 'Data Jadwal',
+            'schedules' => $schedules->load('route'),
+            'routes'    => Route::all()
+        ])->with('i');
     }
 
     /**
@@ -43,7 +43,14 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Schedule::create([
+            'date_of_depature' => $request->date_of_depature, 
+            'schedule_status'  => $request->schedule_status, 
+            'depature_time'    => $request->depature_time, 
+            'route_id'         => $request->route_id
+        ]);
+
+        return back()->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
@@ -77,7 +84,15 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $schedule->update([
+            'date_of_depature' => $request->date_of_depature, 
+            'schedule_status'  => $request->schedule_status, 
+            'depature_time'    => $request->depature_time, 
+            'seat_capacity'    => $request->seat_capacity,
+            'route_id'         => $request->route_id
+        ]);
+
+        return back()->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -88,7 +103,11 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        $schedule->delete();
-        return back()->withSuccess('Data berhasil dihapus');
+        try {
+            $schedule->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (\Throwable $th) {
+            return back()->withError('Data gagal dihapus karena berketergantungan dengan tabel lain');
+        }
     }
 }

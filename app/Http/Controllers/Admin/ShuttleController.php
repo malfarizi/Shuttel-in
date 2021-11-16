@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Shuttle;
 use App\Models\Driver;
 use Illuminate\Http\Request;
-use DB;
 
 class ShuttleController extends Controller
 {
@@ -19,13 +19,12 @@ class ShuttleController extends Controller
 
     public function index()
     {
-        $shuttles = Shuttle::all();
+        $shuttles = Shuttle::latest()->get();
         return view('admin.shuttle', [
             'title'    => 'Data Shuttle',
-            'shuttles'   => $shuttles->load('driver'),
-            'drivers' => Driver::all()
-
-        ]);
+            'shuttles' => $shuttles->load('driver'),
+            'drivers'  => Driver::isActiveStatus()->get(),
+        ])->with('i');
     }
 
     /**
@@ -101,6 +100,7 @@ class ShuttleController extends Controller
         ]);
 
         $data = $request->only('nopol', 'shuttle_status', 'driver_id');
+
         $shuttle->update($data);
         return back()->withSuccess('Data berhasil diubah');
     }

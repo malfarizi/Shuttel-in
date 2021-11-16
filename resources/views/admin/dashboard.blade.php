@@ -33,15 +33,21 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
+                                <div class="card-stats-item-count">
+                                    {{ $pending_reservation }}
+                                </div>
                                 <div class="card-stats-item-label">Pending</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">12</div>
+                                <div class="card-stats-item-count">
+                                    {{ $cancel_reservation }}
+                                </div>
                                 <div class="card-stats-item-label">Cancel</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
+                                <div class="card-stats-item-count">
+                                    {{ $success_reservation }}
+                                </div>
                                 <div class="card-stats-item-label">Completed</div>
                             </div>
                         </div>
@@ -54,7 +60,7 @@
                             <h4>Total Reservasi</h4>
                         </div>
                         <div class="card-body">
-                            59
+                            {{ $total_reservation }}
                         </div>
                     </div>
                 </div>
@@ -66,10 +72,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Balance</h4>
+                            <h4>Total Penjualan</h4>
                         </div>
                         <div class="card-body">
-                            $187,13
+                            @money($total_income)
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,7 @@
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Nopol Shuttle</th>
                                             <th>Status Shuttle</th>
                                             <th>Driver</th>
@@ -33,6 +34,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Nopol Shuttle</th>
                                             <th>Status Shuttle</th>
                                             <th>Driver</th>
@@ -42,19 +44,21 @@
                                     <tbody>
                                         @foreach($shuttles as $shuttle)
                                         <tr>
+                                            <td>{{ ++$i }}</td>
                                             <td>{{$shuttle->nopol}}</td>
                                             <td>{{$shuttle->shuttle_status}}</td>
-                                            <td>{{$shuttle->driver->driver_name}} - {{$shuttle->driver_id}}</td>
+                                            <td>{{$shuttle->driver->driver_name}}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 
                                                     data-toggle="modal" data-target="#edit-data-{{$shuttle->id}}">
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <form action="{{route('admin.shuttle.destroy', $shuttle->id)}}" 
-                                                    method="POST">
+                                                
+                                                <form action="{{route('admin.shuttles.destroy', $shuttle->id)}}" 
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
+                                                    <button type="submit" class="btn btn-danger delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -84,115 +88,122 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{route('admin.shuttle.store')}}" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="">Nopol Shuttle</label>
-                    <input type="text" class="form-control" id="" name="nopol"
-                        value="Masukan Nopol Shuttle">
-                </div>
+            <form method="POST" action="{{route('admin.shuttles.store')}}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Nopol Shuttle</label>
+                        <input type="text" class="form-control" id="" name="nopol"
+                            value="Masukan Nopol Shuttle">
+                    </div>
 
-                <div class="form-group">
-                    <label for="">Pilih Status Shuttle</label>
-                    <select name="shuttle_status" id="" class="form-control">
-                        <option>Pilih Status Shuttle</option>
-                       
-                        <option value="Aktif">Aktif</option>
-                        <option value="Tidak Aktif">Tidak Aktif</option>
-                        
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="">Pilih Status Shuttle</label>
+                        <select name="shuttle_status" class="form-control">
+                            <option value="">Pilih Status Shuttle</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Tidak Aktif">Tidak Aktif</option>
+                            
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="">Pilih Driver</label>
-                    <select class="select2 form-control" name="driver_id">
-                        <option>Pilih Driver</option>
-                        @foreach ($drivers as $driver)
-                        @if ($driver->driver_status == "Tidak Aktif")
-
-                        @else
-                          <option value="{{ $driver->id}}">{{ $driver->driver_name }}</option>    
-                        @endif
-                        @endforeach
-                    </select>
+                    <div class="form-group">
+                        <label for="">Pilih Driver</label>
+                        <select class="select2 form-control" name="driver_id">
+                            <option value="">Pilih Driver</option>
+                            @foreach ($drivers as $driver)
+                                @if ($driver->driver_status === "Aktif")
+                                    <option value="{{ $driver->id }}">
+                                        {{ $driver->driver_name }}
+                                    </option>    
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="sumbit" class="btn btn-primary">Simpan</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="sumbit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!--Modal Edit-->
 @foreach ($shuttles as $shuttle)
-<div class="modal fade" id="edit-data-{{$shuttle->id}}"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--Modal Edit-->
+<div class="modal fade" id="edit-data-{{$shuttle->id}}" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Edit Shuttle
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <form action="{{route('admin.shuttle.update', $shuttle->id)}}" method="POST" >
-            @csrf
-            @method('PUT')
-            <div class="modal-body">
-             
-                <div class="form-group">
-                    <label for="">Nopol Shuttle</label>
-                    <input type="text" class="form-control" id="" name="nopol"
-                        value="{{$shuttle->nopol}}">
+            <form action="{{route('admin.shuttles.update', $shuttle)}}" method="POST">
+                @csrf
+                @method('PUT')   
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Edit Shuttle
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
-                <div class="form-group">
-                    <label for="">Pilih Status Shuttle</label>
-                    <select name="shuttle_status" id="" class="form-control">
-                        <option>{{$shuttle->shuttle_status}}</option>
-                       
-                        <option value="Aktif">Aktif</option>
-                        <option value="Tidak Aktif">Tidak Aktif</option>
-                        
-                    </select>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Nopol Shuttle</label>
+                        <input type="text" class="form-control" name="nopol"
+                            value="{{ $shuttle->nopol }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Pilih Status Shuttle</label>
+                        <select name="shuttle_status" class="form-control">
+                            <option value="">Pilih Status Shuttle</option>
+                            <option 
+                                value="Aktif"
+                                {{$shuttle->shuttle_status === 'Aktif' ? 'selected' : ''}}
+                            >
+                                Aktif
+                            </option>
+                            <option 
+                                value="Tidak Aktif"
+                                {{$shuttle->shuttle_status === 'Tidak Aktif' ? 'selected' : ''}}
+                            >
+                                Tidak Aktif
+                            </option>
+                            
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Pilih Driver</label>
+                        <select class="select2 form-control" name="driver_id">
+                            <option value="{{$shuttle->driver_id}}">
+                                {{ $shuttle->driver->driver_name }}
+                            </option>
+                            @foreach ($drivers as $driver)
+                                @if ($driver->driver_status === "Aktif" && $shuttle->driver_id != $driver->id )
+                                    <option value="{{ $driver->id }}">
+                                        {{ $driver->driver_name }}
+                                    </option>    
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="">Pilih Driver</label>
-                    <select class="select2 form-control" name="driver_id">
-                        <option>Pilih Driver</option>
-                        @foreach ($drivers as $driver)
-                            @if ($driver->driver_status == "Tidak Aktif")
-
-                            @else   
-                                    @if($shuttle->driver_id === $driver->id)
-
-                                        <option value="{{ $driver->id }}" selected>{{ $driver->driver_name }}</option>
-                                    @else
-                                    <option value="{{ $driver->id }}" >{{ $driver->driver_name }}</option>
-                                    @endif
-                            @endif
-                        @endforeach
-                    </select>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="sumbit" class="btn btn-primary">Simpan</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<form>
 @endforeach
+
 @endsection
 
 @push('styles')
@@ -207,6 +218,7 @@
         $('.select2').select2({
             dropdownParent: $('#exampleModal')
         });
+
         $('.delete').on('click', function(e){
             e.preventDefault();
             var form =  $(this).closest("form");
@@ -219,12 +231,10 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                    if (result) {
+                    if (result.value) {
                         form.submit();
                     }
             })
         });
     </script>
-
-  
 @endpush

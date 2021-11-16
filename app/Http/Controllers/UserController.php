@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Driver;
+use App\Models\Shuttle;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +14,7 @@ class UserController extends Controller
         return view('admin.customer', [
             'title'     => 'Data Customer',
             'customers' => User::where('role', 'Customer')->get()
-        ]);
+        ])->with('i');
     }
 
     public function generateAccountAdmin() {
@@ -39,8 +42,37 @@ class UserController extends Controller
     
     public function dashboard()
     {
+        //customer count
+        $customer_count = User::where('role', 'Customer')->count();
+
+        //Driver count
+        $active_driver_count     = Driver::isActiveStatus()->count();
+        $non_active_driver_count = Driver::isActiveStatus('Tidak Aktif')->count();
+        
+        //Shuttle count
+        $active_shuttle_count      = Shuttle::isActiveStatus()->count();
+        $non_active_shuttle_count  = Shuttle::isActiveStatus('Tidak Aktif')->count();
+
+        //Reservation count
+        $pending_reservation  = Payment::status('pending')->count();
+        $cancel_reservation   = Payment::status('cancel')->count();
+        $success_reservation  = Payment::status('success')->count(); 
+        $total_reservation    = Payment::count();
+
+        $total_income         = Payment::status('success')->sum('total');
+
         return view('admin.dashboard', [
-            'title' => 'Dashboard'
+            'title'                     => 'Dashboard',
+            'customer_count'            => $customer_count,
+            'active_driver_count'       => $active_driver_count,
+            'non_active_driver_count'   => $non_active_driver_count,   
+            'active_shuttle_count'      => $active_shuttle_count,      
+            'non_active_shuttle_count'  => $non_active_shuttle_count,  
+            'pending_reservation'       => $pending_reservation,  
+            'cancel_reservation'        => $cancel_reservation,   
+            'success_reservation'       => $success_reservation,
+            'total_reservation'         => $total_reservation,
+            'total_income'              => $total_income
         ]);
     }
     

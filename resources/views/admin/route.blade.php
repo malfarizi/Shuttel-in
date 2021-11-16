@@ -26,28 +26,31 @@
                                 <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
-                                            <th>Shuttle</th>
+                                            <th>Nopol Shuttle</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Keberangkatan</th>
                                             <th>Kedatangan</th>
                                             <th>Harga</th>
-                                            <th>Shuttle</th>
+                                            <th>Nopol Shuttle</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         @foreach ($routes as $route)
                                         <tr>
+                                            <td>{{ ++$i }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
-                                            <td>{{ $route->price }}</td>
+                                            <td>@money($route->price)</td>
                                             <td>{{ $route->shuttle->nopol }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 
@@ -57,7 +60,8 @@
                                                 </button>
                                                 <form action="{{route('admin.routes.destroy', $route->id)}}" 
                                                     method="POST" 
-                                                    class="d-inline">
+                                                    class="d-inline"
+                                                >
                                                     @csrf
                                                     @method('DELETE')
                                                     <button 
@@ -122,13 +126,14 @@
 
                     <div class="form-group">
                         <label for="">Harga</label>
-                        <input type="text" class="form-control" id="" name="price" placeholder="Masukan Harga">
+                        <input type="text" name="price"
+                            class="form-control integerInput" placeholder="Masukan harga">
                     </div>
 
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option>Pilih Shuttle</option>
+                            <option value="">Pilih Shuttle</option>
                             @foreach ($shuttles as $shuttle)
                                 <option value="{{ $shuttle->id }}">
                                     {{ $shuttle->nopol }}
@@ -139,7 +144,9 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -210,16 +217,17 @@
                     
                     <div class="form-group">
                         <label for="">Harga</label>
-                        <input type="text" class="form-control" name="price" value="{{ $route->price }}">
+                        <input type="text" name="price" 
+                            class="form-control integerInput" value="{{ $route->price }}">
                     </div>
                     
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option>Pilih Shuttle</option>
+                            <option value="">Pilih Shuttle</option>
                             @foreach ($shuttles as $shuttle)
                                 @if($route->shuttle_id === $shuttle->id)
-                                    <option value="{{$shuttle->id}}" selected>
+                                    <option value="{{ $shuttle->id }}" selected>
                                         {{ $shuttle->nopol }}
                                     </option>
                                 @else 
@@ -233,7 +241,7 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -256,6 +264,7 @@
         $('.select2').select2({
             dropdownParent: $('#exampleModal')
         });
+
         $('.delete').on('click', function(e){
             e.preventDefault();
             var form =  $(this).closest("form");
@@ -268,12 +277,17 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, hapus saja!'
                 }).then((result) => {
-                    if (result) {
+                    if (result.value) {
                         form.submit();
                     }
             })
         });
-    </script>
 
-  
+        $(function() {
+            $('.integerInput').on('input', function() {
+                // numbers and decimals only
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
+        });
+    </script>
 @endpush

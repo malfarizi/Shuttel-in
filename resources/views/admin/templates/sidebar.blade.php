@@ -13,11 +13,14 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" 
             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
+                <a href="{{route('admin.profile.edit', 1)}}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Ubah Profile
+                </a>
                 <a href="#" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
@@ -28,7 +31,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html"><img src="../assets/img/logo.svg" alt=""></a>
+            <a href="index.html"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">Shuttle-In</a>
@@ -43,12 +46,12 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data</span></a>
                 <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{route('admin.drivers.index')}}">Driver</a></li>
-                <li><a class="nav-link" href="{{url('admin/shuttle')}}">Shuttle</a></li>
-                <li><a class="nav-link" href="{{url('admin/route')}}">Rute</a></li>
-                <li><a class="nav-link" href="{{url('admin/schedule')}}">Jadwal</a></li>
+                <li><a class="nav-link" href="{{route('admin.shuttles.index')}}">Shuttle</a></li>
+                <li><a class="nav-link" href="{{route('admin.routes.index')}}">Rute</a></li>
+                <li><a class="nav-link" href="{{route('admin.schedules.index')}}">Jadwal</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-square"></i> <span>Customer</span></a></li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Reservasi</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-user"></i> <span>Customer</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.booking')}}"><i class="fas fa-receipt"></i> <span>Booking</span></a></li>
     </aside>
 </div>
