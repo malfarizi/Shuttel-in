@@ -147,9 +147,7 @@
                                         {{ $payment->booking->user->name }}
                                     </td>
                                     <td>
-                                        <div class="badge badge-success">
-                                            {{ $payment->status }}
-                                        </div>
+                                        @include('admin.templates.components.badge', ['status' => $payment->status ])
                                     </td>
                                     <td>@date($payment->created_at)</td>
                                     <td>
