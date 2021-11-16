@@ -50,7 +50,7 @@
                     <span>Data Driver</span>
                 </a>
             </li>
-            <li class="{{ Request::routeIs('admin.shuttle.index') ? 'active' : '' }}">
+            <li class="{{ Request::routeIs('admin.shuttles.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.shuttles.index')}}">
                     <i class="fas fa-shuttle-van"></i> 
                     <span>Data Shuttle</span>
