@@ -10,12 +10,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#exampleModal" id="#myBtn">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Cetak Booking</span>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-print"></i>&nbsp;
+                                Cetak Booking
                             </button>
                         </div>
                         
@@ -23,7 +20,7 @@
                             @include('admin.templates.components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Customer</th>
@@ -33,10 +30,9 @@
                                             <th>Nomor kursi yang dipesan</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <tfoot class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Customer</th>
@@ -46,7 +42,6 @@
                                             <th>Nomor kursi yang dipesan</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -54,24 +49,35 @@
                                             <tr>
                                                 <td>{{ ++$i }}.</td>
                                                 <td>{{ $booking->name }}</td>
-                                                <td>{{ $booking->date_of_depature }} - {{$booking->depature_time }}</td>
-                                                <td>{{ $booking->snap_token ?? '-' }}</td>
-                                                <td>{{ $booking->booking_code ?? '-' }}</td>
-                                                <td>{{ $booking->seat_number }}</td>
-                                                <td>@money($booking->subtotal)</td>
-                                                <td><button type="button" class="btn btn-success btn-md" 
-                                                    data-toggle="modal" data-target="#modaldetail-{{$booking->id}}">
-                                                    Detail
-                                                </button></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-md" 
-                                                        data-toggle="modal" data-target="#edit-data">
-                                                        <i class="fas fa-user-edit"></i>
-                                                    </button>                                                    
+                                                    @date($booking->date_of_depature) - 
+                                                    {{ $booking->depature_time }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $booking->snap_token ?? '-' }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $booking->booking_code ?? '-' }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $booking->seat_number }}
+                                                </td>
+                                                <td>
+                                                    @money($booking->subtotal)
+                                                </td>
+                                                <td>
+                                                    <button 
+                                                        type="button" 
+                                                        class="btn btn-success btn-md" 
+                                                        data-toggle="modal" 
+                                                        data-target="#modaldetail-{{$booking->id}}"
+                                                    >
+                                                    Detail
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @empty
-                                            <td colspan="8" class="text-center">
+                                            <td colspan="7" class="text-center">
                                                 Belum ada data booking
                                             </td>
                                         @endforelse
@@ -102,52 +108,48 @@
                 </button>
             </div>
 
-                <div class="modal-body">
-                    
-                    <div class="form-group">
-                        <label for="name" class="col-sm-3 col-form-label">Nama</label>
-                        <div class="col-sm-5">
-                            {{ $booking->name }}
-                        </div>
+            <div class="modal-body">        
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="col-sm-5">
+                        {{ $booking->name }}
                     </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
-                        <div class="col-sm-5">
-                            {{ $booking->date_of_depature }} - {{$booking->depature_time }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
-                        <div class="col-sm-5">
-                            {{ $booking->seat_number }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Rute</label>
-                        <div class="col-sm-5">
-                            {{ $booking->depature }} - {{ $booking->arrival }} 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
-                        <div class="col-sm-5">
-                            {{ $booking->nopol }} 
-                        </div>
-                    </div>
-
-                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        Tutup
-                    </button>
-                    
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
+                    <div class="col-sm-5">
+                        {{ $booking->date_of_depature }} - {{$booking->depature_time }}
+                    </div>
                 </div>
-            </form>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
+                    <div class="col-sm-5">
+                        {{ $booking->seat_number }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Rute</label>
+                    <div class="col-sm-5">
+                        {{ $booking->depature }} - {{ $booking->arrival }} 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
+                    <div class="col-sm-5">
+                        {{ $booking->nopol }} 
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Tutup
+                </button>
+            </div>
         </div>
     </div>
 </div>

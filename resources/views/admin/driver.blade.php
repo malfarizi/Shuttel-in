@@ -52,27 +52,32 @@
                                                 <td>{{ $driver->driver_name }}</td>
                                                 <td>{{ $driver->driver_status }}</td>
                                                 <td>{{ $driver->number_phone }}</td>
-                                                <td>{{ $driver->address }}</td>
-                                                <td><img src="{{ url('images/driver_photos/'.$driver->photo) }}"
-                                                    style="width: 75px; height: 75px;">
+                                                <td width="15">{{ $driver->address }}</td>
+                                                <td>
+                                                    @if($driver->photo)
+                                                        <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
+                                                        style="width: 75px; height: 75px;">
+                                                    @else
+                                                        <img src="https://via.placeholder.com/80">
+                                                    @endif
                                                 </td>
                                                
                                                 <td>
-                                                    <div class="input-group">
-                                                        <button type="button" class="btn btn-primary btn-md" 
-                                                            data-toggle="modal" data-target="#edit-data-{{$driver->id}}">
-                                                            <i class="fas fa-user-edit"></i>
+                                                    <button type="button" class="btn btn-primary btn-md" 
+                                                        data-toggle="modal" data-target="#edit-data-{{$driver->id}}">
+                                                        <i class="fas fa-user-edit"></i>
+                                                    </button>
+                                                    <form 
+                                                        action="{{route('admin.drivers.destroy', $driver->id)}}" 
+                                                        method="POST" 
+                                                        class="d-inline"
+                                                    >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger btn-md delete">
+                                                            <i class="fas fa-trash"></i>
                                                         </button>
-                                                        <form 
-                                                            action="{{route('admin.drivers.destroy', $driver->id)}}" 
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger btn-md delete">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -159,7 +164,9 @@
                     <div class="form-group">
                         <label for="">Pilih Status Driver</label>
                         <select name="driver_status" class="form-control">
-                            <option value="">Pilih Status Driver</option>
+                            <option value="" disabled selected>
+                                Pilih Status Driver
+                            </option>
                             <option value="Aktif">Aktif</option>
                             <option value="Tidak Aktif">Tidak Aktif</option>
                         </select>
@@ -210,16 +217,17 @@
                     <div class="form-group">
                         <label for="">Alamat</label>
                         <textarea class="form-control h-25" rows="5" 
-                            name="address" value="{{$driver->address}}"></textarea>
+                            name="address">{{$driver->address}}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="">Foto</label>
                         <br>
-                        <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
-                            style="width: 75px; height: 75px;">
-                        <input type="file" class="form-control" name="photo"
-                            value="Masukan Foto Driver">
+                        @if($driver->photo)
+                            <img src="{{ url('images/driver_photos/'.$driver->photo) }}"
+                                style="width: 75px; height: 75px;">
+                        @endif
+                        <input type="file" class="form-control" name="photo">
                     </div>
 
 

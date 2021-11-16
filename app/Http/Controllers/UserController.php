@@ -63,9 +63,10 @@ class UserController extends Controller
         $total_reservation    = Payment::count();
 
         $total_income         = Payment::status('capture')->sum('total');
-    
-        $bookings = Booking::with('schedule.route')->get();
-    
+
+        // Kalo dummy ilang hapus aja where nya
+        $payments = Payment::latest()->status('pending')->take(5)->get();
+     
         return view('admin.dashboard', [
             'title'                     => 'Dashboard',
             'customer_count'            => $customer_count,
@@ -78,7 +79,8 @@ class UserController extends Controller
             'deny_reservation'          => $deny_reservation,   
             'success_reservation'       => $success_reservation,
             'total_reservation'         => $total_reservation,
-            'total_income'              => $total_income
+            'total_income'              => $total_income,
+            'payments'                  => $payments
         ]);
     }
     
@@ -95,20 +97,5 @@ class UserController extends Controller
     public function register()
     {
         return view('register');
-    }
-  
-    public function jadwal()
-    {
-        return view('customer.jadwal');
-    }
-  
-    public function reservasi()
-    {
-        return view('customer.reservasi');
-    }
-   
-    public function riwayat()
-    {
-        return view('customer.riwayat');
     }
 }

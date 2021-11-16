@@ -1,9 +1,6 @@
 @extends('customer.template')
 
 @section('content')
-@extends('customer.template')
-
-@section('content')
 
 <!-- ======= riwayat Section ======= -->
 <section id="jadwal" class="jadwal">
@@ -40,7 +37,4 @@
     </div>
 
 </section><!-- End Pricing Section -->
-
-@endsection
-
 @endsection

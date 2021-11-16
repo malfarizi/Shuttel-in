@@ -11,10 +11,9 @@
     </form>
     <ul class="navbar-nav navbar-nav ml-auto">
         <li class="dropdown">
-            <a href="#" data-toggle="dropdown" 
-            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
@@ -31,27 +30,55 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
+            <a href="{{url('admin')}}"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">Shuttle-In</a>
+            <a href="{{url('admin')}}">Shuttle-In</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item">
-                <a href="{{url('admin')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
+                <a href="{{url('admin')}}" class="nav-link">
+                    <i class="fas fa-fire"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
-            <li class="menu-header">Menu</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data</span></a>
-                <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{route('admin.drivers.index')}}">Driver</a></li>
-                <li><a class="nav-link" href="{{route('admin.shuttles.index')}}">Shuttle</a></li>
-                <li><a class="nav-link" href="{{route('admin.routes.index')}}">Rute</a></li>
-                <li><a class="nav-link" href="{{route('admin.schedules.index')}}">Jadwal</a></li>
-                </ul>
+            <li class="menu-header">Daftar Menu</li>
+            <li class="{{ Request::routeIs('admin.drivers.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.drivers.index')}}">
+                    <i class="fas fa-user"></i> 
+                    <span>Data Driver</span>
+                </a>
             </li>
-            <li><a class="nav-link" href="{{route('admin.customers')}}"><i class="far fa-user"></i> <span>Customer</span></a></li>
-            <li><a class="nav-link" href="{{route('admin.booking')}}"><i class="fas fa-receipt"></i> <span>Booking</span></a></li>
+            <li class="{{ Request::routeIs('admin.shuttle.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.shuttles.index')}}">
+                    <i class="fas fa-shuttle-van"></i> 
+                    <span>Data Shuttle</span>
+                </a>
+            </li>
+            <li class="{{ Request::routeIs('admin.routes.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.routes.index')}}">
+                    <i class="fas fa-route"></i> 
+                    <span>Data Rute</span>
+                </a>
+            </li>
+            <li class="{{ Request::routeIs('admin.schedules.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.schedules.index')}}">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span>Data Jadwal</span>
+                </a>
+            </li>
+            <li class="{{ Request::routeIs('admin.customers') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.customers')}}">
+                    <i class="fa fa-users ml-1"></i> 
+                    <span>Data Customer</span>
+                </a>
+            </li>
+            <li class="{{ Request::routeIs('admin.booking') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.booking')}}">
+                    <i class="fas fa-receipt"></i> 
+                    <span>Data Booking</span>
+                </a>
+            </li>
     </aside>
 </div>

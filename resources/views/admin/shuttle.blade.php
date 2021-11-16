@@ -93,14 +93,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nopol Shuttle</label>
-                        <input type="text" class="form-control" id="" name="nopol"
+                        <input type="text" class="form-control" name="nopol"
                             value="Masukan Nopol Shuttle">
                     </div>
 
                     <div class="form-group">
                         <label for="">Pilih Status Shuttle</label>
                         <select name="shuttle_status" class="form-control">
-                            <option value="">Pilih Status Shuttle</option>
+                            <option value="" disabled selected>
+                                Pilih Status Shuttle
+                            </option>
                             <option value="Aktif">Aktif</option>
                             <option value="Tidak Aktif">Tidak Aktif</option>
                             
@@ -110,13 +112,13 @@
                     <div class="form-group">
                         <label for="">Pilih Driver</label>
                         <select class="select2 form-control" name="driver_id">
-                            <option value="">Pilih Driver</option>
+                            <option value="" disabled selected>
+                                Pilih Driver
+                            </option>
                             @foreach ($drivers as $driver)
-                                @if ($driver->driver_status === "Aktif")
-                                    <option value="{{ $driver->id }}">
-                                        {{ $driver->driver_name }}
-                                    </option>    
-                                @endif
+                                <option value="{{ $driver->id }}">
+                                    {{ $driver->driver_name }}
+                                </option>    
                             @endforeach
                         </select>
                     </div>
@@ -160,7 +162,6 @@
                     <div class="form-group">
                         <label for="">Pilih Status Shuttle</label>
                         <select name="shuttle_status" class="form-control">
-                            <option value="">Pilih Status Shuttle</option>
                             <option 
                                 value="Aktif"
                                 {{$shuttle->shuttle_status === 'Aktif' ? 'selected' : ''}}
@@ -184,7 +185,7 @@
                                 {{ $shuttle->driver->driver_name }}
                             </option>
                             @foreach ($drivers as $driver)
-                                @if ($driver->driver_status === "Aktif" && $shuttle->driver_id != $driver->id )
+                                @if ($shuttle->driver_id != $driver->id )
                                     <option value="{{ $driver->id }}">
                                         {{ $driver->driver_name }}
                                     </option>    

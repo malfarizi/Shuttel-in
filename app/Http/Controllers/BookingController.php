@@ -38,6 +38,7 @@ class BookingController extends Controller
                 ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
                 ->select('users.*', 'bookings.*', 'schedules.*', 'booking_details.*', 
                          'routes.*', 'shuttles.*')
+                ->orderBy('bookings.created_at', 'desc')
                 ->get(),
         ])->with('i');
     }

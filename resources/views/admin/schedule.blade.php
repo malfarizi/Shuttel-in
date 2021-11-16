@@ -27,7 +27,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Tanggal Keberangkatan</th>
-                                            <th>Waktu Keberangkatan</th>
+                                            <th width="10">Waktu Keberangkatan</th>
                                             <th>Kapasitas Kursi</th>
                                             <th>Status Jadwal</th>
                                             <th>Rute</th>
@@ -115,7 +115,9 @@
                     <div class="form-group">
                         <label for="">Pilih Rute</label>
                         <select name="route_id" class="select2 form-control">
-                            <option value="">Pilih Rute</option>
+                            <option value="" disabled selected>
+                                Pilih Rute
+                            </option>
                             @foreach ($routes as $route)
                                 <option value="{{ $route->id }}">
                                     {{ $route->depature. '-' .$route->arrival}}
@@ -127,7 +129,9 @@
                     <div class="form-group">
                         <label for="">Pilih Status Jadwal</label>
                         <select name="schedule_status" class="form-control">
-                            <option value="" >Pilih Status Jadwal</option>
+                            <option value="" disabled selected>
+                                Pilih Status Jadwal
+                            </option>
                             <option value="Aktif">Aktif</option>
                             <option value="Tidak Aktif">Tidak Aktif</option>
                         </select>
@@ -209,9 +213,7 @@
                     </div>
     
                     <div class="form-group">
-                        <label for="">Pilih Status Jadwal</label>
                         <select name="schedule_status" class="form-control">
-                            
                             <option 
                                 value="Aktif" 
                                 {{$schedule->schedule_status === 'Aktif' ? 'selected' : '' }}
@@ -224,7 +226,6 @@
                             >
                                 Tidak Aktif
                             </option>
-
                         </select>
                     </div>
     

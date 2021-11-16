@@ -121,7 +121,7 @@
                     <div class="card-header">
                         <h4>Invoices</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-danger">
+                            <a href="{{route('admin.booking')}}" class="btn btn-danger">
                                 View More <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
@@ -136,13 +136,22 @@
                                     <th>Pembayaran</th>
                                     <th>Action</th>
                                 </tr>
+                                @forelse ($payments as $payment)
                                 <tr>
-                                    <td><a href="#">INV-87320</a></td>
-                                    <td class="font-weight-600">Ardian Rahardiansyah</td>
                                     <td>
-                                        <div class="badge badge-success">Success</div>
+                                        <a href="#">
+                                            {{ $payment->booking->id }}
+                                        </a>
                                     </td>
-                                    <td>July 28, 2018</td>
+                                    <td class="font-weight-600">
+                                        {{ $payment->booking->user->name }}
+                                    </td>
+                                    <td>
+                                        <div class="badge badge-success">
+                                            {{ $payment->status }}
+                                        </div>
+                                    </td>
+                                    <td>@date($payment->created_at)</td>
                                     <td>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-icon icon-left btn-primary" 
@@ -151,7 +160,13 @@
                                         </button>    
                                         <!-- Modal -->
                                     </td>
+                                </tr>    
+                                @empty
+                                <tr>
+                                    <td>Belum ada data</td>
                                 </tr>
+                                @endforelse
+                                
                             </table>
                         </div>
                     </div>

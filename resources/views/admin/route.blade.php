@@ -103,7 +103,9 @@
                     <div class="form-group">
                         <label>Keberangkatan</label>
                         <select class="select2 form-control" name="depature">
-                            <option value="">Pilih kota keberangkatan</option>
+                            <option value="" disabled selected>
+                                Pilih kota keberangkatan
+                            </option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->type. ' - ' .$city->city_name }}">
                                     {{ $city->type. ' - ' .$city->city_name }}
@@ -115,7 +117,9 @@
                     <div class="form-group">
                         <label for="">Kedatangan</label>
                         <select class="select2 form-control" name="arrival">
-                            <option value="">Pilih kota tujuan</option>
+                            <option value="" disabled selected>
+                                Pilih kota tujuan
+                            </option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->type. ' - ' .$city->city_name }}">
                                     {{ $city->type. ' - ' .$city->city_name }}
@@ -133,7 +137,9 @@
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option value="">Pilih Shuttle</option>
+                            <option value="" disabled selected>
+                                Pilih Shuttle
+                            </option>
                             @foreach ($shuttles as $shuttle)
                                 <option value="{{ $shuttle->id }}">
                                     {{ $shuttle->nopol }}
@@ -224,7 +230,6 @@
                     <div class="form-group">
                         <label for="">Pilih Shuttle</label>
                         <select name="shuttle_id" class="select2 form-control">
-                            <option value="">Pilih Shuttle</option>
                             @foreach ($shuttles as $shuttle)
                                 @if($route->shuttle_id === $shuttle->id)
                                     <option value="{{ $shuttle->id }}" selected>
@@ -241,8 +246,12 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="sumbit" class="btn btn-primary">
+                        Simpan
+                    </button>
                 </div>
             </form>
         </div>
