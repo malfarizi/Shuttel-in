@@ -20,7 +20,7 @@
                 <a href="{{route('admin.profile.edit', 1)}}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profile
                 </a>
-                <a href="#" class="dropdown-item has-icon text-danger">
+                <a href="{{url('admin/login')}}" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>

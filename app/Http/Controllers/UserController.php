@@ -41,6 +41,11 @@ class UserController extends Controller
     {
         return view('loginadmin');
     }
+
+    public function loginAction()
+    {
+        return redirect()->route('admin.dashboard');
+    }
     
     public function dashboard()
     {

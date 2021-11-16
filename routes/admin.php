@@ -23,6 +23,7 @@ Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/customers', [UserController::class, 'index'])->name('customers');
 
 Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'loginAction']);
 
 //Shuttle
 Route::resource('shuttles', ShuttleController::class);
