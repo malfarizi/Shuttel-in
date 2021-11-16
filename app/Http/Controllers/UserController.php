@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Driver;
 use App\Models\Shuttle;
+use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -56,11 +58,14 @@ class UserController extends Controller
         //Reservation count
         $pending_reservation  = Payment::status('pending')->count();
         $cancel_reservation   = Payment::status('cancel')->count();
-        $success_reservation  = Payment::status('success')->count(); 
+        $deny_reservation     = Payment::status('deny')->count();
+        $success_reservation  = Payment::status('capture')->count(); 
         $total_reservation    = Payment::count();
 
-        $total_income         = Payment::status('success')->sum('total');
-
+        $total_income         = Payment::status('capture')->sum('total');
+    
+        $bookings = Booking::with('schedule.route')->get();
+    
         return view('admin.dashboard', [
             'title'                     => 'Dashboard',
             'customer_count'            => $customer_count,
@@ -69,7 +74,8 @@ class UserController extends Controller
             'active_shuttle_count'      => $active_shuttle_count,      
             'non_active_shuttle_count'  => $non_active_shuttle_count,  
             'pending_reservation'       => $pending_reservation,  
-            'cancel_reservation'        => $cancel_reservation,   
+            'cancel_reservation'        => $cancel_reservation,
+            'deny_reservation'          => $deny_reservation,   
             'success_reservation'       => $success_reservation,
             'total_reservation'         => $total_reservation,
             'total_income'              => $total_income

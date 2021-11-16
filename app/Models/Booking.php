@@ -22,12 +22,17 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function schedule() 
+    {
+        return $this->belongsTo(Schedule::class)->withCount('bookings');
+    }
+
     public function payment()
     {
         return $this->hasOne(Payment::class);
     }
 
-    public function bookingDetail() 
+    public function bookingDetails() 
     {
         return $this->hasMany(BookingDetail::class);    
     }

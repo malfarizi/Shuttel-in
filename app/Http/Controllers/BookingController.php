@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\BookingDetail;
 use App\Models\Route;
 
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class BookingController extends Controller
                 ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
                 ->select('users.*', 'bookings.*', 'schedules.*', 'booking_details.*', 
                          'routes.*', 'shuttles.*')
-                ->get()
+                ->get(),
         ])->with('i');
     }
 

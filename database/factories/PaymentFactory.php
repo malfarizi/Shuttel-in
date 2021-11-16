@@ -13,10 +13,11 @@ class PaymentFactory extends Factory
      */
     public function definition()
     {
+        $statuses = ['capture', 'settlement', 'pending', 'deny', 'cancel'];
         return [
             'booking_id' => \App\Models\Booking::inRandomOrder()->first()->id,
             'total'      => str_pad(rand(1,99), 5, "0", STR_PAD_RIGHT),
-            'status'     => $this->faker->randomElement(['pending', 'success', 'cancel']) 
+            'status'     => $this->faker->randomElement(['pending', 'capture', 'cancel', 'deny']) 
         ];
     }
 }

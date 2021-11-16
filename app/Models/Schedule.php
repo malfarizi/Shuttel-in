@@ -16,6 +16,11 @@ class Schedule extends Model
         return $this->belongsTo(Route::class);    
     }
 
+    public function bookings() 
+    {
+        return $this->hasMany(Booking::class);    
+    }
+
     public function bookingDetail() 
     {
         return $this->hasMany(BookingDetail::class);    
