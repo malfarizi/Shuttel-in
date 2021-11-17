@@ -77,7 +77,7 @@
                     <span>Data Customer</span>
                 </a>
             </li>
-            <li class="{{ Request::routeIs('admin.booking') ? 'active' : '' }}">
+            <li class="{{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.bookings')}}">
                     <i class="fas fa-receipt"></i> 
                     <span>Data Booking</span>

@@ -21,4 +21,9 @@ class UserController extends Controller
             'admin'  => $admin
         ]);
     }
+
+    public function landingpage()
+    {
+        return view('customer.landingpage');
+    }
 }
