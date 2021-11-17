@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use App\Models\BookingDetail;
 use App\Models\Route;
 
 use Illuminate\Http\Request;
@@ -26,6 +25,10 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function reservasi()
+    {
+        return view('customer.reservasi');
+    }
     public function index()
     {
         return view('admin.booking', [
@@ -38,8 +41,7 @@ class BookingController extends Controller
                 ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
                 ->select('users.*', 'bookings.*', 'schedules.*', 'booking_details.*', 
                          'routes.*', 'shuttles.*')
-                ->orderBy('bookings.created_at', 'desc')
-                ->get(),
+                ->get()
         ])->with('i');
     }
 

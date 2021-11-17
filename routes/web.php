@@ -23,5 +23,5 @@ Route::get('/landingpage', [UserController::class, 'landingpage']);
 Route::get('/logincustomer', [UserController::class, 'logincustomer']);
 Route::get('/register', [UserController::class, 'register']);
 Route::get('/jadwal', [UserController::class, 'jadwal']);
-Route::get('/reservasi', [UserController::class, 'reservasi']);
+Route::get('/reservasi', [BookingController::class, 'reservasi']);
 Route::get('/riwayat', [UserController::class, 'riwayat']);
