@@ -61,30 +61,31 @@
             <div class="col-lg-5 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                 <div class="box">
                     <div class="row mt-4">
-                        <h5>Reservasi Online</h5>
+                        <h5>Data Pemesan</h5>
                         <form>
-                            <div class="input-group ">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="validatedInputGroupPrepend"><i
-                                            class="bi bi-arrow-up-right-square"></i></span>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Nama Anda">
+                                <label for="floatingInput">Nama</label>
+                              </div>
+            
+                              <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="number_phone" id="floatingInput" placeholder="Nomor Telephone">
+                                <label for="floatingInput">Nomor Telephone</label>
+                              </div>
+                            
+                              <div class="form-group">
+                                <label for="" class="col-sm-7 col-form-label">Total Kursi</label>
+                                <div class="col-sm-5">
+                                    1
                                 </div>
-                                <input type="text" class="form-control" placeholder="Cari Keberangkatan">
-                            </div>
-                            <div class="input-group mt-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="validatedInputGroupPrepend"><i
-                                            class="bi bi-arrow-down-right-square"></i></span>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="name" class="col-sm-7 col-form-label">Total Harga</label>
+                                <div class="col-sm-5">
+                                    50000
                                 </div>
-                                <input type="text" class="form-control" placeholder="Cari Tujuan">
-                            </div>
-                            <h5 class="mt-4">Tanggal Keberangkatan</h5>
-                            <div class="input-group ">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="validatedInputGroupPrepend"><i
-                                            class="bi bi-calendar3"></i></span>
-                                </div>
-                                <input type="date" class="form-control">
-                            </div>
+                              </div>
                             <button id="pay-button" class="btn btn-primary btn-block mt-4 float-right">Bayar
                                 Sekarang</button>
                         </form>
