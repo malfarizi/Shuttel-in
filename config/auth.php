@@ -37,9 +37,8 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'jwt',
+            'driver' => 'session',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 
