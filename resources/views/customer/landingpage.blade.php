@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="hero" class="hero d-flex align-items-center">
-  <div class="container">
+  <div class="container elemen">
     <div class="row">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up">Shuttle-In</h1>
@@ -58,12 +58,46 @@
                 <input type="date" class="form-control">
               </div>
               {{-- <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</button> --}}
-              <a href="/jadwal" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</a>
+              <a href="/jadwal" class="btn btn-primary btn-lg btn-block mt-5"><span>Cari Jadwal</span>
+                <i class="bi bi-arrow-right"></i></a>
             </form>
           </div>
         </div>
       </div>
     </div>
+    {{-- Hidden kalo ga ada yang nyari kode reservasi --}}
+    <section id="services" class="services">
+      <div class="row gy-4">
+        <div class="col-lg-12 col-md-12" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-box blue">
+            <h3>Detail Reservasi Kamu</h3>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Invoice</li>
+              <li class="list-group-item">Nama</li>
+              <li class="list-group-item">Rute</li>
+              <li class="list-group-item">Jumlah Kursi</li>
+              <li class="list-group-item">No Kursi</li>
+            </ul>
+            <button type="button" class="btn  btn-primary"><span>Cetak Tiket</span> <i
+                class="bi bi-printer"></i></button>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    {{-- card detail reservasi --}}
+
+    {{-- Jika data tidak ada --}}
+    <section id="services" class="services">
+      <div class="row gy-4">
+        <div class="col-lg-12 col-md-12" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-box blue text-center">
+            <h1>Oops Reservasi Yang Kamu Cari Tidak Ada</h1>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </section><!-- End Hero -->
 @endsection
