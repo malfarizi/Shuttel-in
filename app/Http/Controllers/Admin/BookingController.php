@@ -12,7 +12,7 @@ class BookingController extends Controller
 {
     public function __invoke()
     {
-        $payments = Payment::with(['booking.user', 'booking.schedule'])->get();
+        $payments = Payment::with(['booking.user', 'booking.schedule'])->latest()->get();
     
         return view('admin.booking', [
             'title'    => 'Data Booking',

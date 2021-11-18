@@ -60,7 +60,9 @@
                                                 </td> 
                                                 <td>{{ $payment->snap_token ?? '-' }}</td>
                                                 <td>{{ $payment->booking_code ?? '-' }}</td>
-                                                <td>{{ $payment->status }}</td>
+                                                <td>
+                                                    @include('admin.templates.components.badge', ['status' => $payment->status ])
+                                                </td>
                                                 <td>@money($payment->total)</td>
                                                 <td>
                                                     <button type="button" class="btn btn-success btn-md" 

@@ -36,15 +36,15 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{url('admin')}}"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
+            <a href="{{url('admin/dashboard')}}"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{url('admin')}}">Shuttle-In</a>
+            <a href="{{url('admin/dashboard')}}">Shuttle-In</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
-                <a href="{{url('admin')}}" class="nav-link">
+            <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                <a href="{{url('admin/dashboard')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
