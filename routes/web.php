@@ -22,6 +22,13 @@ Route::get('booking', [BookingController::class, 'store']);
 Route::get('/landingpage', [UserController::class, 'landingpage']);
 Route::get('/logincustomer', [UserController::class, 'logincustomer']);
 Route::get('/register', [UserController::class, 'register']);
+
+//Jadwal
 Route::get('/jadwal', [UserController::class, 'jadwal']);
+
+//Booking
 Route::get('/reservasi', [BookingController::class, 'reservasi']);
 Route::get('/riwayat', [UserController::class, 'riwayat']);
+
+//Profil
+Route::get('/profil', [UserController::class, 'profil']);

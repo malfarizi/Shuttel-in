@@ -103,4 +103,9 @@ class UserController extends Controller
     {
         return view('register');
     }
+
+    public function profil()
+    {
+        return view('customer.profil');
+    }
 }
