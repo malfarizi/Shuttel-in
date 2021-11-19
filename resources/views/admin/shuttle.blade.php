@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
   <section class="section">
-        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Shuttle'])
+        @include('components.breadcrumbs', ['menu' => 'Data Shuttle'])
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="card-body">
-                            @include('admin.templates.components.alert')
+                            @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -42,7 +42,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach($shuttles as $shuttle)
+                                        @forelse ($shuttles as $shuttle)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{$shuttle->nopol}}</td>
@@ -64,7 +64,13 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    Belum ada data
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -115,7 +121,7 @@
                             <option value="" disabled selected>
                                 Pilih Driver
                             </option>
-                            @foreach ($drivers as $driver)
+                            @forelse ($drivers as $driver)
                                 <option value="{{ $driver->id }}">
                                     {{ $driver->driver_name }}
                                 </option>    

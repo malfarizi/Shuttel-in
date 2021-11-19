@@ -36,10 +36,10 @@ class LoginController extends Controller
 
         $is_admin = User::where('email', $request->email)->value('role');
 
-        //$remember = $request->remember ? true : false;
+        $remember = $request->remember ? true : false;
         
         if($is_admin === 'Admin') {
-            if ($auth->attempt($credentials)) {
+            if ($auth->attempt($credentials, $remember)) {
                 $request->session()->regenerate();
                 return redirect()->intended('admin/dashboard');
             }

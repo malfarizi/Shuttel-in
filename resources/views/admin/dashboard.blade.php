@@ -137,32 +137,34 @@
                                     <th>Action</th>
                                 </tr>
                                 @forelse ($payments as $payment)
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            {{ $payment->booking->id }}
-                                        </a>
-                                    </td>
-                                    <td class="font-weight-600">
-                                        {{ $payment->booking->user->name }}
-                                    </td>
-                                    <td>
-                                        @include('admin.templates.components.badge', ['status' => $payment->status ])
-                                    </td>
-                                    <td>@date($payment->created_at)</td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-icon icon-left btn-primary" 
-                                            data-toggle="modal" data-target="#exampleModal">
-                                            <i class="fas fa-info-circle"></i> Detail
-                                        </button>    
-                                        <!-- Modal -->
-                                    </td>
-                                </tr>    
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                {{ $payment->booking->id }}
+                                            </a>
+                                        </td>
+                                        <td class="font-weight-600">
+                                            {{ $payment->booking->user->name }}
+                                        </td>
+                                        <td>
+                                            @include('components.badge', ['status' => $payment->status ])
+                                        </td>
+                                        <td>@date($payment->created_at)</td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-icon icon-left btn-primary" 
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fas fa-info-circle"></i> Detail
+                                            </button>    
+                                            <!-- Modal -->
+                                        </td>
+                                    </tr>    
                                 @empty
-                                <tr>
-                                    <td>Belum ada data</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            Belum ada data
+                                        </td>
+                                    </tr>
                                 @endforelse
                                 
                             </table>

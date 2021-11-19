@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\DriverController;
-use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ShuttleController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -38,7 +38,7 @@ Route::resource('routes', RouteController::class);
 Route::resource('schedules', ScheduleController::class);
 
 //Bookings
-Route::get('/booking', BookingController::class)->name('bookings');
+Route::get('/bookings', PaymentController::class)->name('bookings');
 
 //Profile
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');

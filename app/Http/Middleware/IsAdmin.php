@@ -17,9 +17,14 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->guard('admin')) {
-            return abort(403);
-        }
         return $next($request);
+        /* if(Auth::user() &&  Auth::guard('admin')) {
+        }
+        return abort(403); */
+        if (\Auth::user() &&  \Auth::user()->role == 'Admin') {
+            return $next($request);
+       }
+
+       return back()->with('error','Opps, You\'re not Admin');
     }
 }

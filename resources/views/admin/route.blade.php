@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Rute'])
+        @include('components.breadcrumbs', ['menu' => 'Data Rute'])
 
         <div class="section-body">
             <!-- DataTable with Hover -->
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="card-body">
-                            @include('admin.templates.components.alert')
+                            @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -45,7 +45,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($routes as $route)
+                                        @forelse ($routes as $route)
                                         <tr>
                                             <td>{{ ++$i }}.</td>
                                             <td>{{ $route->depature }}</td>
@@ -73,7 +73,13 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">
+                                                    Belum ada data
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

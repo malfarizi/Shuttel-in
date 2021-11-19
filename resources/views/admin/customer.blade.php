@@ -3,14 +3,14 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Customer'])
+        @include('components.breadcrumbs', ['menu' => 'Data Customer'])
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @include('admin.templates.components.alert')
+                            @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>

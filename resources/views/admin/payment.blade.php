@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Booking'])
+        @include('components.breadcrumbs', ['menu' => 'Data Booking'])
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
@@ -20,7 +20,7 @@
                         </div>
                         
                         <div class="card-body">
-                            @include('admin.templates.components.alert')
+                            @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead class="text-center">
@@ -61,7 +61,7 @@
                                                 <td>{{ $payment->snap_token ?? '-' }}</td>
                                                 <td>{{ $payment->booking_code ?? '-' }}</td>
                                                 <td>
-                                                    @include('admin.templates.components.badge', ['status' => $payment->status ])
+                                                    @include('components.badge', ['status' => $payment->status])
                                                 </td>
                                                 <td>@money($payment->total)</td>
                                                 <td>
@@ -72,9 +72,11 @@
                                                 </td>
                                             </tr>
                                         @empty
-                                            <td colspan="7" class="text-center">
-                                                Belum ada data booking
-                                            </td>
+                                            <tr>
+                                                <td colspan="7" class="text-center">
+                                                    Belum ada data booking
+                                                </td>
+                                            </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -128,20 +130,20 @@
                         </div>
                     </div>
 
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Rute</label>
                         <div class="col-sm-5">
-                            {{ $booking->booking->schedule->route->depature }} - 
-                            {{ $booking->booking->schedule->route->arrival }} 
+                            {{ $payment->booking->schedule->route->depature }} - 
+                            {{ $payment->booking->schedule->route->arrival }} 
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
                         <div class="col-sm-5">
-                            {{ $booking->booking->schedule->route->shuttle->nopol }} 
+                            {{ $payment->booking->schedule->route->shuttle->nopol }} 
                         </div>
-                    </div> --}}
+                    </div>
                     
                 </div>
                 <div class="modal-footer">

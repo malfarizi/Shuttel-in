@@ -7,10 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Driver;
 use App\Models\Shuttle;
-use App\Models\Booking;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-//use Illuminate\Database\Eloquent\Builder;
 
 class DashboardController extends Controller
 {
@@ -34,7 +32,7 @@ class DashboardController extends Controller
         $success_reservation  = Payment::status('capture')->count(); 
         $total_reservation    = Payment::count();
 
-        $total_income         = Payment::status('capture')->sum('total');
+        $total_income         = Payment::status('capture')->orWhere('status','settlement')->sum('total');
         
         $payments             = Payment::latest()->status('pending')->take(5)->get();
      

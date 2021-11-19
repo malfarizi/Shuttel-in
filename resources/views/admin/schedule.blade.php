@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('admin.templates.components.breadcrumbs', ['menu' => 'Data Jadwal'])
+        @include('components.breadcrumbs', ['menu' => 'Data Jadwal'])
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="card-body">
-                            @include('admin.templates.components.alert')
+                            @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
                                     <thead>
@@ -46,7 +46,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($schedules as $schedule)
+                                        @forelse ($schedules as $schedule)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>@date($schedule->date_of_depature)</td>
@@ -74,7 +74,13 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center">
+                                                    Belum ada data
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

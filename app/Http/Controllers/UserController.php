@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\Models\User;
+use App\Models\UserVerify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -28,7 +31,14 @@ class UserController extends Controller
 
     public function register(Request $request) 
     {
-        User::create([
+        $request->validate([
+            'name'         => 'required',
+            'email'        => 'required',
+            'phone_number' => 'required|numeric',
+            'password'     => 'required|confirmed|min:8',
+        ]);
+
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'address' => $request->address,
@@ -36,7 +46,19 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        return redirect();
+        $token = Str::random(64);
+
+        UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+        ]);
+
+        Mail::send('auth.verify', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification Account Shuttle In');
+        });
+
+        return redirect('/login');
     }
 
     public function login() 
@@ -50,7 +72,6 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
 
         $customer = User::where('email', $request->email)->value('role');
 

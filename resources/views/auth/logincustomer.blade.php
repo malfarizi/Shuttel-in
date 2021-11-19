@@ -70,7 +70,8 @@
             <div class="card border-0 shadow rounded-3 my-5">
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
-                @include('admin.templates.components.alert')
+                <!-- ======= Alert ======= -->
+                @include('components.alert')
                 <form action="{{route('login')}}" method="POST">
                   @csrf
                   <div class="form-floating mb-3">

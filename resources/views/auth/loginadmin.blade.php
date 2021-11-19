@@ -29,7 +29,7 @@
               </div>
 
               <div class="card-body">
-                @include('admin.templates.components.alert')
+                @include('components.alert')
                 <form method="POST" action="{{route('admin.login')}}" class="needs-validation" novalidate="">
                   @csrf
                   <div class="form-group">
@@ -44,13 +44,21 @@
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
                       <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">     
+                        <a href="{{ route('forget.password.get') }}" class="text-small"> 
+                          Forgot Password?    
                         </a>
                       </div>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
                       please fill in your password
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                      <label class="custom-control-label" for="remember-me">Remember Me</label>
                     </div>
                   </div>
 

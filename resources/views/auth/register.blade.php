@@ -70,35 +70,58 @@
             <div class="card border-0 shadow rounded-3 my-5">
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
+                <!-- ======= Alert ======= -->
                 <form method="POST" action="/register">
                   @csrf
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Nama Anda">
+                    <input type="text" name="name" id="floatingInput" placeholder="Nama Anda"
+                      class="form-control @error('name') is-invalid @enderror">
                     <label for="floatingInput">Nama</label>
+                    
+                    @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="phone_number" id="floatingInput" placeholder="Nomor Telephone">
+                    <input type="text" name="phone_number" id="floatingInput" placeholder="Nomor Telephone"
+                      class="form-control @error('phone_number') is-invalid @enderror">
                     <label for="floatingInput">Nomor Telephone</label>
+                    @error('phone_number')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   
                   <div class="form-floating mb-3">
-                    <textarea input type="text" class="form-control" name="address" id="floatingInput" placeholder="Alamat"></textarea>
+                    <textarea name="address" id="floatingInput" placeholder="Alamat"
+                      class="form-control @error('address') is-invalid @enderror"></textarea>
                     <label for="floatingInput">Alamat</label>
+                    @error('address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Email">
+                    <input type="email" name="email" id="floatingInput" placeholder="Email"
+                      class="form-control @error('email') is-invalid @enderror">
                     <label for="floatingInput">Email</label>
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
-
+                  
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                    <input type="password" name="password" id="floatingPassword" placeholder="Password"
+                      class="form-control @error('password') is-invalid @enderror">
                     <label for="floatingPassword">Password</label>
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" name="" id="floatingPassword" placeholder="Password">
+                    <input type="password" name="password_confirmation" id="floatingPassword" placeholder="Password"
+                      class="form-control @error('password') is-invalid @enderror">
                     <label for="floatingPassword">Konfirmasi Password</label>
                   </div>
                   <div class="d-grid">
@@ -108,9 +131,10 @@
                   </div>
                   <hr class="my-4">
                   <div class="text-center w-100">
-                    <p class="text-muted font-weight-bold">Sudah Punya Akun? <a href="#" class="text-primary ml-2">Klik Disini</a></p>
+                    <p class="text-muted font-weight-bold">
+                      Sudah Punya Akun? <a href="/login" class="text-primary ml-2">Klik Disini</a>
+                    </p>
                   </div>
-                 
                 </form>
               </div>
             </div>
