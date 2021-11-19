@@ -13,14 +13,17 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
+                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a href="{{route('admin.profile.edit', 1)}}" class="dropdown-item has-icon">
+                <a href="{{route('admin.profile.edit', auth()->user()->id )}}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profile
                 </a>
-                <a href="{{url('admin/login')}}" class="dropdown-item has-icon text-danger">
+                <a href="{{ route('logout') }}" 
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+                    class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
@@ -74,11 +77,15 @@
                     <span>Data Customer</span>
                 </a>
             </li>
-            <li class="{{ Request::routeIs('admin.booking') ? 'active' : '' }}">
-                <a class="nav-link" href="{{route('admin.booking')}}">
+            <li class="{{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.bookings')}}">
                     <i class="fas fa-receipt"></i> 
                     <span>Data Booking</span>
                 </a>
             </li>
     </aside>
 </div>
+
+<form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">
+    @csrf
+</form>

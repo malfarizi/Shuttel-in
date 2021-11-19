@@ -19,16 +19,26 @@ Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
 Route::get('booking', [BookingController::class, 'store']);
 
-Route::get('/landingpage', [UserController::class, 'landingpage']);
-Route::get('/logincustomer', [UserController::class, 'logincustomer']);
-Route::get('/register', [UserController::class, 'register']);
+Route::get('/register', function() {
+    return view('auth.logincustomer');
+});
 
-//Jadwal
+//login page
+Route::get('/admin/login', function(){
+    return view('auth.loginadmin');
+});
+
+Route::get('/login', function() {
+    return view('auth.logincustomer');
+});
+
+Route::get('/landingpage', [UserController::class, 'landingpage']);
 Route::get('/jadwal', [UserController::class, 'jadwal']);
 
 //Booking
 Route::get('/reservasi', [BookingController::class, 'reservasi']);
 Route::get('/riwayat', [UserController::class, 'riwayat']);
 
-//Profil
-Route::get('/profil', [UserController::class, 'profil']);
+Route::middleware('auth')->group(function(){
+    //customer
+});

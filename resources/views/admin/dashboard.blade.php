@@ -121,7 +121,7 @@
                     <div class="card-header">
                         <h4>Invoices</h4>
                         <div class="card-header-action">
-                            <a href="{{route('admin.booking')}}" class="btn btn-danger">
+                            <a href="{{route('admin.bookings')}}" class="btn btn-danger">
                                 View More <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>

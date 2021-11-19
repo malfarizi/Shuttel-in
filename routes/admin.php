@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\Admin\ShuttleController;
-use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RouteController;
+use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\ShuttleController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,28 +19,27 @@ use App\Http\Controllers\Admin\ScheduleController;
 |
 */
 
-//User
-Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
+//Dashboard
+Route::get('/', DashboardController::class)->name('dashboard');
+
+//Customers
 Route::get('/customers', [UserController::class, 'index'])->name('customers');
 
-Route::get('/login', [UserController::class, 'login']);
-Route::post('/login', [UserController::class, 'loginAction']);
-
-//Shuttle
+//Shuttles
 Route::resource('shuttles', ShuttleController::class);
 
-//Driver
+//Drivers
 Route::resource('drivers', DriverController::class);
 
-//Route
+//Routes
 Route::resource('routes', RouteController::class);
 
-//Schedule
+//Schedules
 Route::resource('schedules', ScheduleController::class);
 
-//Booking
-Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+//Bookings
+Route::get('/booking', BookingController::class)->name('bookings');
 
 //Profile
-Route::get('/profile/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('profile.update');
+Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
