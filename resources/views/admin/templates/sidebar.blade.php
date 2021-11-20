@@ -13,19 +13,22 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
+                <div class="d-sm-none d-lg-inline-block">
+                    Hi, {{ ucfirst(auth()->guard('admin')->user()->name) }}
+                </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a href="{{route('admin.profile.edit', auth()->user()->id )}}" class="dropdown-item has-icon">
+                <a href="{{route('admin.profile.edit', auth()->guard('admin')->user()->id )}}" 
+                    class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Ubah Profile
                 </a>
-                <a href="{{ route('logout') }}" 
-                    onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"
-                    class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <form action="{{ route('admin.logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item has-icon text-danger">
+                        <i class="mt-2 fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
             </div>
         </li>
     </ul>
@@ -33,15 +36,15 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{url('admin')}}"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
+            <a href="{{url('admin/dashboard')}}"><img src="{{asset('assets/img/logo.svg')}}" alt=""></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{url('admin')}}">Shuttle-In</a>
+            <a href="{{url('admin/dashboard')}}">Shuttle-In</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
-                <a href="{{url('admin')}}" class="nav-link">
+            <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                <a href="{{url('admin/dashboard')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
@@ -85,7 +88,3 @@
             </li>
     </aside>
 </div>
-
-<form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">
-    @csrf
-</form>

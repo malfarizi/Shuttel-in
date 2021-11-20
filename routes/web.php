@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,20 +20,21 @@ Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
 Route::get('booking', [BookingController::class, 'store']);
 
-Route::get('/register', function() {
-    return view('auth.logincustomer');
-});
+//login admin
+Route::get('/admin/login', [LoginController::class, 'index'])
+    ->name('admin.loginpage')
+    ->middleware('guest');
 
-//login page
-Route::get('/admin/login', function(){
-    return view('auth.loginadmin');
-});
+Route::post('/admin/login', [LoginController::class, 'authenticate'])->name('admin.login');
+Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
+ 
+Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/login', [UserController::class, 'authenticate'])->name('login');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/register', [UserController::class, 'registerPage'])->middleware('guest');
+Route::post('/register', [UserController::class, 'register'])->name('register');
 
-Route::get('/login', function() {
-    return view('auth.logincustomer');
-});
-
-Route::get('/landingpage', [UserController::class, 'landingpage']);
+Route::get('/landingpage', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/jadwal', [UserController::class, 'jadwal']);
 
 //Booking

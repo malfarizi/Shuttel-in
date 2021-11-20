@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 //Dashboard
-Route::get('/', DashboardController::class)->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 //Customers
 Route::get('/customers', [UserController::class, 'index'])->name('customers');

@@ -23,55 +23,56 @@
                             @include('admin.templates.components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Customer</th>
-                                            <th>Jadwal Keberangkatan</th>
+                                            <th>Jadwal Keberangkatan</th> 
                                             <th>Snap Token</th>
                                             <th>Booking Code</th>
-                                            <th>Nomor kursi yang dipesan</th>
+                                            <th>Status</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <tfoot class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Customer</th>
                                             <th>Jadwal Keberangkatan</th>
                                             <th>Snap Token</th>
                                             <th>Booking Code</th>
-                                            <th>Nomor kursi yang dipesan</th>
+                                            <th>Status</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
-                                        @forelse($bookings as $booking)
+                                    <tbody class="text-center">
+                                        @forelse($payments as $payment)
                                             <tr>
-                                                <td>{{ ++$i }}.</td>
-                                                <td>{{ $booking->name }}</td>
-                                                <td>{{ $booking->date_of_depature }} - {{$booking->depature_time }}</td>
-                                                <td>{{ $booking->snap_token ?? '-' }}</td>
-                                                <td>{{ $booking->booking_code ?? '-' }}</td>
-                                                <td>{{ $booking->seat_number }}</td>
-                                                <td>@money($booking->subtotal)</td>
-                                                <td><button type="button" class="btn btn-success btn-md" 
-                                                    data-toggle="modal" data-target="#modaldetail-{{$booking->id}}">
-                                                    Detail
-                                                </button></td>
+                                                <td class="text-left">
+                                                    {{ ++$i }}.
+                                                </td>
+                                                <td>{{ $payment->booking->user->name }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-md" 
-                                                        data-toggle="modal" data-target="#edit-data">
-                                                        <i class="fas fa-user-edit"></i>
-                                                    </button>                                                    
+                                                    @date($payment->booking->schedule->date_of_depature) - 
+                                                    {{ $payment->booking->schedule->depature_time }}
+                                                </td> 
+                                                <td>{{ $payment->snap_token ?? '-' }}</td>
+                                                <td>{{ $payment->booking_code ?? '-' }}</td>
+                                                <td>
+                                                    @include('admin.templates.components.badge', ['status' => $payment->status ])
+                                                </td>
+                                                <td>@money($payment->total)</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success btn-md" 
+                                                    data-toggle="modal" data-target="#modaldetail-{{$payment->id}}">
+                                                    Detail
+                                                </button>
                                                 </td>
                                             </tr>
                                         @empty
-                                            <td colspan="8" class="text-center">
+                                            <td colspan="7" class="text-center">
                                                 Belum ada data booking
                                             </td>
                                         @endforelse
@@ -89,8 +90,8 @@
 
 
 {{-- Modal Detail --}}
-@foreach ($bookings as $booking)
-<div class="modal fade" id="modaldetail-{{$booking->id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($payments as $payment)
+<div class="modal fade" id="modaldetail-{{$payment->id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -103,42 +104,44 @@
             </div>
 
                 <div class="modal-body">
-                    
                     <div class="form-group">
                         <label for="name" class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-5">
-                            {{ $booking->name }}
+                            {{ $payment->booking->user->name }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
-                        <div class="col-sm-5">
-                            {{ $booking->date_of_depature }} - {{$booking->depature_time }}
+                        <div class="col-sm-12">
+                            @date($payment->booking->schedule->date_of_depature) - 
+                            {{ $payment->booking->schedule->depature_time }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
                         <div class="col-sm-5">
-                            {{ $booking->seat_number }}
+                            @foreach ($payment->booking->bookingDetails as $booking)
+                                {{ $booking->seat_number }}
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Rute</label>
                         <div class="col-sm-5">
-                            {{ $booking->depature }} - {{ $booking->arrival }} 
+                            {{ $booking->booking->schedule->route->depature }} - 
+                            {{ $booking->booking->schedule->route->arrival }} 
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
                         <div class="col-sm-5">
-                            {{ $booking->nopol }} 
+                            {{ $booking->booking->schedule->route->shuttle->nopol }} 
                         </div>
-                    </div>
-
+                    </div> --}}
                     
                 </div>
                 <div class="modal-footer">

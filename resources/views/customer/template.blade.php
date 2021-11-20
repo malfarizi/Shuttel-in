@@ -53,7 +53,18 @@
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Reservasi</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Reservasi Saya</a></li>
-          <li><a class="nav-link scrollto" href="#">Login</a></li>
+          @auth    
+            <li>
+              <form action="{{ route('logout')}}" method="POST">
+                @csrf
+                <button class="dropdown-item has-icon text-danger" type="submit">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+              </form>
+            </li>
+          @else
+            <li><a class="nav-link scrollto" href="{{url('login')}}">Login</a></li>
+          @endauth
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

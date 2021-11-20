@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Role
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,9 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check()) {
+        if(!auth()->guard('admin')) {
             return abort(403);
         }
-
         return $next($request);
     }
 }

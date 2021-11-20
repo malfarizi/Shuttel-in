@@ -70,15 +70,15 @@
             <div class="card border-0 shadow rounded-3 my-5">
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
-                <form>
-
+                <form method="POST" action="/register">
+                  @csrf
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Nama Anda">
                     <label for="floatingInput">Nama</label>
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="number_phone" id="floatingInput" placeholder="Nomor Telephone">
+                    <input type="text" class="form-control" name="phone_number" id="floatingInput" placeholder="Nomor Telephone">
                     <label for="floatingInput">Nomor Telephone</label>
                   </div>
                   
@@ -101,9 +101,10 @@
                     <input type="password" class="form-control" name="" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Konfirmasi Password</label>
                   </div>
-                      
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                      Register
+                    </button>
                   </div>
                   <hr class="my-4">
                   <div class="text-center w-100">
