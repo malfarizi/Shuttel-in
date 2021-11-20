@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\ForgetPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +19,12 @@ use App\Http\Controllers\Admin\LoginController;
 |
 */
 
+// Generate Account Admin
 Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
 Route::get('booking', [BookingController::class, 'store']);
 
-//login admin
+// Authenticate Login and Logout Customer
 Route::get('/admin/login', [LoginController::class, 'index'])
     ->name('admin.loginpage')
     ->middleware('guest');
@@ -28,12 +32,27 @@ Route::get('/admin/login', [LoginController::class, 'index'])
 Route::post('/admin/login', [LoginController::class, 'authenticate'])->name('admin.login');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
  
+// Authenticate Login and Logout Customer
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+// Register Customer
 Route::get('/register', [UserController::class, 'registerPage'])->middleware('guest');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 
+// Verification Email
+Route::get('account/verify/{token}', [VerificationController::class, 'verifyAccount'])->name('user.verify'); 
+
+// Forget Password
+Route::get('forget-password', [ForgetPasswordController::class, 'index'])->name('forget.password.get');
+Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget.password');
+
+// Reset Password
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])->name('reset.password.get');
+Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password');
+
+// Other Page
 Route::get('/landingpage', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/jadwal', [UserController::class, 'jadwal']);
 

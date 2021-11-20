@@ -16,9 +16,9 @@ class Schedule extends Model
         return $this->belongsTo(Route::class);    
     }
 
-    public function bookings() 
+    public function booking() 
     {
-        return $this->hasMany(Booking::class);    
+        return $this->hasMany(Booking::class)->withCount('booking');    
     }
 
     public function bookingDetail() 
