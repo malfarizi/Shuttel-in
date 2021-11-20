@@ -99,36 +99,6 @@
     </section>
 </div>
 
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $('.delete').on('click', function(e){
-            e.preventDefault();
-            var form =  $(this).closest("form");
-            Swal.fire({
-                title: 'Apakah kamu yakin hapus data ini?',
-                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus saja!'
-                }).then((result) => {
-                    if (result.value) {
-                        form.submit();
-                    }
-            })
-        });
-
-        $(function() {
-            $('.integerInput').on('input', function() {
-                // numbers and decimals only
-                this.value = this.value.replace(/[^\d]/g, '');
-            });
-        });
-    </script>
-@endpush
-
 <!--Modal tambah-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -266,4 +236,51 @@
     </div>
 </div>
 @endforeach
+
 @endsection
+
+@push('styles')
+    {{-- Datatable CSS Libraries --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/select.bootstrap4.min.css')}}">
+@endpush
+
+@push('scripts')
+    {{-- Datatable JS Libraries --}}
+    <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
+    <!-- Page Specific JS File -->
+    <script src="{{asset('assets/js/page/modules-datatables.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    
+    {{-- Sweetalert JS Libraries --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('.delete').on('click', function(e){
+            e.preventDefault();
+            var form =  $(this).closest("form");
+            Swal.fire({
+                title: 'Apakah kamu yakin hapus data ini?',
+                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus saja!'
+                }).then((result) => {
+                    if (result.value) {
+                        form.submit();
+                    }
+            })
+        });
+
+        $(function() {
+            $('.integerInput').on('input', function() {
+                // numbers and decimals only
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
+        });
+    </script>
+@endpush

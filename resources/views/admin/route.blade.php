@@ -268,12 +268,27 @@
 @endsection
 
 @push('styles')
+    {{-- Datatable CSS Libraries --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables/select.bootstrap4.min.css')}}">
+
+    {{-- Select2 CSS Library --}}
     <link rel="stylesheet" href="{{asset('/assets/css/select2.min.css')}}"> 
 @endpush
 
 @push('scripts')
+    {{-- Select2 JS Library --}}
     <script src="{{asset('/assets/js/select2.full.min.js')}}"></script> 
+    {{-- Sweealert JS Library --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Datatable JS Libraries --}}
+    <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
+    <!-- Page Specific JS File -->
+    <script src="{{asset('assets/js/page/modules-datatables.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" type="text/javascript"></script>
     
     <script>   
         $('.select2').select2({
