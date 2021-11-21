@@ -38,8 +38,11 @@ Route::resource('routes', RouteController::class);
 Route::resource('schedules', ScheduleController::class);
 
 //Bookings
-Route::get('/bookings', PaymentController::class)->name('bookings');
+Route::get('/bookings', [PaymentController::class, 'index'])->name('bookings');
 
 //Profile
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
+
+//Export Laporan
+Route::get('export-laporan', [PaymentController::class, 'export'])->name('export.payment');
