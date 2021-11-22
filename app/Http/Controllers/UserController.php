@@ -99,6 +99,26 @@ class UserController extends Controller
         return view('customer.landingpage');
     }
 
+    public function edit(User $user)
+    {
+        return view('customer.profile', [
+            'title' => 'Halaman Ubah Akun',
+            'user'  => $user
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name'          => 'required',
+            'phone_number'  => 'required|numeric',
+            'address'       => 'required'
+        ]);
+
+        $user->update($request->only('name', 'phone_number', 'address'));
+        return redirect()->back()->with('success', 'Data berhasil didubah');
+    }
+
     public function logout()
     {
         auth()->logout();

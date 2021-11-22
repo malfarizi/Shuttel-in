@@ -94,7 +94,7 @@
                   </div>
                   <hr class="my-4">
                   <div class="text-center w-100">
-                    <p class="text-muted font-weight-bold">Register <a href="#" class="text-primary ml-2">Klik Disini</a></p>
+                    <p class="text-muted font-weight-bold">Register <a href="{{url('register')}}" class="text-primary ml-2">Klik Disini</a></p>
                   </div>
                  
                 </form>

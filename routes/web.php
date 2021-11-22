@@ -60,6 +60,11 @@ Route::get('/jadwal', [UserController::class, 'jadwal']);
 Route::get('/reservasi', [BookingController::class, 'reservasi']);
 Route::get('/riwayat', [UserController::class, 'riwayat']);
 
+// Profil
+Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
+
+
 Route::middleware('auth')->group(function(){
     //customer
 });

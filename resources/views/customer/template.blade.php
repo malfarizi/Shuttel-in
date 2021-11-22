@@ -21,15 +21,15 @@
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="SET_YOUR_CLIENT_KEY_HERE"></script>
   <!-- Vendor CSS Files -->
-  <link href="assets-flexstart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets-flexstart/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets-flexstart/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets-flexstart/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets-flexstart/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets-flexstart/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets-flexstart/css/style.css" rel="stylesheet">
+  <link href="{{ asset('assets-flexstart/css/style.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: FlexStart - v1.7.0
@@ -50,10 +50,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Reservasi</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Reservasi Saya</a></li>
-          @auth    
+          <li><a class="nav-link scrollto" href="{{url('landingpage')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{url('reservasi')}}">Reservasi</a></li>
+          <li><a class="nav-link scrollto" href="#riwayat">Reservasi Saya</a></li>
+          @auth
+          <li><a class="nav-link scrollto" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>    
             <li>
               <form action="{{ route('logout')}}" method="POST">
                 @csrf
@@ -87,27 +88,14 @@
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
               <img src="assets/img/logo.png" alt="">
-              <span>FlexStart</span>
+              <span>Shuttle-In</span>
             </a>
             <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna
               derita valies
               darta donna mare fermentum iaculis eu non diam phasellus.</p>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-
-
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
               A108 Adam Street <br>
