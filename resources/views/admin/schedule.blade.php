@@ -191,17 +191,6 @@
                     </div>
     
                     <div class="form-group">
-                        <label for=""> Kapasitas Kursi</label>
-                        <input 
-                            type="number" 
-                            min="1" 
-                            max="7" 
-                            class="form-control" 
-                            name="seat_capacity"
-                            value="{{ $schedule->seat_capacity }}">
-                    </div>
-    
-                    <div class="form-group">
                         <label for="">Pilih Rute</label>
                         <select name="route_id" class="form-control">
                             @foreach ($routes as $route)

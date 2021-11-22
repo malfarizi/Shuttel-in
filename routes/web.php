@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Admin\LoginController;
@@ -64,6 +66,17 @@ Route::get('/riwayat', [UserController::class, 'riwayat']);
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
 
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:cache');
+    Artisan::call('route:clear');
+    Artisan::call('view:cache');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+    //Artisan::call('optimize:clear');
+    return 'Cache facade value cleared';
+});
 
 Route::middleware('auth')->group(function(){
     //customer

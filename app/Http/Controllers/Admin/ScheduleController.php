@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ScheduleRequest;
 
 use App\Models\Route;
 use App\Models\Schedule;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -38,17 +38,12 @@ class ScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ScheduleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
-        Schedule::create([
-            'date_of_depature' => $request->date_of_depature, 
-            'schedule_status'  => $request->schedule_status, 
-            'depature_time'    => $request->depature_time, 
-            'route_id'         => $request->route_id
-        ]);
+        Schedule::create($request->validated());
 
         return back()->withSuccess('Data berhasil ditambahkan');
     }
@@ -78,19 +73,13 @@ class ScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ScheduleRequest  $request
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(ScheduleRequest $request, Schedule $schedule)
     {
-        $schedule->update([
-            'date_of_depature' => $request->date_of_depature, 
-            'schedule_status'  => $request->schedule_status, 
-            'depature_time'    => $request->depature_time, 
-            'seat_capacity'    => $request->seat_capacity,
-            'route_id'         => $request->route_id
-        ]);
+        $schedule->update($request->validated());
 
         return back()->withSuccess('Data berhasil diubah');
     }

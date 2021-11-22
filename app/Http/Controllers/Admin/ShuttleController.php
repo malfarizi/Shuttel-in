@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Shuttle;
 use App\Models\Driver;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShuttleRequest;
 
 class ShuttleController extends Controller
 {
@@ -86,22 +87,13 @@ class ShuttleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ShuttleRequest  $request
      * @param  \App\Models\Shuttle  $shuttle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shuttle $shuttle)
+    public function update(ShuttleRequest $request, Shuttle $shuttle)
     {
-
-        $request->validate([
-            'nopol'             => 'required',
-            'shuttle_status'    => 'required',
-            'driver_id'         => 'required',
-        ]);
-
-        $data = $request->only('nopol', 'shuttle_status', 'driver_id');
-
-        $shuttle->update($data);
+        $shuttle->update($request->validated());
         return back()->withSuccess('Data berhasil diubah');
     }
 

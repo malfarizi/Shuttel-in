@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RouteRequest;
 
 use App\Models\Route;
 use App\Models\Shuttle;
-use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
@@ -45,20 +45,12 @@ class RouteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\RouteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RouteRequest $request)
     {
-        $request->validate([
-            'depature'   => 'required',
-            'arrival'    => 'required',
-            'price'      => 'required|numeric',
-            'shuttle_id' => 'required'
-        ]);
-
-        $requests = $request->only('depature', 'arrival', 'price', 'shuttle_id');
-        Route::create($requests);
+        Route::create($request->validated());
         return back()->withSuccess('Data berhasil ditambahkan');
     }
 
@@ -87,21 +79,13 @@ class RouteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\RouteRequest  $request
      * @param  \App\Models\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Route $route)
+    public function update(RouteRequest $request, Route $route)
     {
-        $request->validate([
-            'depature'   => 'required',
-            'arrival'    => 'required',
-            'price'      => 'required|numeric',
-            'shuttle_id' => 'required'
-        ]);
-
-        $requests = $request->only('depature', 'arrival', 'price', 'shuttle_id');
-        $route->update($requests);
+        $route->update($request->validated());
         return back()->withSuccess('Data berhasil diubah');
     }
 

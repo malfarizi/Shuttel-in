@@ -18,11 +18,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request) 
     {
-        $auth = auth()->guard('admin');
-
-        $credentials = $request->only('email', 'password');
-
-        $validator = Validator::make($request->all(),
+        $request->validate(
             [
                 'email'  => 'required|string|exists:users',
                 'password'  => 'required|string',
@@ -34,15 +30,13 @@ class LoginController extends Controller
             ],
         );
 
-        $is_admin = User::where('email', $request->email)->value('role');
+        $credentials = array_merge($request->only('email', 'password'), ['role' => 'Admin']);
 
         $remember = $request->remember ? true : false;
-        
-        if($is_admin === 'Admin') {
-            if ($auth->attempt($credentials, $remember)) {
-                $request->session()->regenerate();
-                return redirect()->intended('admin/dashboard');
-            }
+    
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->intended('admin/dashboard');
         }
 
         return redirect()->back()->with('error', 'Email  password anda salah');
@@ -50,7 +44,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        auth()->guard('admin')->logout();
+        auth()->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect('/admin/login');

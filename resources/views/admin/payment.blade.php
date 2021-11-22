@@ -13,7 +13,8 @@
                             @csrf           
                             <div class="card-header">
                                 <div class="form-group mr-3">
-                                    <select name="month" class="form-control">
+                                    <select name="month" 
+                                        class="form-control @error('month') is-invalid @enderror">
                                         <option value="">Pilih Bulan</option>
                                         <option value="01">Januari</option>
                                         <option value="02">Februari</option>
@@ -28,9 +29,14 @@
                                         <option value="11">November</option>
                                         <option value="12">Desember</option>
                                     </select>
+                                    
+                                    @error('month')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group mr-3">
-                                    <select name="year" class="form-control">
+                                    <select name="year" 
+                                        class="form-control @error('year') is-invalid @enderror">
                                         <option value="">Pilih Tahun</option>
                                         @foreach ($payments->unique('created_at') as $payment)
                                             <option value="{{ $payment->created_at->format('Y') }}">
@@ -38,13 +44,22 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    
+                                    @error('year')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group mr-3">
-                                    <select name="extension" class="form-control">
+                                    <select name="extension" 
+                                        class="form-control @error('extension') is-invalid @enderror">
                                         <option value="">Pilih Format</option>
                                         <option value="csv">CSV</option>
                                         <option value="xlsx">XLSX</option>
                                     </select>
+                                    
+                                    @error('extension')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">

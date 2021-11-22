@@ -68,22 +68,20 @@ class UserController extends Controller
 
     public function authenticate(Request $request) 
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        $customer = User::where('email', $request->email)->value('role');
+        $credentials = array_merge($request->only('email', 'password'), ['role' => 'Customer']);
 
         //$remember = $request->remember ? true : false;
-        
-        if($customer === 'Customer') {
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
+        //dd(Auth::attempt($credentials));
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-                //return redirect()->intended('/landingpage');
-                return redirect('/landingpage');
-            }
+            //return redirect()->intended('/landingpage');
+            return redirect('/landingpage');
         }
 
         return redirect()->back()->with('error', 'Email  password anda salah');
