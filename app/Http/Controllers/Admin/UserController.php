@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index() {
         return view('admin.customer', [
             'title'     => 'Data Customer',
-            'customers' => User::where('role', 'Customer')->limit(200)->get()
+            'customers' => User::where('role', 'Customer')->take(200)->get()
         ]);
     }
 

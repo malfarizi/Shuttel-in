@@ -23,12 +23,12 @@ class PaymentController extends Controller
                         'booking.schedule.route.shuttle', 
                         'booking.bookingDetails'
                     ])
-                    ->limit(200)
+                    ->take(200)
                     ->latest()
                     ->get();
     
         return view('admin.payment', [
-            'title'    => 'Data Booking',
+            'title'    => 'Data Penjualan',
             'payments' => $payments,
         ]);
     }
@@ -44,10 +44,10 @@ class PaymentController extends Controller
         $request->validate([
             'month'     => 'required',
             'year'      => 'required',
-            'extension' => 'required'
+            'extension' => 'required|in:csv,xlsx'
         ]);
         
-        $payments = Payment::with(['booking.user', 'booking.schedule.route.shuttle'])
+        $payments = Payment::with(['booking.user', 'booking.schedule.route.shuttle.driver'])
                         ->whereYear('created_at', $request->year)
                         ->whereMonth('created_at', $request->month)
                         ->get();

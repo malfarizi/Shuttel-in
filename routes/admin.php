@@ -42,7 +42,7 @@ Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profi
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
 
 //Bookings
-Route::get('/bookings', [PaymentController::class, 'index'])->name('bookings');
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
 
 //Export Laporan
-Route::get('export-laporan', [PaymentController::class, 'export'])->name('export.payment');
+Route::get('/payments/export-laporan', [PaymentController::class, 'export'])->name('payments.export');

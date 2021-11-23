@@ -34,7 +34,11 @@ class DashboardController extends Controller
 
         $total_income         = Payment::totalIncome();
         $total_income         = "Rp. ".number_format($total_income, 0, ',', '.');
-        $payments             = Payment::latest()->status('pending')->take(5)->get();
+        $payments             = Payment::with('booking')
+                                    ->latest()
+                                    ->status('pending')
+                                    ->take(5)
+                                    ->get();
      
         return view('admin.dashboard', [
             'title'                     => 'Dashboard',

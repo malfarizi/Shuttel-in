@@ -18,7 +18,7 @@ class CreateDriversTable extends Migration
             $table->string('driver_name');
             $table->string('driver_status')->default('Aktif');
             $table->text('address');
-            $table->string('number_phone');
+            $table->string('phone_number');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

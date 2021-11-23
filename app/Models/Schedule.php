@@ -18,7 +18,7 @@ class Schedule extends Model
 
     public function getDateTimeDepatureAttribute() 
     {
-        return "{$this->date_of_depature} {$this->depature_time}";
+        return "{$this->date_of_depature} - {$this->depature_time}";
     }
 
     public function route() 

@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-header">
                             <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#exampleModal" id="#myBtn">
+                                data-target="#exampleModal">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
                                 </span>
@@ -51,7 +51,7 @@
                                                 <td>{{ $loop->iteration }}.</td>
                                                 <td>{{ $driver->driver_name }}</td>
                                                 <td>{{ $driver->driver_status }}</td>
-                                                <td>{{ $driver->number_phone }}</td>
+                                                <td>{{ $driver->phone_number }}</td>
                                                 <td width="15">{{ $driver->address }}</td>
                                                 <td>
                                                     @if($driver->photo)

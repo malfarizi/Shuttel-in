@@ -47,7 +47,7 @@
             <li class="menu-header">Dashboard</li>
             <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
                 <a href="{{url('admin/dashboard')}}" class="nav-link">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
@@ -82,10 +82,10 @@
                     <span>Data Customer</span>
                 </a>
             </li>
-            <li class="{{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
-                <a class="nav-link" href="{{route('admin.bookings')}}">
-                    <i class="fas fa-receipt"></i> 
-                    <span>Data Booking</span>
+            <li class="{{ Request::routeIs('admin.payments') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.payments')}}">
+                    <i class="fa fa-file ml-1"></i> 
+                    <span>Data Penjualan</span>
                 </a>
             </li>
     </aside>

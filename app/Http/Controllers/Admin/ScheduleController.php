@@ -17,7 +17,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::limit(200)->latest()->get();
+        $schedules = Schedule::take(200)->latest()->get();
         return view('admin.schedule', [
             'title'     => 'Data Jadwal',
             'schedules' => $schedules->load('route'),

@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Edit Profile'])
+        @include('components.breadcrumbs')
 
         <div class="section-body">
             <!-- DataTable with Hover -->
