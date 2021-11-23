@@ -11,11 +11,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $payments = Payment::with([
-                        'booking.user', 'booking.schedule.route.shuttle'
+                        'booking.user', 
+                        'booking.schedule.route.shuttle', 
+                        'booking.bookingDetails'
                     ])
+                    ->limit(200)
                     ->latest()
                     ->get();
     
@@ -25,6 +33,12 @@ class PaymentController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function export(Request $request)
     {
         $request->validate([

@@ -5,10 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
-use App\Models\Driver;
-use App\Models\Shuttle;
-use App\Models\Booking;
-use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,7 +12,7 @@ class UserController extends Controller
     public function index() {
         return view('admin.customer', [
             'title'     => 'Data Customer',
-            'customers' => User::where('role', 'Customer')->get()
+            'customers' => User::where('role', 'Customer')->limit(200)->get()
         ]);
     }
 
@@ -45,7 +41,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'          => 'required',
-            'phone_number'  => 'required|numeric',
+            'phone_number'  => 'required|numeric|max:13',
             'address'       => 'required'
         ]);
 

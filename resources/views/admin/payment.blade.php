@@ -112,10 +112,7 @@
                                                     {{ $payment->booking->user->name }}
                                                 </td>
                                                 <td>
-                                                    {{ 
-                                                        $payment->booking->schedule->date_of_depature. "- ". 
-                                                        $payment->booking->schedule->depature_time 
-                                                    }}
+                                                    {{ $payment->booking->schedule->dateTimeDepature }}
                                                 </td> 
                                                 <td>{{ $payment->snap_token ?? '-' }}</td>
                                                 <td>{{ $payment->booking_code ?? '-' }}</td>
@@ -128,7 +125,7 @@
                                                         type="button" 
                                                         class="btn btn-success btn-md" 
                                                         data-toggle="modal" 
-                                                        data-target="#modaldetail-{{$payment->id}}"
+                                                        data-target="#modaldetail-{{ $payment->id }}"
                                                     >
                                                         Detail
                                                     </button>
@@ -168,58 +165,54 @@
                 </button>
             </div>
 
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-3 col-form-label">Nama</label>
-                        <div class="col-sm-5">
-                            {{ $payment->booking->user->name }}
-                        </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->user->name }}
                     </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
-                        <div class="col-sm-12">
-                            {{ 
-                                $payment->booking->schedule->date_of_depature. "- ".
-                                $payment->booking->schedule->depature_time 
-                            }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
-                        <div class="col-sm-5">
-                            @foreach ($payment->booking->bookingDetails->sortBy('seat_number') as $booking)
-                                {{ $booking->seat_number }}
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Rute</label>
-                        <div class="col-sm-12">
-                            {{ 
-                                $payment->booking->schedule->route->depature. "-".
-                                $payment->booking->schedule->route->arrival 
-                            }} 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
-                        <div class="col-sm-5">
-                            {{ $payment->booking->schedule->route->shuttle->nopol }} 
-                        </div>
-                    </div>
-                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        Tutup
-                    </button>
-                    
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Jadwal Keberangkatan
+                    </label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->dateTimeDepature }}
+                    </div>
                 </div>
-            </form>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Nomor Kursi Yang Dipesan
+                    </label>
+                    <div class="col-sm-5">
+                        @foreach ($payment->booking->bookingDetails as $booking)
+                            {{ $booking->seat_number }}
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Rute</label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->route->depature_arrival }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->nopol }} 
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Tutup
+                </button>
+            </div>
         </div>
     </div>
 </div>

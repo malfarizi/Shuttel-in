@@ -54,7 +54,7 @@
                                             <td width="2">{{ $schedule->seat_capacity }}</td>
                                             <td width="2">{{ $schedule->schedule_status }}</td>
                                             <td>
-                                                {{ $schedule->route->depature.' - ' .$schedule->route->arrival}}
+                                                {{ $schedule->route->depature_arrival }}
                                             </td>
                                             <td>
                                                 <button type="button" 
@@ -65,10 +65,12 @@
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
                                                 <form action="{{route('admin.schedules.destroy', $schedule)}}" 
-                                                    method="POST" class="d-inline">
+                                                    method="POST" 
+                                                    class="d-inline"
+                                                >
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger delete">
+                                                    <button class="btn btn-danger delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -126,7 +128,7 @@
                             </option>
                             @foreach ($routes as $route)
                                 <option value="{{ $route->id }}">
-                                    {{ $route->depature. '-' .$route->arrival}}
+                                    {{ $route->depature_arrival }}
                                 </option>
                             @endforeach
                         </select>
@@ -156,7 +158,7 @@
 
 <!--Modal Edit-->
 @foreach($schedules as $schedule)
-<div class="modal fade" id="edit-data-{{$schedule->id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-data-{{ $schedule->id }}" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -192,15 +194,15 @@
     
                     <div class="form-group">
                         <label for="">Pilih Rute</label>
-                        <select name="route_id" class="form-control">
+                        <select name="route_id" class="select2 form-control">
                             @foreach ($routes as $route)
                                 @if($schedule->route_id != $route->id)
                                     <option value="{{ $route->id }}">
-                                        {{ $route->depature. '-' .$route->arrival}}
+                                        {{ $route->depature_arrival }}
                                     </option>
                                 @else
                                     <option value="{{ $route->id }}" selected>
-                                        {{ $route->depature. '-' .$route->arrival}}
+                                        {{ $route->depature_arrival }}
                                     </option>
                                 @endif
                             @endforeach
@@ -212,13 +214,13 @@
                         <select name="schedule_status" class="form-control">
                             <option 
                                 value="Aktif" 
-                                {{$schedule->schedule_status === 'Aktif' ? 'selected' : '' }}
+                                {{ $schedule->schedule_status === 'Aktif' ? 'selected' : '' }}
                             >
                                 Aktif
                             </option>
                             <option 
                                 value="Tidak Aktif"
-                                {{$schedule->schedule_status === 'Tidak Aktif' ? 'selected' : '' }}
+                                {{ $schedule->schedule_status === 'Tidak Aktif' ? 'selected' : '' }}
                             >
                                 Tidak Aktif
                             </option>

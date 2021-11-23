@@ -64,10 +64,7 @@
                                                 >
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button 
-                                                        type="submit" 
-                                                        class="btn btn-danger delete"
-                                                    >
+                                                    <button class="btn btn-danger delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -113,8 +110,8 @@
                                 Pilih kota keberangkatan
                             </option>
                             @foreach ($cities as $city)
-                                <option value="{{ $city->type. ' - ' .$city->city_name }}">
-                                    {{ $city->type. ' - ' .$city->city_name }}
+                                <option value="{{ $city->type. ' ' .$city->city_name }}">
+                                    {{ $city->type. ' ' .$city->city_name }}
                                 </option>    
                             @endforeach
                         </select>
@@ -127,8 +124,8 @@
                                 Pilih kota tujuan
                             </option>
                             @foreach ($cities as $city)
-                                <option value="{{ $city->type. ' - ' .$city->city_name }}">
-                                    {{ $city->type. ' - ' .$city->city_name }}
+                                <option value="{{ $city->type. ' ' .$city->city_name }}">
+                                    {{ $city->type. ' ' .$city->city_name }}
                                 </option>    
                             @endforeach
                         </select>
@@ -190,16 +187,16 @@
                         <select class="select2 form-control" name="depature">
                             @foreach ($cities as $city)
                                 @php
-                                    $city_n_type = $city->type. ' - ' .$city->city_name;
+                                    $city_and_type = $city->type. ' ' .$city->city_name;
                                 @endphp
                                 {{-- Kalo udah dihapus dummy ganti $city->city_name jadi $city_n_type --}}
-                                @if($route->depature === $city->city_name)
-                                    <option value="{{$city_n_type}}" selected>
-                                        {{ $city_n_type }}
+                                @if($route->depature === $city_and_type)
+                                    <option value="{{$city_and_type}}" selected>
+                                        {{ $city_and_type }}
                                     </option>
                                 @else 
-                                    <option value="{{$city_n_type}}">
-                                        {{ $city_n_type }}
+                                    <option value="{{$city_and_type}}">
+                                        {{ $city_and_type }}
                                     </option>
                                 @endif   
                             @endforeach
@@ -211,16 +208,16 @@
                         <select class="select2 form-control" name="arrival">
                             @foreach ($cities as $city)
                                 @php
-                                    $city_n_type = $city->type. ' - ' .$city->city_name;
+                                    $city_and_type = $city->type. ' ' .$city->city_name;
                                 @endphp
                                 {{-- Kalo udah dihapus dummy ganti $city->city_name jadi $city_n_type --}}
-                                @if($route->arrival === $city->city_name)
-                                    <option value="{{$city_n_type}}" selected>
-                                        {{ $city_n_type }}
+                                @if($route->arrival === $city_and_type)
+                                    <option value="{{$city_and_type}}" selected>
+                                        {{ $city_and_type }}
                                     </option>
                                 @else 
-                                    <option value="{{$city_n_type}}">
-                                        {{ $city_n_type }}
+                                    <option value="{{$city_and_type}}">
+                                        {{ $city_and_type }}
                                     </option>
                                 @endif   
                             @endforeach

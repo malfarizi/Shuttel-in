@@ -76,8 +76,6 @@ Route::get('/clear-cache', function() {
     Artisan::call('view:clear');
     Artisan::call('config:cache');
     Artisan::call('config:clear');
-    //Artisan::call('optimize:clear');
-    return 'Cache facade value cleared';
 });
 
 Route::middleware('auth')->group(function(){

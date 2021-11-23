@@ -260,7 +260,7 @@
     <script>
         $('.delete').on('click', function(e){
             e.preventDefault();
-            var form =  $(this).closest("form");
+            var form = $(this).closest("form");
             Swal.fire({
                 title: 'Apakah kamu yakin hapus data ini?',
                 text: "Data yang sudah dihapus tidak bisa dikembalikan!",

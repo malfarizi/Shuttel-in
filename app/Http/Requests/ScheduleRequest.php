@@ -24,10 +24,21 @@ class ScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            'date_of_depature' => 'required|date', 
-            'schedule_status'  => 'required', 
-            'depature_time'    => 'required',
-            'route_id'         => 'required'
+            'date_of_depature' => 'required|date|after:today', 
+            'depature_time'    => 'required|date_format:H:i',
+            'schedule_status'  => 'required|in:Aktif,Tidak Aktif', 
+            'route_id'         => 'required|exists:App\Models\Route,id'
         ];
     }
+
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    /* public function messages()
+    {
+        return [];
+    } */
 }

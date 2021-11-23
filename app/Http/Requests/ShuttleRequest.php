@@ -24,9 +24,20 @@ class ShuttleRequest extends FormRequest
     public function rules()
     {
         return [
-            'nopol'             => 'required',
-            'shuttle_status'    => 'required',
-            'driver_id'         => 'required'
+            'nopol'             => 'required|unique:shuttles|max:10',
+            'shuttle_status'    => 'required|in:Aktif,Tidak Aktif',
+            'driver_id'         => 'required|exists:App\Models\Driver,id'
         ];
     }
+
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    /* public function messages()
+    {
+        return [];
+    } */
 }

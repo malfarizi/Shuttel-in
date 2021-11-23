@@ -19,15 +19,12 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'email'  => 'required|string',
-                'password'  => 'required|string',
-            ], 
-            [ 
-                'required'  => ':attribute tidak boleh kosong',
-            ],
+                'email'  => 'required|email',
+                'password'  => 'required',
+            ]
         );
 
-        $credentials = array_merge($request->only('email', 'password'), ['role' => 'Admin']);
+        $credentials = $request->only('email', 'password') + ['role' => 'Admin'];
 
         $remember = $request->remember ? true : false;
     

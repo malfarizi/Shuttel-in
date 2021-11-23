@@ -22,27 +22,27 @@ use App\Http\Controllers\Admin\DashboardController;
 //Dashboard
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-//Customers
-Route::get('/customers', [UserController::class, 'index'])->name('customers');
-
 //Shuttles
-Route::resource('shuttles', ShuttleController::class);
+Route::resource('shuttles', ShuttleController::class)->except(['create', 'show', 'edit']);
 
 //Drivers
-Route::resource('drivers', DriverController::class);
+Route::resource('drivers', DriverController::class)->except(['create', 'show', 'edit']);
 
 //Routes
-Route::resource('routes', RouteController::class);
+Route::resource('routes', RouteController::class)->except(['create', 'show', 'edit']);
 
 //Schedules
-Route::resource('schedules', ScheduleController::class);
+Route::resource('schedules', ScheduleController::class)->except(['create', 'show', 'edit']);
 
-//Bookings
-Route::get('/bookings', [PaymentController::class, 'index'])->name('bookings');
+//Customers
+Route::get('/customers', [UserController::class, 'index'])->name('customers');
 
 //Profile
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
+
+//Bookings
+Route::get('/bookings', [PaymentController::class, 'index'])->name('bookings');
 
 //Export Laporan
 Route::get('export-laporan', [PaymentController::class, 'export'])->name('export.payment');
