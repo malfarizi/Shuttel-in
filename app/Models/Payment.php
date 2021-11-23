@@ -11,6 +11,16 @@ class Payment extends Model
 
     protected $guarded = [];
 
+    public function getTotalAttribute($value)
+    {
+        return "Rp. ".number_format($value, 0, ',', '.');
+    }
+
+    public function getDateAttribute()
+    {
+        return \Carbon\Carbon::parse($this->created_at)->translatedFormat('l, d F Y');
+    }
+
     public function booking()
     {
         return $this->belongsTo(Booking::class);
@@ -19,5 +29,10 @@ class Payment extends Model
     public function scopeStatus($query, $status)
     {
         return $query->where('status', $status);
+    }
+
+    public function scopeTotalIncome($query)
+    {
+        return $query->whereIn('status', ['capture', 'settlement'])->sum('total');
     }
 }

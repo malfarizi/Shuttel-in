@@ -1,10 +1,10 @@
-@if($status === 'capture' || $status === 'settlement')
+@if(in_array($status, ['capture', 'settlement']))
     <div class="badge badge-success">
         {{ $status }}
     </div>
 @endif
 
-@if($status === 'deny' || $status === 'cancel')
+@if(in_array($status, ['cancel', 'deny']))
     <div class="badge badge-danger">
         {{ $status }}
     </div>

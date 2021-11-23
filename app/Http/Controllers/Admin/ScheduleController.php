@@ -22,7 +22,7 @@ class ScheduleController extends Controller
             'title'     => 'Data Jadwal',
             'schedules' => $schedules->load('route'),
             'routes'    => Route::all()
-        ])->with('i');
+        ]);
     }
 
     /**

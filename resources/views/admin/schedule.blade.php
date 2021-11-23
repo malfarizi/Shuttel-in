@@ -23,7 +23,7 @@
                             @include('components.alert')
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Tanggal Keberangkatan</th>
@@ -34,7 +34,7 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <tfoot class="text-center">
                                         <tr>
                                             <th>No.</th>
                                             <th>Tanggal Keberangkatan</th>
@@ -45,14 +45,14 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
+                                    <tbody class="text-center">
                                         @forelse ($schedules as $schedule)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>@date($schedule->date_of_depature)</td>
+                                            <td>{{ $loop->iteration }}.</td>
+                                            <td>{{ $schedule->date_of_depature }}</td>
                                             <td>{{ $schedule->depature_time }}</td>
-                                            <td>{{ $schedule->seat_capacity }}</td>
-                                            <td>{{ $schedule->schedule_status }}</td>
+                                            <td width="2">{{ $schedule->seat_capacity }}</td>
+                                            <td width="2">{{ $schedule->schedule_status }}</td>
                                             <td>
                                                 {{ $schedule->route->depature.' - ' .$schedule->route->arrival}}
                                             </td>
@@ -208,6 +208,7 @@
                     </div>
     
                     <div class="form-group">
+                        <label for="">Pilih Status Jadwal</label>
                         <select name="schedule_status" class="form-control">
                             <option 
                                 value="Aktif" 

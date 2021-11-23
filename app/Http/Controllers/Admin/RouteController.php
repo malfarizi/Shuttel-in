@@ -29,7 +29,7 @@ class RouteController extends Controller
             'routes'   => $routes->load('shuttle'),
             'shuttles' => Shuttle::isActiveStatus()->get(),
             'cities'   => $cities 
-        ])->with('i');
+        ]);
     }
 
     /**

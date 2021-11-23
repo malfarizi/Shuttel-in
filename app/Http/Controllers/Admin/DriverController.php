@@ -18,7 +18,7 @@ class DriverController extends Controller
         return view('admin.driver', [
             'title'   => 'Data Driver',
             'drivers' => Driver::latest()->get()
-        ])->with('i');
+        ]);
     }
 
     /**

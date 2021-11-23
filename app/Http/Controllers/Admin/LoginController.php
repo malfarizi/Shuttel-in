@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -20,13 +19,11 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'email'  => 'required|string|exists:users',
+                'email'  => 'required|string',
                 'password'  => 'required|string',
             ], 
-            [
-                'email.exists'    => 'Akun tidak terdaftar',   
-                'email.required'  => 'Email tidak boleh kosong',
-                'password.required'  => 'Password tidak boleh kosong'
+            [ 
+                'required'  => ':attribute tidak boleh kosong',
             ],
         );
 
@@ -39,7 +36,7 @@ class LoginController extends Controller
             return redirect()->intended('admin/dashboard');
         }
 
-        return redirect()->back()->with('error', 'Email  password anda salah');
+        return redirect()->back()->with('error', 'Email dan password anda salah');
     }
 
     public function logout()

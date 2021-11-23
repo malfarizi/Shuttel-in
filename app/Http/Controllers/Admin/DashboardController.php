@@ -32,8 +32,8 @@ class DashboardController extends Controller
         $success_reservation  = Payment::status('capture')->count(); 
         $total_reservation    = Payment::count();
 
-        $total_income         = Payment::status('capture')->orWhere('status','settlement')->sum('total');
-        
+        $total_income         = Payment::totalIncome();
+        $total_income         = "Rp. ".number_format($total_income, 0, ',', '.');
         $payments             = Payment::latest()->status('pending')->take(5)->get();
      
         return view('admin.dashboard', [

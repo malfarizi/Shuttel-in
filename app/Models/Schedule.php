@@ -11,6 +11,11 @@ class Schedule extends Model
 
     protected $guarded = [];
 
+    public function getDateOfDepatureAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->translatedFormat('l, d F Y');
+    }
+
     public function route() 
     {
         return $this->belongsTo(Route::class);    

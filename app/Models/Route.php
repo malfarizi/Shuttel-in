@@ -11,6 +11,11 @@ class Route extends Model
 
     protected $guarded = [];
 
+    public function getPriceAttribute($value)
+    {
+        return "Rp. ".number_format($value, 0, ',', '.');
+    }
+
     public function shuttle() 
     {
         return $this->belongsTo(Shuttle::class);    

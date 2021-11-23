@@ -44,10 +44,10 @@
                                     <tbody>
                                         @forelse ($shuttles as $shuttle)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{$shuttle->nopol}}</td>
-                                            <td>{{$shuttle->shuttle_status}}</td>
-                                            <td>{{$shuttle->driver->driver_name}}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $shuttle->nopol }}</td>
+                                            <td>{{ $shuttle->shuttle_status }}</td>
+                                            <td>{{ $shuttle->driver->driver_name }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 
                                                     data-toggle="modal" data-target="#edit-data-{{$shuttle->id}}">

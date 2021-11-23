@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
@@ -57,6 +58,7 @@ Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
 // Other Page
 Route::get('/landingpage', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/jadwal', [UserController::class, 'jadwal']);
+Route::get('/schedule', ScheduleController::class);
 
 //Booking
 Route::get('/reservasi', [BookingController::class, 'reservasi']);

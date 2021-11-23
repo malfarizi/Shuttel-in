@@ -48,7 +48,7 @@
                                     <tbody>
                                         @forelse ($drivers as $driver)
                                             <tr>
-                                                <td>{{ ++$i }}.</td>
+                                                <td>{{ $loop->iteration }}.</td>
                                                 <td>{{ $driver->driver_name }}</td>
                                                 <td>{{ $driver->driver_status }}</td>
                                                 <td>{{ $driver->number_phone }}</td>

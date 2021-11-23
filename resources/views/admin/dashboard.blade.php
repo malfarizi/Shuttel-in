@@ -108,7 +108,7 @@
                             <h4>Total Penjualan</h4>
                         </div>
                         <div class="card-body">
-                            @money($total_income)
+                            {{ $total_income }}
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                                         <td>
                                             @include('components.badge', ['status' => $payment->status ])
                                         </td>
-                                        <td>@date($payment->created_at)</td>
+                                        <td>{{ $payment->date }}</td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-icon icon-left btn-primary" 

@@ -22,7 +22,7 @@ class PaymentController extends Controller
         return view('admin.payment', [
             'title'    => 'Data Booking',
             'payments' => $payments,
-        ])->with('i');
+        ]);
     }
 
     public function export(Request $request)
@@ -36,7 +36,6 @@ class PaymentController extends Controller
         $payments = Payment::with(['booking.user', 'booking.schedule.route.shuttle'])
                         ->whereYear('created_at', $request->year)
                         ->whereMonth('created_at', $request->month)
-                        //->latest()
                         ->get();
 
         if ($payments) {

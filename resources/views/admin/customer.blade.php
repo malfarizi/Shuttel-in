@@ -34,7 +34,7 @@
                                     <tbody>
                                         @forelse($customers as $customer)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $loop->iteration }}.</td>
                                                 <td>{{ $customer->name }}</td>
                                                 <td>{{ $customer->email }}</td>
                                                 <td>{{ $customer->phone_number }}</td>

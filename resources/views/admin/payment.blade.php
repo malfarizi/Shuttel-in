@@ -106,19 +106,23 @@
                                         @forelse($payments as $payment)
                                             <tr>
                                                 <td class="text-left">
-                                                    {{ ++$i }}.
+                                                    {{ $loop->iteration }}.
                                                 </td>
-                                                <td>{{ $payment->booking->user->name }}</td>
                                                 <td>
-                                                    @date($payment->booking->schedule->date_of_depature) - 
-                                                    {{ $payment->booking->schedule->depature_time }}
+                                                    {{ $payment->booking->user->name }}
+                                                </td>
+                                                <td>
+                                                    {{ 
+                                                        $payment->booking->schedule->date_of_depature. "- ". 
+                                                        $payment->booking->schedule->depature_time 
+                                                    }}
                                                 </td> 
                                                 <td>{{ $payment->snap_token ?? '-' }}</td>
                                                 <td>{{ $payment->booking_code ?? '-' }}</td>
                                                 <td>
                                                     @include('components.badge', ['status' => $payment->status])
                                                 </td>
-                                                <td>@money($payment->total)</td>
+                                                <td>{{ $payment->total }}</td>
                                                 <td>
                                                     <button 
                                                         type="button" 
@@ -175,15 +179,17 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
                         <div class="col-sm-12">
-                            @date($payment->booking->schedule->date_of_depature) - 
-                            {{ $payment->booking->schedule->depature_time }}
+                            {{ 
+                                $payment->booking->schedule->date_of_depature. "- ".
+                                $payment->booking->schedule->depature_time 
+                            }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
                         <div class="col-sm-5">
-                            @foreach ($payment->booking->bookingDetails as $booking)
+                            @foreach ($payment->booking->bookingDetails->sortBy('seat_number') as $booking)
                                 {{ $booking->seat_number }}
                             @endforeach
                         </div>
@@ -191,9 +197,11 @@
 
                     <div class="form-group">
                         <label for="name" class="col-sm-7 col-form-label">Rute</label>
-                        <div class="col-sm-5">
-                            {{ $payment->booking->schedule->route->depature }} - 
-                            {{ $payment->booking->schedule->route->arrival }} 
+                        <div class="col-sm-12">
+                            {{ 
+                                $payment->booking->schedule->route->depature. "-".
+                                $payment->booking->schedule->route->arrival 
+                            }} 
                         </div>
                     </div>
 

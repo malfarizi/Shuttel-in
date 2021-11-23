@@ -48,19 +48,30 @@
 
         </header>
 
-
         <div class="row gy-4 mt-4" data-aos="fade-left">
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="box">
-                    <img src="assets-flexstart/img/pricing-free.png" class="img-fluid" alt="">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">jam : 19:00</li>
-                        <li class="list-group-item">Sisa Kursi : 7 dari 7 Kursi</li>
-                        <li class="list-group-item">Harga : Rp.140,000 </li>
-                    </ul>
-                    <a href="/reservasi" class="btn-reservasi">Pesan Sekarang</a>
+            @foreach($schedules as $schedule)
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box">
+                        <img src="assets-flexstart/img/pricing-free.png" class="img-fluid" alt="">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                jam : 19:00
+                            </li>
+                            <li class="list-group-item">
+                                Sisa Kursi : 7 dari 7 Kursi
+                            </li>
+                            <li class="list-group-item">
+                                Harga : Rp.140,000 
+                            </li>
+                        </ul>
+                        <a href="/reservasi" class="btn-reservasi">Pesan Sekarang</a>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+        </div>
+
+        <div class="d-flex justify-content-center mt-5">
+            {!! $schedules->links() !!}
         </div>
     </div>
 

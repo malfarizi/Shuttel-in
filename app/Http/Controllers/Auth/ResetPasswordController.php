@@ -46,7 +46,7 @@ class ResetPasswordController extends Controller
         }
 
         $user = User::where('email', $request->email)
-                    ->update(['password' => bcrypt($request->password)]);
+                    ->update(['password' => $request->password]);
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 

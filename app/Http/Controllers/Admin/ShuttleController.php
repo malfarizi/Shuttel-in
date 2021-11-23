@@ -25,7 +25,7 @@ class ShuttleController extends Controller
             'title'    => 'Data Shuttle',
             'shuttles' => $shuttles->load('driver'),
             'drivers'  => Driver::isActiveStatus()->get(),
-        ])->with('i');
+        ]);
     }
 
     /**

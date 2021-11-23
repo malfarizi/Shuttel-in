@@ -47,10 +47,10 @@
                                     <tbody>
                                         @forelse ($routes as $route)
                                         <tr>
-                                            <td>{{ ++$i }}.</td>
+                                            <td>{{ $loop->iteration }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
-                                            <td>@money($route->price)</td>
+                                            <td>{{ $route->price }}</td>
                                             <td>{{ $route->shuttle->nopol }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 

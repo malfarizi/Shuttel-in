@@ -19,7 +19,7 @@ class UserController extends Controller
             'address' => 'Bandung',
             'phone_number' => '0898779821',
             'role' => 'Admin',
-            'password' => bcrypt('password'), // password
+            'password' => 'password',
             'remember_token' => 'efsdgsgs',
         ]);
         
@@ -39,11 +39,11 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
-            'phone_number' => $request->phone_number,
-            'password' => bcrypt($request->password)
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'address'       => $request->address,
+            'phone_number'  => $request->phone_number,
+            'password'      => $request->password
         ]);
 
         $token = Str::random(64);
