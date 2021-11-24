@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Data Customer'])
+        @include('components.breadcrumbs')
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">

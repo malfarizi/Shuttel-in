@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Edit Profile'])
+        @include('components.breadcrumbs')
 
         <div class="section-body">
             <!-- DataTable with Hover -->
@@ -13,7 +13,7 @@
                         <div class="card-header">
                            <h2>Edit Profile</h2>
                         </div>
-                        <form action="{{route('admin.profile.update', $user->id)}}" method="POST">
+                        <form action="{{ route('admin.profile.update', $user->id) }}" method="POST">
                             @csrf
                             @method('PUT')  
                             <div class="card-body">
@@ -23,7 +23,7 @@
                                         type="text" 
                                         class="form-control @error('name') is-invalid @enderror" 
                                         name="name" 
-                                        value="{{$user->name}}">
+                                        value="{{ $user->name }}">
                                         
                                         @error('name')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -35,7 +35,7 @@
                                     <input 
                                         type="text" 
                                         class="form-control integerInput @error('phone_number') is-invalid @enderror" 
-                                        name="phone_number" value="{{$user->phone_number}}">
+                                        name="phone_number" value="{{ $user->phone_number }}">
                                         @error('phone_number')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

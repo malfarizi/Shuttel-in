@@ -3,13 +3,13 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Data Booking'])
+        @include('components.breadcrumbs')
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="{{route('admin.export.payment')}}" method="GET">
+                        <form action="{{route('admin.payments.export')}}" method="GET">
                             @csrf           
                             <div class="card-header">
                                 <div class="form-group mr-3">
@@ -81,10 +81,10 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th>No.</th>
-                                            <th>Nama Customer</th>
-                                            <th>Jadwal Keberangkatan</th> 
-                                            <th>Snap Token</th>
                                             <th>Booking Code</th>
+                                            <th>Nama Customer</th>
+                                            <th>Nomor Telpon Customer</th>
+                                            <th>Jadwal Keberangkatan</th> 
                                             <th>Status</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
@@ -93,10 +93,10 @@
                                     <tfoot class="text-center">
                                         <tr>
                                             <th>No.</th>
-                                            <th>Nama Customer</th>
-                                            <th>Jadwal Keberangkatan</th>
-                                            <th>Snap Token</th>
                                             <th>Booking Code</th>
+                                            <th>Nama Customer</th>
+                                            <th>Nomor Telpon Customer</th>
+                                            <th>Jadwal Keberangkatan</th>
                                             <th>Status</th>
                                             <th>Total harga</th>
                                             <th>Detail</th>
@@ -108,17 +108,14 @@
                                                 <td class="text-left">
                                                     {{ $loop->iteration }}.
                                                 </td>
+                                                <td>{{ $payment->booking_code ?? '-' }}</td>
                                                 <td>
                                                     {{ $payment->booking->user->name }}
                                                 </td>
+                                                <td>{{ $payment->booking->user->phone_number }}</td>
                                                 <td>
-                                                    {{ 
-                                                        $payment->booking->schedule->date_of_depature. "- ". 
-                                                        $payment->booking->schedule->depature_time 
-                                                    }}
+                                                    {{ $payment->booking->schedule->dateTimeDepature }}
                                                 </td> 
-                                                <td>{{ $payment->snap_token ?? '-' }}</td>
-                                                <td>{{ $payment->booking_code ?? '-' }}</td>
                                                 <td>
                                                     @include('components.badge', ['status' => $payment->status])
                                                 </td>
@@ -126,11 +123,11 @@
                                                 <td>
                                                     <button 
                                                         type="button" 
-                                                        class="btn btn-success btn-md" 
+                                                        class="btn btn-icon icon-left btn-primary" 
                                                         data-toggle="modal" 
-                                                        data-target="#modaldetail-{{$payment->id}}"
+                                                        data-target="#modaldetail-{{ $payment->id }}"
                                                     >
-                                                        Detail
+                                                        <i class="fas fa-info-circle"></i> Detail
                                                     </button>
                                                 </td>
                                             </tr>
@@ -168,58 +165,68 @@
                 </button>
             </div>
 
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-3 col-form-label">Nama</label>
-                        <div class="col-sm-5">
-                            {{ $payment->booking->user->name }}
-                        </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->user->name }}
                     </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Jadwal Keberangkatan</label>
-                        <div class="col-sm-12">
-                            {{ 
-                                $payment->booking->schedule->date_of_depature. "- ".
-                                $payment->booking->schedule->depature_time 
-                            }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Nomor Kursi Yang Dipesan</label>
-                        <div class="col-sm-5">
-                            @foreach ($payment->booking->bookingDetails->sortBy('seat_number') as $booking)
-                                {{ $booking->seat_number }}
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Rute</label>
-                        <div class="col-sm-12">
-                            {{ 
-                                $payment->booking->schedule->route->depature. "-".
-                                $payment->booking->schedule->route->arrival 
-                            }} 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
-                        <div class="col-sm-5">
-                            {{ $payment->booking->schedule->route->shuttle->nopol }} 
-                        </div>
-                    </div>
-                    
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        Tutup
-                    </button>
-                    
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Jadwal Keberangkatan
+                    </label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->dateTimeDepature }}
+                    </div>
                 </div>
-            </form>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Nomor Kursi Yang Dipesan
+                    </label>
+                    <div class="col-sm-5">
+                        @foreach ($payment->booking->bookingDetails as $booking)
+                            {{ $booking->seat_number }}
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Rute</label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->route->depature_arrival }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->nopol }} 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Nama Driver</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->driver->driver_name }} 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Nomor Telpon Driver</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->driver->phone_number }} 
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Tutup
+                </button>
+            </div>
         </div>
     </div>
 </div>

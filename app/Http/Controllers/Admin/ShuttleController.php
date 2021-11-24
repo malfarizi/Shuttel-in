@@ -16,8 +16,6 @@ class ShuttleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-
     public function index()
     {
         $shuttles = Shuttle::latest()->get();
@@ -26,16 +24,6 @@ class ShuttleController extends Controller
             'shuttles' => $shuttles->load('driver'),
             'drivers'  => Driver::isActiveStatus()->get(),
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -60,28 +48,6 @@ class ShuttleController extends Controller
         $data->save();
 
         return back()->withSuccess('Data berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Shuttle  $shuttle
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Shuttle $shuttle)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Shuttle  $shuttle
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Shuttle $shuttle)
-    {
-        //
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
   <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Data Shuttle'])
+        @include('components.breadcrumbs')
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
@@ -54,11 +54,11 @@
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
                                                 
-                                                <form action="{{route('admin.shuttles.destroy', $shuttle->id)}}" 
+                                                <form action="{{ route('admin.shuttles.destroy', $shuttle->id) }}" 
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger delete">
+                                                    <button class="btn btn-danger delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -187,7 +187,7 @@
                     <div class="form-group">
                         <label for="">Pilih Driver</label>
                         <select class="select2 form-control" name="driver_id">
-                            <option value="{{$shuttle->driver_id}}">
+                            <option value="{{ $shuttle->driver_id }}">
                                 {{ $shuttle->driver->driver_name }}
                             </option>
                             @foreach ($drivers as $driver)
@@ -202,7 +202,9 @@
                 </div>
             
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Batal
+                    </button>
                     <button type="sumbit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -243,7 +245,7 @@
 
         $('.delete').on('click', function(e){
             e.preventDefault();
-            var form =  $(this).closest("form");
+            var form = $(this).closest("form");
             Swal.fire({
                 title: 'Apakah kamu yakin hapus data ini?',
                 text: "Data yang sudah dihapus tidak bisa dikembalikan!",

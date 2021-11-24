@@ -16,6 +16,11 @@ class Route extends Model
         return "Rp. ".number_format($value, 0, ',', '.');
     }
 
+    public function getDepatureArrivalAttribute() 
+    {
+        return "{$this->depature} - {$this->arrival}";
+    }
+
     public function shuttle() 
     {
         return $this->belongsTo(Shuttle::class);    

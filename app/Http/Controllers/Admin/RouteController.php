@@ -33,19 +33,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\RouteRequest  $request
+     * @param  \App\Http\Requests\RouteRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(RouteRequest $request)
@@ -55,31 +45,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Route  $route
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Route $route)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Route  $route
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Route $route)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\RouteRequest  $request
+     * @param  \App\Http\Requests\RouteRequest  $request
      * @param  \App\Models\Route  $route
      * @return \Illuminate\Http\Response
      */

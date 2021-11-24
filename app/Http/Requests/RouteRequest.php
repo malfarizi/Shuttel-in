@@ -27,7 +27,18 @@ class RouteRequest extends FormRequest
             'depature'   => 'required',
             'arrival'    => 'required',
             'price'      => 'required|numeric',
-            'shuttle_id' => 'required'
+            'shuttle_id' => 'required|exists:App\Models\Shuttle,id'
         ];
     }
+
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    /* public function messages()
+    {
+        return [];
+    } */
 }

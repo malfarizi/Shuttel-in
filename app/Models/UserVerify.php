@@ -14,7 +14,7 @@ class UserVerify extends Model
     /**
      * Write code on Method
      *
-     * @return response()
+     * @return response
      */
     protected $fillable = [
         'user_id',
@@ -24,7 +24,7 @@ class UserVerify extends Model
     /**
      * Write code on Method
      *
-     * @return response()
+     * @return response
      */
     public function user()
     {

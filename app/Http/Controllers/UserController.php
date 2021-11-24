@@ -73,10 +73,8 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
 
-        $credentials = array_merge($request->only('email', 'password'), ['role' => 'Customer']);
-
-        //$remember = $request->remember ? true : false;
-        //dd(Auth::attempt($credentials));
+        $credentials = $request->only('email', 'password') + ['role' => 'Customer'];
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 

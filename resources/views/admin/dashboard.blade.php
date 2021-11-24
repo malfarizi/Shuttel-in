@@ -9,7 +9,7 @@
                 <div class="card card-statistic-2">
                     <div class="card-stats">
                         <div class="card-stats-title"> Reservasi -
-                            <div class="dropdown d-inline">
+                            {{-- <div class="dropdown d-inline">
                                 <a class="font-weight-600 dropdown-toggle" 
                                     data-toggle="dropdown" href="#" id="orders-month">
                                     October
@@ -29,7 +29,7 @@
                                     <li><a href="#" class="dropdown-item">November</a></li>
                                     <li><a href="#" class="dropdown-item">December</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
@@ -119,9 +119,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Invoices</h4>
+                        <h4>Penjualan</h4>
                         <div class="card-header-action">
-                            <a href="{{route('admin.bookings')}}" class="btn btn-danger">
+                            <a href="{{route('admin.payments')}}" class="btn btn-danger">
                                 View More <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
@@ -130,18 +130,16 @@
                         <div class="table-responsive table-invoice">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Invoice ID</th>
+                                    <th>ID Booking</th>
                                     <th>Customer</th>
                                     <th>Status</th>
-                                    <th>Pembayaran</th>
+                                    <th>Total</th>
                                     <th>Action</th>
                                 </tr>
                                 @forelse ($payments as $payment)
                                     <tr>
                                         <td>
-                                            <a href="#">
-                                                {{ $payment->booking->id }}
-                                            </a>
+                                            {{ $payment->booking_id }}
                                         </td>
                                         <td class="font-weight-600">
                                             {{ $payment->booking->user->name }}
@@ -149,7 +147,7 @@
                                         <td>
                                             @include('components.badge', ['status' => $payment->status ])
                                         </td>
-                                        <td>{{ $payment->date }}</td>
+                                        <td>{{ $payment->total }}</td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-icon icon-left btn-primary" 

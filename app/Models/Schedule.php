@@ -16,6 +16,11 @@ class Schedule extends Model
         return \Carbon\Carbon::parse($value)->translatedFormat('l, d F Y');
     }
 
+    public function getDateTimeDepatureAttribute() 
+    {
+        return "{$this->date_of_depature} - {$this->depature_time}";
+    }
+
     public function route() 
     {
         return $this->belongsTo(Route::class);    

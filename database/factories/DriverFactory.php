@@ -16,7 +16,7 @@ class DriverFactory extends Factory
         return [
             'driver_name'   => $this->faker->name(),
             'address'       => $this->faker->address(),
-            'number_phone'  => $this->faker->phoneNumber(),
+            'phone_number'  => $this->faker->phoneNumber(),
             'driver_status' => $this->faker->randomElement(['Aktif', 'Tidak Aktif'])
         ];
     }
