@@ -51,17 +51,18 @@ class BookingController extends Controller
     {
         DB::transaction(function () use($request) {
             $cretae = Booking::create([
+                'id'     => 'SANBOX-'.uniqid(),
                 'user_id'     => '1',
                 'schedule_id' => '1',
             ]);
-      
+            $gross_amount = $request->kursi * 150000;
             $payload = [
                 'customer_details' => [
-                    'first_name' => 'TEST',
+                    'first_name' => $request->name,
                 ],
                 'transaction_details' => [
-                    'order_id' => 'ORDER-101',
-                    'gross_amount' => 10000
+                    'order_id' => 'SANBOX-'.uniqid(),
+                    'gross_amount' => floatval($gross_amount)
                 ],
             ];
                         
@@ -72,8 +73,9 @@ class BookingController extends Controller
             $this->response['snap_token'] = $snapToken;
             //dd($snapToken);
         });
-
-        return response()->json($this->response);
+        
+        $respon = response()->json($this->response);
+        dd($respon);
     }
 
     /**

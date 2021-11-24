@@ -62,31 +62,35 @@
                 <div class="box">
                     <div class="row mt-4">
                         <h5>Data Pemesan</h5>
-                        <form>
+                        <form action="{{url ('/booking') }}" method="POST">
+                            @csrf
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Nama Anda">
+                                <input type="text" class="form-control" name="name" id="floatingInput"
+                                    placeholder="Nama Anda" value="Farhan">
                                 <label for="floatingInput">Nama</label>
-                              </div>
-            
-                              <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="number_phone" id="floatingInput" placeholder="Nomor Telephone">
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="number_phone" id="floatingInput"
+                                    placeholder="Nomor Telephone">
                                 <label for="floatingInput">Nomor Telephone</label>
-                              </div>
-                            
-                              <div class="form-group">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="" class="col-sm-7 col-form-label">Total Kursi</label>
                                 <div class="col-sm-5">
-                                    1
+                                    <input type="number" name="kursi" value="2">
                                 </div>
-                              </div>
+                            </div>
 
-                              <div class="form-group">
+                            <div class="form-group">
                                 <label for="name" class="col-sm-7 col-form-label">Total Harga</label>
                                 <div class="col-sm-5">
                                     50000
                                 </div>
-                              </div>
-                            <button id="pay-button" class="btn btn-primary btn-block mt-4 float-right">Bayar
+                            </div>
+                            <button type="submit" id="pay-button"
+                                class="btn btn-primary btn-block mt-4 float-right">Bayar
                                 Sekarang</button>
                         </form>
                     </div>

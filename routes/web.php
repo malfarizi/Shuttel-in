@@ -25,7 +25,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 // Generate Account Admin
 Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
-Route::get('booking', [BookingController::class, 'store']);
+Route::post('booking', [BookingController::class, 'store']);
 
 // Authenticate Login and Logout Customer
 Route::get('/admin/login', [LoginController::class, 'index'])

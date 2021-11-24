@@ -54,17 +54,17 @@
           <li><a class="nav-link scrollto" href="{{url('reservasi')}}">Reservasi</a></li>
           <li><a class="nav-link scrollto" href="#riwayat">Reservasi Saya</a></li>
           @auth
-          <li><a class="nav-link scrollto" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>    
-            <li>
-              <form action="{{ route('logout')}}" method="POST">
-                @csrf
-                <button class="dropdown-item has-icon text-danger" type="submit">
-                  <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-              </form>
-            </li>
+          <li><a class="nav-link scrollto" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>
+          <li>
+            <form action="{{ route('logout')}}" method="POST">
+              @csrf
+              <button class="dropdown-item has-icon text-danger" type="submit">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </form>
+          </li>
           @else
-            <li><a class="nav-link scrollto" href="{{url('login')}}">Login</a></li>
+          <li><a class="nav-link scrollto" href="{{url('login')}}">Login</a></li>
           @endauth
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -95,7 +95,7 @@
               darta donna mare fermentum iaculis eu non diam phasellus.</p>
           </div>
 
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
               A108 Adam Street <br>
@@ -122,12 +122,9 @@
 
   <!-- MIDTRANS -->
   <script type="text/javascript">
-    // For example trigger on button clicked, or any time you need
     var payButton = document.getElementById('pay-button');
     payButton.addEventListener('click', function () {
-      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-      window.snap.pay('snapToken');
-      // customer will be redirected after completing payment pop-up
+      snap.pay('snap_token');
     });
   </script>
   <!-- Vendor JS Files -->
