@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Route;
+use App\Models\Payment;
 use App\Models\Booking;
+use App\Models\BookingDetail;
 
 use Illuminate\Http\Request;
 
@@ -55,17 +57,23 @@ class BookingController extends Controller
                 'user_id'     => $request->user_id,
                 'schedule_id' => $request->schedule_id,
             ]);
+            $booking_detail = BookingDetail::create([]);
             $gross_amount = $request->kursi * 150000;
+            $payment = Payment::create([
+                'booking_id' => $booking->id,
+                'total' => $gross_amount
+            ]);
+            
             $payload = [
                 'customer_details' => [
                     'first_name' => $request->name,
                 ],
                 'transaction_details' => [
-                    'order_id' => 'SANBOX-'.uniqid(),
+                    'order_id' => $booking->id,
                     'gross_amount' => floatval($gross_amount)
                 ],
             ];
-                        
+            
             $snapToken = \Midtrans\Snap::getSnapToken($payload);
             $booking->snap_token = $snapToken;
             $booking->save();

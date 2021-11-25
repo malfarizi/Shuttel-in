@@ -18,7 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets-flexstart/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{ asset('assets-flexstart/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
@@ -122,7 +122,6 @@
 
   <!-- Vendor JS Files -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
   <script src="assets-flexstart/vendor/bootstrap/js/bootstrap.bundle.js"></script>
@@ -136,19 +135,7 @@
   <!-- Template Main JS File -->
   <script src="assets-flexstart/js/main.js"></script>
 
-  <script>
-    $(document).ready(function () {
-    $('#depature').select2({
-        placeholder: "Pilih Keberangkatan",
-        allowClear: true
-    });         
-    $('#arrival').select2({
-        placeholder: "Pilih Kedatangan",
-        allowClear: true
-    });         
 
-  });
-  </script>
   <!-- MIDTRANS -->
   <script type="text/javascript">
     $("#reservasi_form").submit(function (event) {
@@ -159,7 +146,7 @@
       user_id: $('input#user_id').val(),
       schedule_id: $('input#schedule_id').val(),
       name: $('input#name').val(),
-      kursi: $('input#seat_number[]').val(),
+      kursi: $('input#seat_number').val(),
     },
     function (data, status) {
       console.log(data);

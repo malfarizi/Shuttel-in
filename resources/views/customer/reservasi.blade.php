@@ -88,7 +88,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="seat_number[]" id="seat_number[]"
+                                <input type="text" class="form-control" name="seat_number[]" id="seat_number"
                                     placeholder="Nama Anda" value="1" readonly>
                                 <label for="seat_number">Nomer Kursi</label>
                             </div>
