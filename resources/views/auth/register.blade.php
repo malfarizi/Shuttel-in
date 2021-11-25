@@ -50,7 +50,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{url('landingpage')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{url ('/')}}">Home</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -58,12 +58,12 @@
     </div>
   </header><!-- End Header -->
 
-  
+
   <main id="main">
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
 
-   
+
       <div class="container">
         <div class="row">
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -77,9 +77,9 @@
                     <input type="text" name="name" id="floatingInput" placeholder="Nama Anda"
                       class="form-control @error('name') is-invalid @enderror">
                     <label for="floatingInput">Nama</label>
-                    
+
                     @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
@@ -88,16 +88,16 @@
                       class="form-control @error('phone_number') is-invalid @enderror">
                     <label for="floatingInput">Nomor Telephone</label>
                     @error('phone_number')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
-                  
+
                   <div class="form-floating mb-3">
                     <textarea name="address" id="floatingInput" placeholder="Alamat"
                       class="form-control @error('address') is-invalid @enderror"></textarea>
                     <label for="floatingInput">Alamat</label>
                     @error('address')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
@@ -106,16 +106,16 @@
                       class="form-control @error('email') is-invalid @enderror">
                     <label for="floatingInput">Email</label>
                     @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
-                  
+
                   <div class="form-floating mb-3">
                     <input type="password" name="password" id="floatingPassword" placeholder="Password"
                       class="form-control @error('password') is-invalid @enderror">
                     <label for="floatingPassword">Password</label>
                     @error('password')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 

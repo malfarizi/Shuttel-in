@@ -37,28 +37,22 @@
             <h5>Reservasi Online</h5>
             <form>
               <div class="input-group ">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validatedInputGroupPrepend"><i
-                      class="bi bi-arrow-up-right-square"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Cari Keberangkatan">
+                <select class="select2-single-placeholder form-control" id="depature">
+                  <option value="Bandung">Bandung</option>
+                  <option value="Indramayu">Indramayu</option>
+                  <option value="Cirebon">Cirebon</option>
+                </select>
               </div>
               <div class="input-group mt-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validatedInputGroupPrepend"><i
-                      class="bi bi-arrow-down-right-square"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Cari Tujuan">
+                <select class="select2-single-placeholder form-control" id="arrival">
+                  <option value="Bandung">Bandung</option>
+                  <option value="Indramayu">Indramayu</option>
+                  <option value="Cirebon">Cirebon</option>
+                </select>
               </div>
-              <h5 class="mt-4">Tanggal Keberangkatan</h5>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validatedInputGroupPrepend"><i class="bi bi-calendar3"></i></span>
-                </div>
-                <input type="date" class="form-control">
-              </div>
+
               {{-- <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</button> --}}
-              <a href="/jadwal" class="btn btn-primary btn-lg btn-block mt-5"><span>Cari Jadwal</span>
+              <a href="{{url('/schedule')}}" class="btn btn-primary btn-lg btn-block mt-5"><span>Cari Jadwal</span>
                 <i class="bi bi-arrow-right"></i></a>
             </form>
           </div>

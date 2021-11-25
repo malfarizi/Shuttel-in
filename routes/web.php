@@ -56,13 +56,12 @@ Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])-
 Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password');
 
 // Other Page
-Route::get('/landingpage', [UserController::class, 'landingpage'])->name('landingpage');
-Route::get('/jadwal', [UserController::class, 'jadwal']);
+Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/schedule', ScheduleController::class);
 
 //Booking
 Route::get('/reservasi', [BookingController::class, 'reservasi']);
-Route::get('/riwayat', [UserController::class, 'riwayat']);
+Route::get('/riwayat', [BookingController::class, 'riwayat']);
 
 // Profil
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');

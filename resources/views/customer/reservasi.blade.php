@@ -18,7 +18,7 @@
                     <div class="col-11">
                         <h5>16 November 2021</h5>
                         <h5>Indramayu <i class="bi bi-arrow-right-square"></i> Bandung</h5>
-                        <h5>Tersedia <b>6 dari 7</b> Kursi</h5>
+                        <h5>Tersedia <strong>6 dari 7</strong> Kursi</h5>
                         <h5>Rp. 145.000</h5>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             <td>1</td>
                             <td></td>
                             <td></td>
-                            <td>Supir</td>
+                            <td><i class="bi bi-person-circle"></i></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -62,32 +62,41 @@
                 <div class="box">
                     <div class="row mt-4">
                         <h5>Data Pemesan</h5>
-                        <form action="{{url ('/booking') }}" method="POST">
-                            @csrf
+                        <form action="#" id="reservasi_form">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="floatingInput"
-                                    placeholder="Nama Anda" value="Farhan">
-                                <label for="floatingInput">Nama</label>
+                                <input type="text" class="form-control" name="name" id="user_id" placeholder="Nama Anda"
+                                    value="1">
+                                <label for="user_id">id user hidden</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="number_phone" id="floatingInput"
-                                    placeholder="Nomor Telephone">
-                                <label for="floatingInput">Nomor Telephone</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nama Anda"
+                                    value="Farhan" readonly>
+                                <label for="name">Nama</label>
                             </div>
 
-                            <div class="form-group">
-                                <label for="" class="col-sm-7 col-form-label">Total Kursi</label>
-                                <div class="col-sm-5">
-                                    <input type="number" name="kursi" value="2">
-                                </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="number_phone" id="number_phone"
+                                    placeholder="Nama Anda" value="">
+                                <label for="number_phone">Nomer Telepon</label>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-sm-7 col-form-label">Total Harga</label>
-                                <div class="col-sm-5">
-                                    50000
-                                </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="schedule_id" id="schedule_id"
+                                    placeholder="Nomor Telephone" value="1">
+                                <label for="schedule_id">id jadwal hidden</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="seat_number[]" id="seat_number[]"
+                                    placeholder="Nama Anda" value="1" readonly>
+                                <label for="seat_number">Nomer Kursi</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="gross_amount" id="gross_amount" value=""
+                                    readonly>
+                                <label for="gross_amount">Total</label>
                             </div>
                             <button type="submit" id="pay-button"
                                 class="btn btn-primary btn-block mt-4 float-right">Bayar

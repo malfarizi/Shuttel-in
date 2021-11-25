@@ -35,9 +35,9 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function riwayat()
     {
-        //
+        return view('customer.riwayat');
     }
 
    
@@ -50,10 +50,10 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use($request) {
-            $cretae = Booking::create([
+            $booking = Booking::create([
                 'id'     => 'SANBOX-'.uniqid(),
-                'user_id'     => '1',
-                'schedule_id' => '1',
+                'user_id'     => $request->user_id,
+                'schedule_id' => $request->schedule_id,
             ]);
             $gross_amount = $request->kursi * 150000;
             $payload = [
@@ -67,15 +67,13 @@ class BookingController extends Controller
             ];
                         
             $snapToken = \Midtrans\Snap::getSnapToken($payload);
-            $cretae->snap_token = $snapToken;
-            $cretae->save();
+            $booking->snap_token = $snapToken;
+            $booking->save();
                 
             $this->response['snap_token'] = $snapToken;
-            //dd($snapToken);
         });
         
-        $respon = response()->json($this->response);
-        dd($respon);
+        return response()->json($this->response);
     }
 
     /**

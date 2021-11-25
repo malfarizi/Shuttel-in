@@ -18,8 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
-  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="SET_YOUR_CLIENT_KEY_HERE"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets-flexstart/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{ asset('assets-flexstart/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
@@ -27,6 +26,7 @@
   <link href="{{ asset('assets-flexstart/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{ asset('assets-flexstart/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
   <link href="{{ asset('assets-flexstart/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets-flexstart/css/style.css')}}" rel="stylesheet">
@@ -50,9 +50,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{url('landingpage')}}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{{url('reservasi')}}">Reservasi</a></li>
-          <li><a class="nav-link scrollto" href="#riwayat">Reservasi Saya</a></li>
+          <li><a class="nav-link scrollto" href="{{url('/')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{url('/schedule')}}">Jadwal</a></li>
+          <li><a class="nav-link scrollto" href="{{url('riwayat')}}">Reservasi Saya</a></li>
           @auth
           <li><a class="nav-link scrollto" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>
           <li>
@@ -120,14 +120,11 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <!-- MIDTRANS -->
-  <script type="text/javascript">
-    var payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function () {
-      snap.pay('snap_token');
-    });
-  </script>
   <!-- Vendor JS Files -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
   <script src="assets-flexstart/vendor/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="assets-flexstart/vendor/aos/aos.js"></script>
   <script src="assets-flexstart/vendor/php-email-form/validate.js"></script>
@@ -138,6 +135,58 @@
 
   <!-- Template Main JS File -->
   <script src="assets-flexstart/js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+    $('#depature').select2({
+        placeholder: "Pilih Keberangkatan",
+        allowClear: true
+    });         
+    $('#arrival').select2({
+        placeholder: "Pilih Kedatangan",
+        allowClear: true
+    });         
+
+  });
+  </script>
+  <!-- MIDTRANS -->
+  <script type="text/javascript">
+    $("#reservasi_form").submit(function (event) {
+    event.preventDefault();
+    $.post("/booking",{
+      _method: 'POST',
+      _token : '{{ csrf_token() }}',
+      user_id: $('input#user_id').val(),
+      schedule_id: $('input#schedule_id').val(),
+      name: $('input#name').val(),
+      kursi: $('input#seat_number[]').val(),
+    },
+    function (data, status) {
+      console.log(data);
+      snap.pay(data.snap_token, {
+         // Optional
+         onSuccess: function(result) {
+                  /* You may add your own js here, this is just example */
+                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                  console.log(result);
+              },
+              // Optional
+              onPending: function(result) {
+                  /* You may add your own js here, this is just example */
+                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                  console.log(result);
+              },
+              // Optional
+              onError: function(result) {
+                  /* You may add your own js here, this is just example */
+                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                  console.log(result);
+                },
+          });
+            return false;
+      });
+  });
+  </script>
 
 </body>
 

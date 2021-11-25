@@ -20,7 +20,7 @@
                     <tr>
                         <th scope="row">1</th>
                         <td>Invoice</td>
-                        <td>Success</td>
+                        <td>Badge Component</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-success btn-icon"><i
                                     class="bi bi-eye"></i></button>
@@ -35,6 +35,5 @@
             </table>
         </div>
     </div>
-
 </section><!-- End Pricing Section -->
 @endsection
