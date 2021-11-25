@@ -6,6 +6,7 @@ use DB;
 use App\Models\Route;
 use App\Models\Payment;
 use App\Models\Booking;
+use App\Models\Schedule;
 use App\Models\BookingDetail;
 
 use Illuminate\Http\Request;
@@ -27,9 +28,12 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function reservasi()
+    public function reservasi(Schedule $schedule)
     {
-        return view('customer.reservasi');
+        return view('customer.reservasi', [
+            'title'     => 'Reservasi', 
+            'schedule'  => $schedule
+        ]);
     }
 
     /**
@@ -53,24 +57,33 @@ class BookingController extends Controller
     {
         DB::transaction(function () use($request) {
             $booking = Booking::create([
-                'id'     => 'SANBOX-'.uniqid(),
-                'user_id'     => $request->user_id,
+                'id'          => 'SANBOX-'.uniqid(),
+                'user_id'     => auth()->user()->id ?? 1,
                 'schedule_id' => $request->schedule_id,
             ]);
-            $booking_detail = BookingDetail::create([]);
-            $gross_amount = $request->kursi * 150000;
+
+            $seat_number_array = explode(',',$request->seat_number);
+           
+            for ($i = 0; $i < sizeof($seat_number_array); $i++) { 
+                BookingDetail::create([
+                    'booking_id'   => $booking->id,
+                    'subtotal'     => $booking->schedule->route->price,
+                    'seat_number'  => $seat_number_array[$i]
+                ]);    
+            }
+            
             $payment = Payment::create([
-                'booking_id' => $booking->id,
-                'total' => $gross_amount
+                'booking_id'    => $booking->id,
+                'total'         => $request->total
             ]);
             
             $payload = [
                 'customer_details' => [
-                    'first_name' => $request->name,
+                    'first_name' => auth()->user()->name ?? 'Farhan',
                 ],
                 'transaction_details' => [
                     'order_id' => $booking->id,
-                    'gross_amount' => floatval($gross_amount)
+                    'gross_amount' => floatval($request->total)
                 ],
             ];
             

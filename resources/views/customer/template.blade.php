@@ -9,10 +9,11 @@
   <meta content="" name="description">
 
   <meta content="" name="keywords">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
-  <link href="assets-flexstart/img/favicon.png" rel="icon">
-  <link href="assets-flexstart/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('assets-flexstart/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('assets-flexstart/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -77,7 +78,7 @@
 
 
   <main id=" main">
-    @yield('content');
+    @yield('content')
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -122,58 +123,18 @@
 
   <!-- Vendor JS Files -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
-  <script src="assets-flexstart/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="assets-flexstart/vendor/aos/aos.js"></script>
-  <script src="assets-flexstart/vendor/php-email-form/validate.js"></script>
-  <script src="assets-flexstart/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets-flexstart/vendor/purecounter/purecounter.js"></script>
-  <script src="assets-flexstart/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets-flexstart/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="{{asset('assets-flexstart/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/purecounter/purecounter.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('assets-flexstart/vendor/glightbox/js/glightbox.min.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets-flexstart/js/main.js"></script>
+  <script src="{{asset('assets-flexstart/js/main.js')}}"></script>
 
-
-  <!-- MIDTRANS -->
-  <script type="text/javascript">
-    $("#reservasi_form").submit(function (event) {
-    event.preventDefault();
-    $.post("/booking",{
-      _method: 'POST',
-      _token : '{{ csrf_token() }}',
-      user_id: $('input#user_id').val(),
-      schedule_id: $('input#schedule_id').val(),
-      name: $('input#name').val(),
-      kursi: $('input#seat_number').val(),
-    },
-    function (data, status) {
-      console.log(data);
-      snap.pay(data.snap_token, {
-         // Optional
-         onSuccess: function(result) {
-                  /* You may add your own js here, this is just example */
-                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                  console.log(result);
-              },
-              // Optional
-              onPending: function(result) {
-                  /* You may add your own js here, this is just example */
-                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                  console.log(result);
-              },
-              // Optional
-              onError: function(result) {
-                  /* You may add your own js here, this is just example */
-                  // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                  console.log(result);
-                },
-          });
-            return false;
-      });
-  });
-  </script>
+  @stack('scripts')
 
 </body>
 

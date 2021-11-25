@@ -16,10 +16,16 @@
                         <h5><i class="bi bi-cash"></i></h5>
                     </div>
                     <div class="col-11">
-                        <h5>16 November 2021</h5>
-                        <h5>Indramayu <i class="bi bi-arrow-right-square"></i> Bandung</h5>
-                        <h5>Tersedia <strong>6 dari 7</strong> Kursi</h5>
-                        <h5>Rp. 145.000</h5>
+                        
+                        <h5>{{ $schedule->date_of_depature ?? '16 November 2021' }}</h5>
+                        <h5>{{ $schedule->route->depature ?? 'Indramayu' }} 
+                            <i class="bi bi-arrow-right-square"></i> 
+                            {{ $schedule->route->arrival ?? 'Bandung' }}
+                        </h5>
+                        <h5>Tersedia 
+                            <strong>{{ $schedule->seat_capacity ?? '6' }} dari 7</strong> Kursi
+                        </h5>
+                        <h5 id="price">{{ $schedule->route->price_rupiah ?? 'Rp.140.000' }}</h5>
                     </div>
                 </div>
             </div>
@@ -32,28 +38,56 @@
                 <div class="table-responsive table-borderless">
                     <table class="table">
                         <tr>
-                            <td>1</td>
+                            <td>
+                                <a id="seat_number1" href="#" class="text-black">
+                                    1
+                                </a>
+                            </td>
                             <td></td>
                             <td></td>
                             <td><i class="bi bi-person-circle"></i></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>2</td>
+                            <td>
+                                <a id="seat_number2" href="#" class="text-black">
+                                    2
+                                </a>
+                            </td>
                             <td></td>
-                            <td>3</td>
+                            <td>
+                                <a id="seat_number3" href="#" class="text-black">
+                                    3
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>4</td>
+                            <td>
+                                <a id="seat_number4" href="#" class="text-black">
+                                    4
+                                </a>
+                            </td>
                             <td></td>
                             <td></td>
-                            <td>5</td>
+                            <td>
+                                <a id="seat_number5" href="#" class="text-black">
+                                    5
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>6</td>
+                            <td>
+                                <a id="seat_number6" href="#" class="text-black">
+                                    6
+                                </a>
+                            </td>
                             <td></td>
                             <td></td>
-                            <td>7</td>
+                            <td>
+                                <a id="seat_number7" href="#" class="text-black">
+                                    7
+                                </a>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -63,44 +97,32 @@
                     <div class="row mt-4">
                         <h5>Data Pemesan</h5>
                         <form action="#" id="reservasi_form">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="user_id" placeholder="Nama Anda"
-                                    value="1">
-                                <label for="user_id">id user hidden</label>
-                            </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nama Anda"
-                                    value="Farhan" readonly>
+                                <input type="text" class="form-control"
+                                    readonly value="{{ auth()->user()->name ?? 'Farhan'}}">
                                 <label for="name">Nama</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="number_phone" id="number_phone"
-                                    placeholder="Nama Anda" value="">
+                                <input type="text" class="form-control"
+                                    value="{{ auth()->user()->phone_number ?? '0827343'}}" readonly>
                                 <label for="number_phone">Nomer Telepon</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="schedule_id" id="schedule_id"
-                                    placeholder="Nomor Telephone" value="1">
-                                <label for="schedule_id">id jadwal hidden</label>
+                                <input type="text" class="form-control" name="seats" id="seat_number" readonly>
+                                <label for="seat_number">Nomer Kursi Yang Dipesan</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="seat_number[]" id="seat_number"
-                                    placeholder="Nama Anda" value="1" readonly>
-                                <label for="seat_number">Nomer Kursi</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="gross_amount" id="gross_amount" value=""
-                                    readonly>
+                                <input type="text" class="form-control" id="total" readonly>
                                 <label for="gross_amount">Total</label>
                             </div>
                             <button type="submit" id="pay-button"
-                                class="btn btn-primary btn-block mt-4 float-right">Bayar
-                                Sekarang</button>
+                                class="btn btn-primary btn-block mt-4 float-right">
+                                Bayar Sekarang
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -111,3 +133,153 @@
 </section><!-- End Pricing Section -->
 
 @endsection
+
+@push('scripts')
+<!-- MIDTRANS -->
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        function remove(arr, num){
+            return arr.filter(el => el !== num);
+        }
+
+        let seats = [];
+        $('#seat_number1').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("1");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "1")
+            }
+            
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number2').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("2");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "2")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number3').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("3");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "3")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number4').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("4");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "4")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number5').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("5");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "5")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number6').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("6");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "6")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+        $('#seat_number7').click(function(){
+            if($(this).hasClass('text-black')){
+                $(this).removeClass('text-black').addClass('text-danger');
+                seats.push("7");
+            }else{
+                $(this).removeClass('text-danger').addClass('text-black');
+                seats = remove(seats, "7")
+            }
+
+            let price = "{{ $schedule->route->price }}";
+            let total = parseInt(seats.length) * parseInt(price);
+            $('#total').val(total);
+            $('#seat_number').val(seats);
+        });
+    }); 
+
+    $("#reservasi_form").submit(function (event) {
+        event.preventDefault();
+            $.post("{{url('booking')}}",{
+            _method: 'POST',
+            _token : '{{ csrf_token() }}',
+            schedule_id: '{{ $schedule->id }}',
+            seat_number: $('#seat_number').val(),
+            total: parseInt($('#total').val())
+        },
+        function (data, status) {
+            console.log(data);
+            snap.pay(data.snap_token, {
+                // Optional
+                onSuccess: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result);
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result);
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result);
+                },
+            });
+            return false;
+        });
+    });
+</script>    
+@endpush

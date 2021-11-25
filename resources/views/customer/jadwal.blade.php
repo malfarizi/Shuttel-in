@@ -45,19 +45,21 @@
                     <img src="assets-flexstart/img/pricing-free.png" class="img-fluid" alt="">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            Tanggal : 25-11-2021
+                            Tanggal : {{ $schedule->date_of_depature }}
                         </li>
                         <li class="list-group-item">
-                            Jam : 19:00
+                            Jam : {{ $schedule->depature_time }}
                         </li>
                         <li class="list-group-item">
-                            Sisa Kursi : <strong>7</strong> dari 7 Kursi
+                            Sisa Kursi : <strong>{{ $schedule->seat_capacity }}</strong> dari 7 Kursi
                         </li>
                         <li class="list-group-item">
-                            Harga : Rp.140,000
+                            Harga : {{ $schedule->route->price }}
                         </li>
                     </ul>
-                    <a href="/reservasi" class="btn-reservasi">Pesan Sekarang</a>
+                    <a href="{{route('reservasi', $schedule)}}" class="btn-reservasi">
+                        Pesan Sekarang
+                    </a>
                 </div>
             </div>
             @endforeach

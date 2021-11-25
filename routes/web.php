@@ -25,8 +25,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 // Generate Account Admin
 Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
 
-Route::post('booking', [BookingController::class, 'store']);
-
 // Authenticate Login and Logout Customer
 Route::get('/admin/login', [LoginController::class, 'index'])
     ->name('admin.loginpage')
@@ -60,7 +58,8 @@ Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/schedule', ScheduleController::class);
 
 //Booking
-Route::get('/reservasi', [BookingController::class, 'reservasi']);
+Route::post('booking', [BookingController::class, 'store']);
+Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
 Route::get('/riwayat', [BookingController::class, 'riwayat']);
 
 // Profil

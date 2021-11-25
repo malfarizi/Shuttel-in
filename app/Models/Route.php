@@ -11,9 +11,9 @@ class Route extends Model
 
     protected $guarded = [];
 
-    public function getPriceAttribute($value)
+    public function getPriceRupiahAttribute()
     {
-        return "Rp. ".number_format($value, 0, ',', '.');
+        return "Rp. ".number_format($this->price, 0, ',', '.');
     }
 
     public function getDepatureArrivalAttribute() 
