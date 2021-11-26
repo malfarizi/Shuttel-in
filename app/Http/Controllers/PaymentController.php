@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -24,46 +25,43 @@ class PaymentController extends Controller
         $notif = new \Midtrans\Notification();
 
         DB::transaction(function () use($notif) {
-        $transaction = $notif->transaction_status;
-        $orderId = $notif->order_id;
-        $fraud = $notif->fraud_status;
-        $type = $notification->payment_type;
-        $payment = Payment::where('booking_id',$orderId)->first();
-            
-        if ($transaction == 'capture') {
+            $transaction = $notif->transaction_status;
+            $orderId     = $notif->order_id;
+            $fraud       = $notif->fraud_status;
+            $type        = $notification->payment_type;
+            $payment     = Payment::where('booking_id', $orderId)->first();
+                
+            if ($transaction == 'capture') {
                 if ($type == 'credit_card') {
-                    if($fraud == 'challenge') {
-                        $payment->setStatusPending();
-                    } else {
-                        $payment->setStatusSuccess();
-                    }
-
+                    $fraud == 'challenge'
+                        ? $payment->setStatusPending()
+                        : $payment->setStatusSuccess();
                 }
+
             } elseif ($transaction == 'settlement') {
-
                 $payment->setStatusSuccess();
-
+            
             } elseif($transaction == 'pending'){
-
                 $payment->setStatusPending();
-
-            } elseif ($transaction == 'deny') {
-
-                $payment->setStatusFailed();
+            
+            } elseif (in_array($transaction, ['deny', 'cancel'])) {
+                $payment->setStatusFailed();                
+                $this->countSeatNumber($payment->booking_id);
 
             } elseif ($transaction == 'expire') {
-
                 $payment->setStatusExpired();
-
-            } elseif ($transaction == 'cancel') {
-
-                $payment->setStatusFailed();
-
+                $this->countSeatNumber($payment->booking_id);
             }
 
-            });
+        });
+        
+        return;
+    }
 
-            return;
+    public function countSeatNumber($id) 
+    {
+        $booking = DB::table('booking_details')->whereBookingId($id);
+        $booking->decrement('seat_number', $booking->count);
     }
     /**
      * Display a listing of the resource.

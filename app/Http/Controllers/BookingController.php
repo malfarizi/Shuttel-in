@@ -7,7 +7,6 @@ use App\Models\Route;
 use App\Models\Payment;
 use App\Models\Booking;
 use App\Models\Schedule;
-use App\Models\BookingDetail;
 
 use Illuminate\Http\Request;
 
@@ -29,10 +28,17 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function reservasi(Schedule $schedule)
-    {
+    {   
+        $exists_seat = DB::table('booking_details')
+                    ->join('bookings', 'bookings.id', 'booking_details.booking_id')
+                    ->where('bookings.schedule_id', $schedule->id)
+                    ->pluck('seat_number')
+                    ->toArray();
+                    
         return view('customer.reservasi', [
-            'title'     => 'Reservasi', 
-            'schedule'  => $schedule
+            'title'         => 'Reservasi', 
+            'schedule'      => $schedule,
+            'exists_seat'   => $exists_seat
         ]);
     }
 
@@ -62,15 +68,18 @@ class BookingController extends Controller
                 'schedule_id' => $request->schedule_id,
             ]);
 
-            $seat_number_array = explode(',',$request->seat_number);
+            $seat_number_array  = explode(',',$request->seat_number);
+            $count_seat_booking = count($seat_number_array);
            
-            for ($i = 0; $i < sizeof($seat_number_array); $i++) { 
-                BookingDetail::create([
+            for ($i = 0; $i < $count_seat_booking; $i++) { 
+                DB::table('booking_details')->insert([
                     'booking_id'   => $booking->id,
                     'subtotal'     => $booking->schedule->route->price,
                     'seat_number'  => $seat_number_array[$i]
                 ]);    
             }
+            
+            Schedule::find($booking->schedule->id)->decrement('seat_number', $count_seat_booking);
             
             $payment = Payment::create([
                 'booking_id'    => $booking->id,
@@ -82,12 +91,12 @@ class BookingController extends Controller
                     'first_name' => auth()->user()->name ?? 'Farhan',
                 ],
                 'transaction_details' => [
-                    'order_id' => $booking->id,
-                    'gross_amount' => floatval($request->total)
+                    'order_id'      => $booking->id,
+                    'gross_amount'  => floatval($request->total)
                 ],
             ];
             
-            $snapToken = \Midtrans\Snap::getSnapToken($payload);
+            $snapToken           = \Midtrans\Snap::getSnapToken($payload);
             $booking->snap_token = $snapToken;
             $booking->save();
                 

@@ -39,9 +39,13 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <a id="seat_number1" href="#" class="text-black">
-                                    1
-                                </a>
+                                @if(in_array('1', $exists_seat))
+                                    <a id="seat_number1" href="#" class="text-black">
+                                        1
+                                    </a>
+                                @else
+                                    <p class="text-success"> 1 </p>
+                                @endif
                             </td>
                             <td></td>
                             <td></td>
@@ -50,43 +54,67 @@
                         <tr>
                             <td></td>
                             <td>
-                                <a id="seat_number2" href="#" class="text-black">
-                                    2
-                                </a>
+                                @if(in_array('2', $exists_seat))
+                                    <a id="seat_number2" href="#" class="text-black">
+                                        2
+                                    </a>
+                                @else
+                                    <p class="text-success"> 2 </p>
+                                @endif
                             </td>
                             <td></td>
                             <td>
-                                <a id="seat_number3" href="#" class="text-black">
-                                    3
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a id="seat_number4" href="#" class="text-black">
-                                    4
-                                </a>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a id="seat_number5" href="#" class="text-black">
-                                    5
-                                </a>
+                                @if(in_array('3', $exists_seat))
+                                    <a id="seat_number3" href="#" class="text-black">
+                                        3
+                                    </a>
+                                @else
+                                    <p class="text-success"> 3 </p>
+                                @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a id="seat_number6" href="#" class="text-black">
-                                    6
-                                </a>
+                                @if(in_array('4', $exists_seat))
+                                    <a id="seat_number4" href="#" class="text-black">
+                                        4
+                                    </a>
+                                @else
+                                    <p class="text-success"> 4 </p>
+                                @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
-                                <a id="seat_number7" href="#" class="text-black">
-                                    7
-                                </a>
+                                @if(in_array('5', $exists_seat))
+                                    <a id="seat_number5" href="#" class="text-black">
+                                        5
+                                    </a>
+                                @else
+                                    <p class="text-success"> 5 </p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if(in_array('6', $exists_seat))
+                                    <a id="seat_number6" href="#" class="text-black">
+                                        6
+                                    </a>
+                                @else
+                                    <p class="text-success"> 6 </p>
+                                @endif
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @if(in_array('7', $exists_seat))
+                                    <a id="seat_number7" href="#" class="text-black">
+                                        7
+                                    </a>
+                                @else
+                                    <p class="text-success"> 7 </p>
+                                @endif
                             </td>
                         </tr>
                     </table>
