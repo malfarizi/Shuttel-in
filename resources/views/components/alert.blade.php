@@ -5,21 +5,32 @@
             type="button" 
             class="close text-white" 
             data-dismiss="alert"
-            aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            aria-label="Close"
+        >
+            <span aria-hidden="true"> &times; </span>
         </button>    
     </div>
 @endif
 
-@if($message = session('error'))
+@if($message = session('error') || $errors->any())
     <div class="alert alert-danger alert-dismissible fade show">
-        <strong>{{ $message }}</strong>
+        @if($message)
+            <strong>{{ $message }}</strong>
+        @else
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
+
         <button 
             type="button" 
             class="close text-white" 
             data-dismiss="alert"
-            aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            aria-label="Close"
+        >
+            <span aria-hidden="true"> &times; </span>
         </button>    
     </div>
 @endif

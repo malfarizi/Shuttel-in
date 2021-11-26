@@ -58,14 +58,13 @@ class BookingController extends Controller
                     ])
                     ->where('user_id', $id)
                     ->get();
-                    
+
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
             'payments'  => $payments
         ]);
     }
 
-   
     /**
      * Store a newly created resource in storage.
      *
