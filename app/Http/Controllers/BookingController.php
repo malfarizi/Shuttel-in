@@ -30,11 +30,11 @@ class BookingController extends Controller
     public function reservasi(Schedule $schedule)
     {   
         $exists_seat = DB::table('booking_details')
-                    ->join('bookings', 'bookings.id', 'booking_details.booking_id')
-                    ->where('bookings.schedule_id', $schedule->id)
-                    ->pluck('seat_number')
-                    ->toArray();
-                    
+                            ->join('bookings', 'bookings.id', 'booking_details.booking_id')
+                            ->where('bookings.schedule_id', $schedule->id)
+                            ->pluck('seat_number')
+                            ->toArray();
+
         return view('customer.reservasi', [
             'title'         => 'Reservasi', 
             'schedule'      => $schedule,
@@ -49,7 +49,20 @@ class BookingController extends Controller
      */
     public function riwayat()
     {
-        return view('customer.riwayat');
+        $id = auth()->user()->id ?? 1;
+        //$payments = Payment::where('user_id', $id)->get();
+        $payments = Payment::with([
+                        'booking.user', 
+                        'booking.schedule.route.shuttle', 
+                        'booking.bookingDetails'
+                    ])
+                    ->where('user_id', $id)
+                    ->get();
+                    
+        return view('customer.riwayat', [
+            'title'     => 'Data Riwayat Pemesanan',
+            'payments'  => $payments
+        ]);
     }
 
    
