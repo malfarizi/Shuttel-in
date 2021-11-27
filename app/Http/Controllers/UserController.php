@@ -79,7 +79,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             //return redirect()->intended('/landingpage');
-            return redirect('/landingpage');
+            return redirect('/');
         }
 
         return redirect()->back()->with('error', 'Email  password anda salah');
@@ -120,6 +120,6 @@ class UserController extends Controller
         auth()->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/landingpage');
+        return redirect('/');
     }
 }

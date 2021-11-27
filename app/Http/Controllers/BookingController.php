@@ -49,20 +49,36 @@ class BookingController extends Controller
      */
     public function riwayat()
     {
-        $id = auth()->user()->id ?? 1;
-        //$payments = Payment::where('user_id', $id)->get();
-        $payments = Payment::with([
-                        'booking.user', 
-                        'booking.schedule.route.shuttle', 
-                        'booking.bookingDetails'
-                    ])
-                    ->where('user_id', $id)
-                    ->get();
+         $id = auth()->user()->id;
+        // //$payments = Payment::where('user_id', $id)->get();
+        // $payments = Payment::with([
+        //                 'booking.user', 
+        //                 'booking.schedule.route.shuttle', 
+        //                 'booking.bookingDetails'
+        //             ])
+        //             ->latest()
+        //             ->where('id', $id)
+        //             ->get();
 
+                    $payments = DB::table('payments')
+                    ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
+                    ->join('users', 'users.id', '=', 'bookings.user_id')
+                    ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
+                    ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
+                    ->join('routes', 'routes.id', '=', 'schedules.route_id')
+                    ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
+                    ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
+                            'routes.*', 'shuttles.*','bookings.*')
+                    ->where('users.id', $id)
+                    ->latest('schedules.created_at')
+                    ->get();
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
-            'payments'  => $payments
+            'payments'  => $payments,
+            // dd($payments)
+            
         ]);
+        
     }
 
     /**

@@ -11,16 +11,26 @@
                 <thead c>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Invoice</th>
+                        <th scope="col">Booking Code</th>
+                        <th scope="col">Rute</th>
+                        <th scope="col">Jadwal Keberangkatan</th>
+                        <th scope="col">Nomor Kursi Yang Dipesan</th>
+                        <th scope="col">Total</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($payments as $payment)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Invoice</td>
-                        <td>Badge Component</td>
+                        <th scope="row">{{$loop->iteration}}.</th>
+                        
+                        <td>{{$payment->booking_id}}</td>
+                        <td>{{$payment->depature}} - {{$payment->arrival}}</td>
+                        <td>{{$payment->date_of_depature}} - {{$payment->depature_time}}</td>
+                        <td>{{$payment->seat_number}}</td>
+                        <td>{{$payment->total}}</td>
+                        <td>{{$payment->status}}</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-success btn-icon"><i
                                     class="bi bi-eye"></i></button>
@@ -30,7 +40,7 @@
                             </button>
                         </td>
                     </tr>
-
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -43,7 +43,7 @@ class DriverController extends Controller
     	$data->driver_name = $request->driver_name;
     	$data->driver_status = $request->driver_status;
         $data->address = $request->address;
-        $data->number_phone = $request->number_phone;
+        $data->phone_number = $request->phone_number;
 
         $image      = $request->file('photo');
         $imageName  = time() . "_" . $image->getClientOriginalName();
@@ -89,7 +89,7 @@ class DriverController extends Controller
     	$data->driver_name = $request->driver_name;
     	$data->driver_status = $request->driver_status;
         $data->address = $request->address;
-        $data->number_phone = $request->number_phone;
+        $data->phone_number = $request->phone_number;
         
         
         if (empty($request->file('photo')))
