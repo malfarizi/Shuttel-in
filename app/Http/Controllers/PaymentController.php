@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
@@ -62,5 +63,14 @@ class PaymentController extends Controller
     {
         $booking = DB::table('booking_details')->whereBookingId($id);
         $booking->decrement('seat_number', $booking->count());
+    }
+
+    public function getStatus($id) 
+    {
+        $uri     = 'https://api.sandbox.midtrans.com/v2/'.$id.'/status';
+        $headers = [ "Authorization" => "Basic U0ItTWlkLXNlcnZlci1sU1lLQ2UzRktjUmRFMEpXbFhJZjMwQ3I6" ];
+
+        $response = Http::withHeaders($headers)->get($uri);
+        return $response->json();
     }
 }

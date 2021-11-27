@@ -94,13 +94,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{route('admin.shuttles.store')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('admin.shuttles.store')}}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nopol Shuttle</label>
                         <input type="text" class="form-control" name="nopol"
-                            value="Masukan Nopol Shuttle">
+                            value="{{ old('nopol') }}">
                     </div>
 
                     <div class="form-group">
@@ -161,13 +161,18 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nopol Shuttle</label>
-                        <input type="text" class="form-control" name="nopol"
-                            value="{{ $shuttle->nopol }}">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            name="nopol" 
+                            value="{{ $shuttle->nopol }}"
+                        >
                     </div>
 
                     <div class="form-group">
                         <label for="">Pilih Status Shuttle</label>
-                        <select name="shuttle_status" class="form-control">
+                        <select name="shuttle_status"
+                            class="form-control">
                             <option 
                                 value="Aktif"
                                 {{$shuttle->shuttle_status === 'Aktif' ? 'selected' : ''}}
@@ -179,14 +184,14 @@
                                 {{$shuttle->shuttle_status === 'Tidak Aktif' ? 'selected' : ''}}
                             >
                                 Tidak Aktif
-                            </option>
-                            
+                            </option>    
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="">Pilih Driver</label>
-                        <select class="select2 form-control" name="driver_id">
+                        <select name="driver_id"
+                            class="select2 form-control">
                             <option value="{{ $shuttle->driver_id }}">
                                 {{ $shuttle->driver->driver_name }}
                             </option>

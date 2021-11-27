@@ -19,11 +19,9 @@ class DashboardController extends Controller
 
         //Driver count
         $active_driver_count = Driver::isActiveStatus()->count();
-        //$non_active_driver_count = Driver::isActiveStatus('Tidak Aktif')->count();
         
         //Shuttle count
         $active_shuttle_count = Shuttle::isActiveStatus()->count();
-        //$non_active_shuttle_count  = Shuttle::isActiveStatus('Tidak Aktif')->count();
 
         //Reservation count
         $pending_reservation  = Payment::status('pending')->count();
@@ -44,9 +42,7 @@ class DashboardController extends Controller
             'title'                     => 'Dashboard',
             'customer_count'            => $customer_count,
             'active_driver_count'       => $active_driver_count,
-            //'non_active_driver_count'   => $non_active_driver_count,   
             'active_shuttle_count'      => $active_shuttle_count,      
-            //'non_active_shuttle_count'  => $non_active_shuttle_count,  
             'pending_reservation'       => $pending_reservation,  
             'cancel_reservation'        => $cancel_reservation,
             'deny_reservation'          => $deny_reservation,   

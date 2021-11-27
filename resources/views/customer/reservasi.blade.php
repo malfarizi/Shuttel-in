@@ -40,7 +40,7 @@
                         <tr>
                             <td>
                                 @if(in_array('1', $exists_seat))
-                                    <a id="seat_number1" href="#" class="text-black">
+                                    <a id="seat_number1" href="javascript:void(0)" class="text-black">
                                         1
                                     </a>
                                 @else
@@ -55,7 +55,7 @@
                             <td></td>
                             <td>
                                 @if(in_array('2', $exists_seat))
-                                    <a id="seat_number2" href="#" class="text-black">
+                                    <a id="seat_number2" href="javascript:void(0)" class="text-black">
                                         2
                                     </a>
                                 @else
@@ -65,7 +65,7 @@
                             <td></td>
                             <td>
                                 @if(in_array('3', $exists_seat))
-                                    <a id="seat_number3" href="#" class="text-black">
+                                    <a id="seat_number3" href="javascript:void(0)" class="text-black">
                                         3
                                     </a>
                                 @else
@@ -76,7 +76,7 @@
                         <tr>
                             <td>
                                 @if(in_array('4', $exists_seat))
-                                    <a id="seat_number4" href="#" class="text-black">
+                                    <a id="seat_number4" href="javascript:void(0)" class="text-black">
                                         4
                                     </a>
                                 @else
@@ -87,7 +87,7 @@
                             <td></td>
                             <td>
                                 @if(in_array('5', $exists_seat))
-                                    <a id="seat_number5" href="#" class="text-black">
+                                    <a id="seat_number5" href="javascript:void(0)" class="text-black">
                                         5
                                     </a>
                                 @else
@@ -98,7 +98,7 @@
                         <tr>
                             <td>
                                 @if(in_array('6', $exists_seat))
-                                    <a id="seat_number6" href="#" class="text-black">
+                                    <a id="seat_number6" href="javascript:void(0)" class="text-black">
                                         6
                                     </a>
                                 @else
@@ -109,7 +109,7 @@
                             <td></td>
                             <td>
                                 @if(in_array('7', $exists_seat))
-                                    <a id="seat_number7" href="#" class="text-black">
+                                    <a id="seat_number7" href="javascript:void(0)" class="text-black">
                                         7
                                     </a>
                                 @else

@@ -50,7 +50,7 @@
                                             <td>{{ $loop->iteration }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
-                                            <td>{{ $route->price }}</td>
+                                            <td>{{ $route->price_rupiah }}</td>
                                             <td>{{ $route->shuttle->nopol }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 

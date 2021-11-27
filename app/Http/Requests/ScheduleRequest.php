@@ -30,15 +30,4 @@ class ScheduleRequest extends FormRequest
             'route_id'         => 'required|exists:App\Models\Route,id'
         ];
     }
-
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
-    /* public function messages()
-    {
-        return [];
-    } */
 }

@@ -14,23 +14,25 @@
                         </h1>
                     </div>
                     <div class="col-lg-6 col-md-3">
-                        <div class="input-group ">
-                            <select class="select2-single-placeholder form-control" id="depature">
-                                <option value="Bandung">Bandung</option>
-                                <option value="Indramayu">Indramayu</option>
-                                <option value="Cirebon">Cirebon</option>
-                            </select>
-                        </div>
-                        <div class="input-group mt-2">
-                            <select class="select2-single-placeholder form-control" id="arrival">
-                                <option value="Bandung">Bandung</option>
-                                <option value="Indramayu">Indramayu</option>
-                                <option value="Cirebon">Cirebon</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-4 float-right">Cari
-                            Jadwal</button>
-
+                        <form action="">
+                            @csrf
+                            <div class="input-group">
+                                <select class="select2-single-placeholder form-control" id="depature">
+                                    <option value="Bandung">Bandung</option>
+                                    <option value="Indramayu">Indramayu</option>
+                                    <option value="Cirebon">Cirebon</option>
+                                </select>
+                            </div>
+                            <div class="input-group mt-2">
+                                <select class="select2-single-placeholder form-control" id="arrival">
+                                    <option value="Bandung">Bandung</option>
+                                    <option value="Indramayu">Indramayu</option>
+                                    <option value="Cirebon">Cirebon</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-4 float-right">
+                                Cari Jadwal
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -54,7 +56,7 @@
                             Sisa Kursi : <strong>{{ $schedule->seat_capacity }}</strong> dari 7 Kursi
                         </li>
                         <li class="list-group-item">
-                            Harga : {{ $schedule->route->price }}
+                            Harga : {{ $schedule->route->price_rupiah }}
                         </li>
                     </ul>
                     <a href="{{route('reservasi', $schedule)}}" class="btn-reservasi">

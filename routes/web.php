@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
@@ -61,6 +62,9 @@ Route::get('/schedule', ScheduleController::class);
 Route::post('booking', [BookingController::class, 'store']);
 Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
 Route::get('/riwayat', [BookingController::class, 'riwayat']);
+
+//Get Status Payment
+Route::get('/api/midtrans/payments/getStatus/{id}', [PaymentController::class, 'getStatus'])->name('payments.status');
 
 // Profil
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');

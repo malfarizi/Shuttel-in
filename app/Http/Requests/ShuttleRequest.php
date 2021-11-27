@@ -29,15 +29,4 @@ class ShuttleRequest extends FormRequest
             'driver_id'         => 'required|exists:App\Models\Driver,id'
         ];
     }
-
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
-    /* public function messages()
-    {
-        return [];
-    } */
 }
