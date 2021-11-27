@@ -116,13 +116,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama Driver</label>
-                        <input type="text" class="form-control integerInput" name="driver_name"
+                        <input type="text" class="form-control" name="driver_name"
                             placeholder="Masukan nama Driver">
                     </div>
 
                     <div class="form-group">
                         <label for="">No Telephone</label>
-                        <input type="text" class="form-control" name="number_phone" 
+                        <input type="text" class="form-control integerInput" name="phone_number" 
                             placeholder="Masukan No Telephone">
                     </div>
 
@@ -186,8 +186,8 @@
 
                     <div class="form-group">
                         <label for="">No Telephone</label>
-                        <input type="text" class="form-control integerInput" name="number_phone" 
-                            value="{{$driver->number_phone}}">
+                        <input type="text" class="form-control integerInput" name="phone_number" 
+                            value="{{$driver->phone_number}}">
                     </div>
 
                     <div class="form-group">

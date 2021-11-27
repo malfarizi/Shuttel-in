@@ -53,17 +53,26 @@
         <ul>
           <li><a class="nav-link scrollto" href="{{url('/')}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/schedule')}}">Jadwal</a></li>
-          <li><a class="nav-link scrollto" href="{{url('riwayat')}}">Reservasi Saya</a></li>
           @auth
-          <li><a class="nav-link scrollto" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>
-          <li>
-            <form action="{{ route('logout')}}" method="POST">
-              @csrf
-              <button class="dropdown-item has-icon text-danger" type="submit">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </button>
-            </form>
+          <li><a class="nav-link scrollto" href="{{url('riwayat')}}">Reservasi Saya</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{auth()->user()->name}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item text-primary" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>
+              <li>
+                <form action="{{ route('logout')}}" method="POST">
+                  @csrf
+                  <button class="dropdown-item text-danger" type="submit">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </button>
+                </form>
+              </li>
+              
+            </ul>
           </li>
+          
           @else
           <li><a class="nav-link scrollto" href="{{url('login')}}">Login</a></li>
           @endauth
