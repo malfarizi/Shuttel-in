@@ -52,7 +52,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{url('/')}}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{{url('/schedule')}}">Jadwal</a></li>
+          <li><a class="nav-link scrollto" href="{{url('/jadwal')}}">Jadwal</a></li>
           @auth
           <li><a class="nav-link scrollto" href="{{url('riwayat')}}">Reservasi Saya</a></li>
           <li class="nav-item dropdown">
@@ -72,8 +72,8 @@
               
             </ul>
           </li>
-          
           @else
+          <li><a class="nav-link scrollto" href="{{url('register')}}">Register</a></li>
           <li><a class="nav-link scrollto" href="{{url('login')}}">Login</a></li>
           @endauth
         </ul>

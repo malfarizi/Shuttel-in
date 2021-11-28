@@ -22,7 +22,7 @@ class ShuttleController extends Controller
         return view('admin.shuttle', [
             'title'    => 'Data Shuttle',
             'shuttles' => $shuttles->load('driver'),
-            'drivers'  => Driver::isActiveStatus()->get(),
+            'drivers'  => Driver::activeStatus()->get(),
         ]);
     }
 

@@ -56,12 +56,10 @@ Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
 
 // Other Page
 Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
-Route::get('/schedule', ScheduleController::class);
+Route::get('/jadwal', ScheduleController::class);
 
-//Booking
-Route::post('booking', [BookingController::class, 'store']);
+//Reservasi
 Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
-Route::get('/riwayat', [BookingController::class, 'riwayat']);
 
 //Get Status Payment
 Route::get('/api/midtrans/payments/getStatus/{id}', [PaymentController::class, 'getStatus'])->name('payments.status');
@@ -70,16 +68,8 @@ Route::get('/api/midtrans/payments/getStatus/{id}', [PaymentController::class, '
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
 
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('route:cache');
-    Artisan::call('route:clear');
-    Artisan::call('view:cache');
-    Artisan::call('view:clear');
-    Artisan::call('config:cache');
-    Artisan::call('config:clear');
-});
-
-Route::middleware('auth')->group(function(){
-    //customer
+Route::middleware('auth')->group( function() {
+    Route::post('booking', [BookingController::class, 'store']);
+    Route::get('/riwayat', [BookingController::class, 'riwayat']);
+    Route::get('/print-tiket', [BookingController::class, 'downloadTicket']);
 });

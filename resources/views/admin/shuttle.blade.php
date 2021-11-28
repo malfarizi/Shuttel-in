@@ -100,7 +100,7 @@
                     <div class="form-group">
                         <label for="">Nopol Shuttle</label>
                         <input type="text" class="form-control" name="nopol"
-                            value="{{ old('nopol') }}">
+                            placeholder="Masukkan Nomor Polisi Shuttle">
                     </div>
 
                     <div class="form-group">

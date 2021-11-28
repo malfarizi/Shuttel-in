@@ -21,8 +21,8 @@ class Shuttle extends Model
         return $this->hasOne(Route::class);    
     }
 
-    public function scopeIsActiveStatus($query, $status = 'Aktif')
+    public function scopeActiveStatus($query)
     {
-        return $query->where('shuttle_status', $status);
+        return $query->where('shuttle_status', 'Aktif');
     }
 }

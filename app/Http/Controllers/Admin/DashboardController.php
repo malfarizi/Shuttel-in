@@ -18,10 +18,10 @@ class DashboardController extends Controller
         $customer_count = User::where('role', 'Customer')->count();
 
         //Driver count
-        $active_driver_count = Driver::isActiveStatus()->count();
+        $active_driver_count = Driver::activeStatus()->count();
         
         //Shuttle count
-        $active_shuttle_count = Shuttle::isActiveStatus()->count();
+        $active_shuttle_count = Shuttle::activeStatus()->count();
 
         //Reservation count
         $pending_reservation  = Payment::status('pending')->count();

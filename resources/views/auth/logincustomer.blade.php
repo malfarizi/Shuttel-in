@@ -71,7 +71,8 @@
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
                 <!-- ======= Alert ======= -->
-                @include('components.alert')
+                @include('components.alert', ['isBootstrap5' => true]) 
+                
                 <form action="{{route('login')}}" method="POST">
                   @csrf
                   <div class="form-floating mb-3">

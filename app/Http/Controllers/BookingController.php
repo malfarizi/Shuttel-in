@@ -50,35 +50,45 @@ class BookingController extends Controller
     public function riwayat()
     {
          $id = auth()->user()->id;
-        // //$payments = Payment::where('user_id', $id)->get();
-        // $payments = Payment::with([
-        //                 'booking.user', 
-        //                 'booking.schedule.route.shuttle', 
-        //                 'booking.bookingDetails'
-        //             ])
-        //             ->latest()
-        //             ->where('id', $id)
-        //             ->get();
 
-                    $payments = DB::table('payments')
-                    ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
-                    ->join('users', 'users.id', '=', 'bookings.user_id')
-                    ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
-                    ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
-                    ->join('routes', 'routes.id', '=', 'schedules.route_id')
-                    ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
-                    ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
-                            'routes.*', 'shuttles.*','bookings.*')
-                    ->where('users.id', $id)
-                    ->latest('schedules.created_at')
-                    ->get();
+        $payments = DB::table('payments')
+                        ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
+                        ->join('users', 'users.id', '=', 'bookings.user_id')
+                        ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
+                        ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
+                        ->join('routes', 'routes.id', '=', 'schedules.route_id')
+                        ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
+                        ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
+                                'routes.*', 'shuttles.*','bookings.*')
+                        ->where('users.id', $id)
+                        ->latest('schedules.created_at')
+                        ->get();
+
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
             'payments'  => $payments,
-            // dd($payments)
-            
         ]);
-        
+    }
+
+    public function downloadTicket() 
+    {
+        $data =  Payment::with([
+                    'booking.user', 
+                    'booking.schedule.route.shuttle', 
+                    'booking.bookingDetails'
+                ])
+                ->first();
+                
+        $pdf  = new \Dompdf\Dompdf();
+        $view = view('customer.tiket', compact('data'));
+        $pdf->loadHtml($view);
+        $pdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $pdf->render();
+
+        // Output the generated PDF to Browser
+        $pdf->stream();
+        //return $pdf->download('tiket.pdf');
     }
 
     /**
@@ -132,50 +142,5 @@ class BookingController extends Controller
         });
         
         return response()->json($this->response);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Booking $booking)
-    {
-        //
     }
 }

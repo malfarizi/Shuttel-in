@@ -27,7 +27,7 @@ class RouteController extends Controller
         return view('admin.route', [
             'title'    => 'Data Rute',
             'routes'   => $routes->load('shuttle'),
-            'shuttles' => Shuttle::isActiveStatus()->get(),
+            'shuttles' => Shuttle::activeStatus()->get(),
             'cities'   => $cities 
         ]);
     }

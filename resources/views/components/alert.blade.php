@@ -12,9 +12,9 @@
     </div>
 @endif
 
-@if($message = session('error') || $errors->any())
-    <div class="alert alert-danger alert-dismissible fade show">
-        @if($message)
+@if(session('error') || $errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @if($message = session('error'))
             <strong>{{ $message }}</strong>
         @else
             <ul>
@@ -25,8 +25,13 @@
         @endif
         <button 
             type="button" 
-            class="close text-white" 
-            data-dismiss="alert"
+            @if($isBootstrap5 ?? '')
+                class="btn-close" 
+                data-bs-dismiss="alert"
+            @else
+                class="close text-white" 
+                data-dismiss="alert"
+            @endif
             aria-label="Close"
         >
             <span aria-hidden="true"> &times; </span>
