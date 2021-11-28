@@ -71,5 +71,5 @@ Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.
 Route::middleware('auth')->group( function() {
     Route::post('booking', [BookingController::class, 'store']);
     Route::get('/riwayat', [BookingController::class, 'riwayat']);
-    Route::get('/print-tiket', [BookingController::class, 'downloadTicket']);
+    Route::get('/print-tiket/{id}', [BookingController::class, 'downloadTicket'])->name('tiket.download');
 });

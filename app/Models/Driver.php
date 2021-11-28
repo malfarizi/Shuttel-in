@@ -16,7 +16,7 @@ class Driver extends Model
         return $this->hasOne(Shuttle::class);
     }
 
-    public function scopeActiveStatus($query, )
+    public function scopeActiveStatus($query)
     {
         return $query->where('driver_status', 'Aktif');
     }

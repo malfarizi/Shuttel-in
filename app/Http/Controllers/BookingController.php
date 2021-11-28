@@ -70,25 +70,26 @@ class BookingController extends Controller
         ]);
     }
 
-    public function downloadTicket() 
+    public function downloadTicket($id) 
     {
         $data =  Payment::with([
                     'booking.user', 
                     'booking.schedule.route.shuttle', 
                     'booking.bookingDetails'
                 ])
+                ->where('booking_id', $id)
                 ->first();
                 
         $pdf  = new \Dompdf\Dompdf();
         $view = view('customer.tiket', compact('data'));
         $pdf->loadHtml($view);
         $pdf->setPaper('A4', 'landscape');
+        
         // Render the HTML as PDF
         $pdf->render();
 
         // Output the generated PDF to Browser
         $pdf->stream();
-        //return $pdf->download('tiket.pdf');
     }
 
     /**

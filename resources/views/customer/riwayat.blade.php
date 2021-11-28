@@ -34,9 +34,15 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-success btn-icon"><i
                                     class="bi bi-eye"></i></button>
-                            <button type="button" class="btn btn-sm btn-primary btn-icon"><i
-                                    class="bi bi-printer"></i></button>
-                            <button type="button" class="btn btn-sm btn-warning btn-icon"><i class="bi bi-cash"></i>
+                            <a 
+                                href="{{ route('tiket.download', $payment->booking_id) }}" 
+                                target="_blank"
+                                class="btn btn-sm btn-primary btn-icon"
+                            >
+                                <i class="bi bi-printer"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-warning btn-icon">
+                                <i class="bi bi-cash"></i>
                             </button>
                         </td>
                     </tr>
