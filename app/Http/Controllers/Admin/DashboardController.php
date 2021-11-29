@@ -38,7 +38,6 @@ class DashboardController extends Controller
      
         return view('admin.dashboard', [
             'title'                     => 'Dashboard',
-            'payment'                   => Payment::all(),
             'customer_count'            => $customer_count,
             'active_driver_count'       => $active_driver_count,
             'active_shuttle_count'      => $active_shuttle_count,      
