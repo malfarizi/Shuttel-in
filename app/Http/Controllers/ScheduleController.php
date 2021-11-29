@@ -8,11 +8,11 @@ class ScheduleController extends Controller
 {
     public function __invoke()
     {
-        return view('customer.jadwal', [
-            'title'     => 'Daftar Jadwal',
-            'schedules' => Schedule::with('route')
-                            ->where('date_of_depature', '<', today())
-                            ->paginate(8)
-        ]);
+        $schedules = Schedule::with('route')
+                        ->where('date_of_depature', '<', today())
+                        ->paginate(8)
+                        ->withQueryString();
+
+        return view('customer.jadwal', compact('schedules'))->withTitle('Daftar Jadwal');
     }
 }

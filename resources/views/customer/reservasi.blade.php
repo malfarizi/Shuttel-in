@@ -40,11 +40,11 @@
                         <tr>
                             <td>
                                 @if(in_array('1', $exists_seat))
+                                    <p class="text-success"> 1 </p>
+                                @else
                                     <a id="seat_number1" href="javascript:void(0)" class="text-black">
                                         1
                                     </a>
-                                @else
-                                    <p class="text-success"> 1 </p>
                                 @endif
                             </td>
                             <td></td>
@@ -55,65 +55,65 @@
                             <td></td>
                             <td>
                                 @if(in_array('2', $exists_seat))
+                                    <p class="text-success"> 2 </p>
+                                @else
                                     <a id="seat_number2" href="javascript:void(0)" class="text-black">
                                         2
                                     </a>
-                                @else
-                                    <p class="text-success"> 2 </p>
                                 @endif
                             </td>
                             <td></td>
                             <td>
                                 @if(in_array('3', $exists_seat))
+                                    <p class="text-success"> 3 </p>
+                                @else
                                     <a id="seat_number3" href="javascript:void(0)" class="text-black">
                                         3
                                     </a>
-                                @else
-                                    <p class="text-success"> 3 </p>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('4', $exists_seat))
+                                    <p class="text-success"> 4 </p>
+                                @else
                                     <a id="seat_number4" href="javascript:void(0)" class="text-black">
                                         4
                                     </a>
-                                @else
-                                    <p class="text-success"> 4 </p>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('5', $exists_seat))
+                                    <p class="text-success"> 5 </p>
+                                @else
                                     <a id="seat_number5" href="javascript:void(0)" class="text-black">
                                         5
                                     </a>
-                                @else
-                                    <p class="text-success"> 5 </p>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('6', $exists_seat))
+                                    <p class="text-success"> 6 </p>
+                                @else
                                     <a id="seat_number6" href="javascript:void(0)" class="text-black">
                                         6
                                     </a>
-                                @else
-                                    <p class="text-success"> 6 </p>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('7', $exists_seat))
+                                    <p class="text-success"> 7 </p>
+                                @else
                                     <a id="seat_number7" href="javascript:void(0)" class="text-black">
                                         7
                                     </a>
-                                @else
-                                    <p class="text-success"> 7 </p>
                                 @endif
                             </td>
                         </tr>
@@ -124,17 +124,17 @@
                 <div class="box">
                     <div class="row mt-4">
                         <h5>Data Pemesan</h5>
-                        <form action="#" id="reservasi_form">
+                        <form action="#" id="reservasi_form"> 
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control"
-                                    readonly value="{{ auth()->user()->name ?? 'Farhan'}}">
+                                    readonly value="{{ auth()->user()->name }}">
                                 <label for="name">Nama</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control"
-                                    value="{{ auth()->user()->phone_number ?? '0827343'}}" readonly>
+                                    value="{{ auth()->user()->phone_number }}" readonly>
                                 <label for="number_phone">Nomer Telepon</label>
                             </div>
 

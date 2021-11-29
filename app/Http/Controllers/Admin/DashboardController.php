@@ -31,15 +31,14 @@ class DashboardController extends Controller
         $total_reservation    = Payment::count();
 
         $total_income         = Payment::totalIncome();
-        $total_income         = "Rp. ".number_format($total_income, 0, ',', '.');
         $payments             = Payment::with('booking')
                                     ->latest()
-                                    ->status('pending')
                                     ->take(5)
                                     ->get();
      
         return view('admin.dashboard', [
             'title'                     => 'Dashboard',
+            'payment'                   => Payment::all(),
             'customer_count'            => $customer_count,
             'active_driver_count'       => $active_driver_count,
             'active_shuttle_count'      => $active_shuttle_count,      
