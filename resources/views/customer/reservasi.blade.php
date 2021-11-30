@@ -144,12 +144,12 @@
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" value="{{ auth()->user()->phone_number }}"
                                     readonly>
-                                <label for="number_phone">Nomer Telepon</label>
+                                <label for="number_phone">Nomor Telepon</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="seats" id="seat_number" readonly>
-                                <label for="seat_number">Nomer Kursi Yang Dipesan</label>
+                                <label for="seat_number">Nomor Kursi Yang Dipesan</label>
                             </div>
 
                             <div class="form-floating mb-3">

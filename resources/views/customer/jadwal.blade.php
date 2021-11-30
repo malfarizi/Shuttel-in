@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <select class="select2-single-placeholder form-control" 
                                     name="depature" id="depature" style="width: 100%">
-                                    <option value="">Pilih keberangkatan</option>
+                                    <option value="">Pilih Keberangkatan</option>
                                     @foreach ($routes as $item)
                                         <option value="{{$item->depature}}">{{$item->depature}}</option>
                                     @endforeach
@@ -29,7 +29,7 @@
                             <div class="form-group mt-2">
                                 <select class="select2-single-placeholder form-control" 
                                     name="arrival" id="depature" style="width: 100%">
-                                    <option value="">Pilih tujuan</option>
+                                    <option value="">Pilih Tujuan</option>
                                     @foreach ($routes as $item)
                                         <option value="{{$item->arrival}}">{{$item->arrival}}</option>
                                     @endforeach

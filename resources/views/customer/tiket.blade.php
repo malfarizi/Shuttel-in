@@ -18,8 +18,9 @@
 				</th>
 			</tr>
 		</thead>
+		{{-- @foreach($datas as $data) --}}
 		<tbody>
-			<tr>
+			<tr align="center">
 				<td class="tg-xaus" colspan="3">TIKET SHUTTLE-IN</td>
 			</tr>
 			<tr>
@@ -130,6 +131,7 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>
+		{{-- @endforeach --}}
+		</table>
 </body>
 </html>

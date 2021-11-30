@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Booking Code</th>
+                        <th scope="col">Kode Reservasi</th>
                         <th scope="col">Rute</th>
                         <th scope="col" width="2">Jadwal Keberangkatan</th>
                         <th scope="col">Nomor Kursi Yang Dipesan</th>
@@ -21,14 +21,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $payment)
+                @foreach($payments as $payment)
                     <tr>
                         <th scope="row">{{$loop->iteration}}.</th>
-
+                        
                         <td>{{$payment->booking_id}}</td>
-                        <td>{{$payment->depature}} - {{$payment->arrival}}</td>
-                        <td>{{$payment->date_of_depature}} - {{$payment->depature_time}}</td>
-                        <td>{{$payment->seat_number}}</td>
+                        <td>{{$payment->booking->schedule->route->depature_arrival}}</td>
+                        <td>{{$payment->booking->schedule->dateTimeDepature }}</td>
+                        <td>@foreach($payment->booking->bookingDetails as $booking)
+                            {{$booking->seat_number}}
+                        @endforeach</td>
                         <td>{{$payment->total}}</td>
                         <td> 
                             @include('components.badge', [
@@ -37,25 +39,25 @@
                             ])
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success btn-icon">
+                            {{-- <button type="button" class="btn btn-sm btn-success btn-icon">
                                 <i class="bi bi-eye"></i>
-                            </button>
+                            </button> --}}
 
                             @if ($payment->status === 'success')
                                 <a href="{{ route('tiket.download', $payment->booking_id) }}" 
                                     target="_blank" class="btn btn-sm btn-primary btn-icon">
-                                    <i class="bi bi-printer"></i>
+                                    <i class="bi bi-printer">&nbsp; Cetak</i>
                                 </a>
                             @endif
                             @if ($payment->status == 'pending')
                                 <button type="button" class="btn btn-sm btn-warning btn-icon"
                                     onclick="snap.pay('{{$payment->snap_token}}')">
-                                    <i class="bi bi-cash"></i>
+                                    <i class="bi bi-cash">&nbsp; Bayar</i>
                                 </button>
                             @endif
                         </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>

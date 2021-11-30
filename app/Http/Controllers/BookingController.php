@@ -45,23 +45,21 @@ class BookingController extends Controller
     public function riwayat()
     {
          $id = auth()->user()->id;
-
-        $payments = DB::table('payments')
-                        ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
-                        ->join('users', 'users.id', '=', 'bookings.user_id')
-                        ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
-                        ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
-                        ->join('routes', 'routes.id', '=', 'schedules.route_id')
-                        ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
-                        ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
-                                'routes.*', 'shuttles.*','bookings.*')
-                        ->where('users.id', $id)
-                        ->latest('schedules.created_at')
+         $payments = Payment::with([
+                            'booking.user', 
+                            'booking.schedule.route.shuttle', 
+                            'booking.bookingDetails'
+                        ])
+                        ->whereHas('booking.user', function($query) {
+                            $query->where('id', auth()->user()->id);
+                        })
+                        ->latest()
                         ->get();
 
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
             'payments'  => $payments,
+             //dd($payments)
         ]);
     }
 
@@ -78,7 +76,9 @@ class BookingController extends Controller
         $pdf  = new \Dompdf\Dompdf();
         $view = view('customer.tiket', compact('payment'));
         $pdf->loadHtml($view);
-        $pdf->setPaper('A4', 'landscape');
+        // $pdf->setPaper('A4', 'landscape');
+        $customPaper = array(0,0,390,420);
+        $pdf->setPaper($customPaper);
         
         // Render the HTML as PDF
         $pdf->render();
