@@ -23,42 +23,47 @@
         <div class="box">
           <h5>Cek Reservasi</h5>
           <div class="row">
-            <form>
+            <form action="{{url('/')}}" method="GET">
+              @csrf
               <div class="input-group ">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="validatedInputGroupPrepend"><i class="bi bi-card-list"></i></span>
+                  <span class="input-group-text"><i class="bi bi-card-list"></i></span>
                 </div>
-                <input type="text" class="form-control">
-                <button class="btn btn-outline-primary" type="submit">Cari</button>
+                <input type="text" name="search" class="form-control">
+                <button class="btn btn-outline-primary" id="search" type="submit">Cari</button>
               </div>
             </form>
           </div>
           <div class="row mt-4">
             <h5>Reservasi Online</h5>
-            <form>
-              <div class="input-group ">
-                <select class="select2-single-placeholder form-control" id="depature">
-                  <option value="Bandung">Bandung</option>
-                  <option value="Indramayu">Indramayu</option>
-                  <option value="Cirebon">Cirebon</option>
+            <form action="{{url('/jadwal')}}" method="GET">
+              @csrf
+              <div class="form-group">
+                <select class="select2-single-placeholder form-control" name="depature" id="depature"
+                  style="width: 100%">
+                  <option value="">Pilih depature</option>
+                  @foreach ($routes as $item)
+                  <option value="{{$item->depature}}">{{$item->depature}}</option>
+                  @endforeach
                 </select>
               </div>
-              <div class="input-group mt-2">
-                <select class="select2-single-placeholder form-control" id="arrival">
-                  <option value="Bandung">Bandung</option>
-                  <option value="Indramayu">Indramayu</option>
-                  <option value="Cirebon">Cirebon</option>
+              <div class="form-group mt-2">
+                <select class="select2-single-placeholder form-control" name="depature" id="depature"
+                  style="width: 100%">
+                  <option value="">Pilih arrival</option>
+                  @foreach ($routes as $item)
+                  <option value="{{$item->arrival}}">{{$item->arrival}}</option>
+                  @endforeach
                 </select>
               </div>
 
-              {{-- <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</button> --}}
-              <a href="{{url('/schedule')}}" class="btn btn-primary btn-lg btn-block mt-5"><span>Cari Jadwal</span>
-                <i class="bi bi-arrow-right"></i></a>
+              <button type="submit" class="btn btn-primary btn-lg btn-block mt-5">Cari Jadwal</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+    @if ($data != null)
     {{-- Hidden kalo ga ada yang nyari kode reservasi --}}
     <section id="services" class="services">
       <div class="row gy-4">
@@ -67,22 +72,18 @@
             <h3>Detail Reservasi Kamu</h3>
 
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Invoice</li>
-              <li class="list-group-item">Nama</li>
-              <li class="list-group-item">Rute</li>
-              <li class="list-group-item">Jumlah Kursi</li>
-              <li class="list-group-item">No Kursi</li>
+              <li class="list-group-item">{{$data->booking_id}}</li>
+              <li class="list-group-item">{{$data->name}}</li>
+              <li class="list-group-item">{{$data->depature}} - {{$data->arrival}}</li>
+              <li class="list-group-item">{{$data->booking_id}}</li>
             </ul>
             <button type="button" class="btn  btn-primary"><span>Cetak Tiket</span> <i
                 class="bi bi-printer"></i></button>
-
           </div>
         </div>
       </div>
     </section>
-    {{-- card detail reservasi --}}
-
-    {{-- Jika data tidak ada --}}
+    @else
     <section id="services" class="services">
       <div class="row gy-4">
         <div class="col-lg-12 col-md-12" data-aos="fade-up" data-aos-delay="200">
@@ -92,10 +93,43 @@
         </div>
       </div>
     </section>
+    @endif
   </div>
-</section><!-- End Hero -->
+</section>
+<!-- End Hero -->
 
 <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">
   @csrf
 </form>
 @endsection
+
+@push('js')
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Select2 Single  with Placeholder
+      $('#depature').select2({
+        placeholder: 'This is my placeholder',
+        allowClear: true
+      });
+
+      $('#arrival').select2({
+        placeholder: 'This is my placeholder',
+        allowClear: true
+      });
+  });
+  url = '/';
+  var search = document.getElementById('search');
+        search.addEventListener('click', function () {
+          $.ajax({
+          type: 'GET',
+          url: url,
+          data: {query: query},
+          dataType: 'json', 
+          success: function(data) {
+            console.log(data);
+          }
+        });
+    });
+</script>
+@endpush

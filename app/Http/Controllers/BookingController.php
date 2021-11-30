@@ -117,7 +117,7 @@ class BookingController extends Controller
                 ]);    
             }
             
-            Schedule::find($booking->schedule->id)->decrement('seat_number', $count_seat_booking);
+            Schedule::find($booking->schedule->id)->decrement('seat_capacity', $count_seat_booking);
             
             $payment = Payment::create([
                 'booking_id'    => $booking->id,

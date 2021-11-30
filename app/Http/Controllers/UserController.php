@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use DB;
 use App\Models\User;
+use App\Models\Route;
 use App\Models\UserVerify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -90,9 +92,22 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function landingpage()
+    public function landingpage(Request $request)
     {
-        return view('customer.landingpage');
+            $routes = Route::all();
+            $data = DB::table('payments')
+            ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
+            ->join('users', 'users.id', '=', 'bookings.user_id')
+            ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
+            ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
+            ->join('routes', 'routes.id', '=', 'schedules.route_id')
+            ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
+            ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
+                    'routes.*', 'shuttles.*','bookings.*')
+            ->where('bookings.id',$request->search)
+            ->first();
+            
+            return view('customer.landingpage',compact('data','routes'));        
     }
 
     public function edit(User $user)

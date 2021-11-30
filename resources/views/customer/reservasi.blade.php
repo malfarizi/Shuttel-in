@@ -16,13 +16,13 @@
                         <h5><i class="bi bi-cash"></i></h5>
                     </div>
                     <div class="col-11">
-                        
+
                         <h5>{{ $schedule->date_of_depature ?? '16 November 2021' }}</h5>
-                        <h5>{{ $schedule->route->depature ?? 'Indramayu' }} 
-                            <i class="bi bi-arrow-right-square"></i> 
+                        <h5>{{ $schedule->route->depature ?? 'Indramayu' }}
+                            <i class="bi bi-arrow-right-square"></i>
                             {{ $schedule->route->arrival ?? 'Bandung' }}
                         </h5>
-                        <h5>Tersedia 
+                        <h5>Tersedia
                             <strong>{{ $schedule->seat_capacity ?? '6' }} dari 7</strong> Kursi
                         </h5>
                         <h5 id="price">{{ $schedule->route->price_rupiah ?? 'Rp.140.000' }}</h5>
@@ -40,11 +40,9 @@
                         <tr>
                             <td>
                                 @if(in_array('1', $exists_seat))
-                                    <a id="seat_number1" href="javascript:void(0)" class="text-black">
-                                        1
-                                    </a>
+                                <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                    <p class="text-success"> 1 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number1" href="javascript:void(0)">1</a>
                                 @endif
                             </td>
                             <td></td>
@@ -55,65 +53,53 @@
                             <td></td>
                             <td>
                                 @if(in_array('2', $exists_seat))
-                                    <a id="seat_number2" href="javascript:void(0)" class="text-black">
-                                        2
-                                    </a>
+                                <a class="btn btn-danger" disabled>2</a>
                                 @else
-                                    <p class="text-success"> 2 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number2" href="javascript:void(0)">2</a>
                                 @endif
                             </td>
                             <td></td>
                             <td>
                                 @if(in_array('3', $exists_seat))
-                                    <a id="seat_number3" href="javascript:void(0)" class="text-black">
-                                        3
-                                    </a>
+                                <a class="btn btn-danger" disabled>3</a>
                                 @else
-                                    <p class="text-success"> 3 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number3" href="javascript:void(0)">3</a>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('4', $exists_seat))
-                                    <a id="seat_number4" href="javascript:void(0)" class="text-black">
-                                        4
-                                    </a>
+                                <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                    <p class="text-success"> 4 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number4" href="javascript:void(0)">4</a>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('5', $exists_seat))
-                                    <a id="seat_number5" href="javascript:void(0)" class="text-black">
-                                        5
-                                    </a>
+                                <a class="btn btn-danger" disabled>5</a>
                                 @else
-                                    <p class="text-success"> 5 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number5" href="javascript:void(0)">5</a>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('6', $exists_seat))
-                                    <a id="seat_number6" href="javascript:void(0)" class="text-black">
-                                        6
-                                    </a>
+                                <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                    <p class="text-success"> 6 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number6" href="javascript:void(0)">6</a>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('7', $exists_seat))
-                                    <a id="seat_number7" href="javascript:void(0)" class="text-black">
-                                        7
-                                    </a>
+                                <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                    <p class="text-success"> 7 </p>
+                                <a class="btn btn-outline-secondary" id="seat_number7" href="javascript:void(0)">7</a>
                                 @endif
                             </td>
                         </tr>
@@ -127,8 +113,8 @@
                         <form action="#" id="reservasi_form">
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control"
-                                    readonly value="{{ auth()->user()->name ?? 'Farhan'}}">
+                                <input type="text" class="form-control" readonly
+                                    value="{{ auth()->user()->name ?? 'Farhan'}}">
                                 <label for="name">Nama</label>
                             </div>
 
@@ -147,8 +133,7 @@
                                 <input type="text" class="form-control" id="total" readonly>
                                 <label for="gross_amount">Total</label>
                             </div>
-                            <button type="submit" id="pay-button"
-                                class="btn btn-primary btn-block mt-4 float-right">
+                            <button type="submit" id="pay-button" class="btn btn-primary btn-block mt-4 float-right">
                                 Bayar Sekarang
                             </button>
                         </form>
@@ -176,11 +161,11 @@
 
         let seats = [];
         $('#seat_number1').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("1");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "1")
             }
             
@@ -190,11 +175,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number2').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("2");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "2")
             }
 
@@ -204,11 +189,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number3').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("3");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "3")
             }
 
@@ -218,11 +203,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number4').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("4");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "4")
             }
 
@@ -232,11 +217,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number5').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("5");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "5")
             }
 
@@ -246,11 +231,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number6').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("6");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "6")
             }
 
@@ -260,11 +245,11 @@
             $('#seat_number').val(seats);
         });
         $('#seat_number7').click(function(){
-            if($(this).hasClass('text-black')){
-                $(this).removeClass('text-black').addClass('text-danger');
+            if($(this).hasClass('btn btn-outline-secondary')){
+                $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
                 seats.push("7");
             }else{
-                $(this).removeClass('text-danger').addClass('text-black');
+                $(this).removeClass('btn btn-success').addClass('btn btn-outline-secondary');
                 seats = remove(seats, "7")
             }
 
@@ -309,5 +294,5 @@
             return false;
         });
     });
-</script>    
+</script>
 @endpush
