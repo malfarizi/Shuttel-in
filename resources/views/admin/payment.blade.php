@@ -117,9 +117,9 @@
                                                     {{ $payment->booking->schedule->dateTimeDepature }}
                                                 </td> 
                                                 <td>
-                                                    @include('components.badge', ['status' => $payment->status])
+                                                    @include('components.badge', ['status' => $payment->status ])
                                                 </td>
-                                                <td>{{ $payment->total }}</td>
+                                                <td>{{ $payment->total_rupiah }}</td>
                                                 <td>
                                                     <button 
                                                         type="button" 
@@ -168,7 +168,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="col-sm-3 col-form-label">Nama</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-12">
                         {{ $payment->booking->user->name }}
                     </div>
                 </div>

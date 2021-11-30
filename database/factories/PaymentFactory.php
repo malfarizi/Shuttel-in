@@ -17,7 +17,7 @@ class PaymentFactory extends Factory
         return [
             'booking_id' => \App\Models\Booking::inRandomOrder()->first()->id,
             'total'      => str_pad(rand(1,99), 5, "0", STR_PAD_RIGHT),
-            'status'     => $this->faker->randomElement(['pending', 'capture', 'cancel', 'deny']) 
+            'status'     => $this->faker->randomElement($statuses) 
         ];
     }
 }

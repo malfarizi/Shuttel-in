@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
 use DB;
+use Mail;
 use App\Models\User;
 use App\Models\Route;
 use App\Models\UserVerify;

@@ -17,8 +17,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules  = Schedule::with('route')->latest()->get();
         $routes     = Route::all();
+        $schedules  = Schedule::with('route')->latest()->get();
         return view('admin.schedule', compact('schedules', 'routes'))->withTitle('Data Jadwal');
     }
 

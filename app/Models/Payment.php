@@ -54,9 +54,9 @@ class Payment extends Model
         self::save();
     }
     
-    public function getTotalAttribute($value)
+    public function getTotalRupiahAttribute($value)
     {
-        return "Rp. ".number_format($value, 0, ',', '.');
+        return "Rp. ".number_format($this->total, 0, ',', '.');
     }
 
     public function getDateAttribute()
@@ -72,11 +72,5 @@ class Payment extends Model
     public function scopeStatus($query, $status)
     {
         return $query->where('status', $status);
-    }
-
-    public function scopeTotalIncome($query)
-    {
-        $total = $query->where('status', 'success')->sum('total');
-        return "Rp. ".number_format($total, 0, ',', '.');
     }
 }

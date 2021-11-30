@@ -34,19 +34,19 @@
                         <div class="card-stats-items">
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $pending_reservation }}
+                                    {{ $count_status->get('pending') }}
                                 </div>
                                 <div class="card-stats-item-label">Pending</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $failed_reservation }}
+                                    {{ $count_status->get('failed') }}
                                 </div>
                                 <div class="card-stats-item-label">Failed</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $success_reservation }}
+                                    {{ $count_status->get('success') }}
                                 </div>
                                 <div class="card-stats-item-label">Completed</div>
                             </div>
@@ -60,7 +60,7 @@
                             <h4>Total Reservasi</h4>
                         </div>
                         <div class="card-body">
-                            {{ $total_reservation }}
+                            {{ $payments->count() }}
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                                     <th>Total</th>
                                     <th>Action</th>
                                 </tr>
-                                @forelse ($payments as $payment)
+                                @forelse ($payments->take(5) as $payment)
                                     <tr>
                                         <td>
                                             {{ $payment->booking_id }}
@@ -147,7 +147,7 @@
                                         <td>
                                             @include('components.badge', ['status' => $payment->status ])
                                         </td>
-                                        <td>{{ $payment->total }}</td>
+                                        <td>{{ $payment->total_rupiah }}</td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-icon icon-left btn-primary" 
