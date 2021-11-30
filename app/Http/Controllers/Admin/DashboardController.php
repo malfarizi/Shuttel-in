@@ -25,9 +25,8 @@ class DashboardController extends Controller
 
         //Reservation count
         $pending_reservation  = Payment::status('pending')->count();
-        $cancel_reservation   = Payment::status('cancel')->count();
-        $deny_reservation     = Payment::status('deny')->count();
-        $success_reservation  = Payment::status('capture')->count(); 
+        $failed_reservation   = Payment::status('failed')->count();
+        $success_reservation  = Payment::status('success')->count(); 
         $total_reservation    = Payment::count();
 
         $total_income         = Payment::totalIncome();
@@ -42,8 +41,7 @@ class DashboardController extends Controller
             'active_driver_count'       => $active_driver_count,
             'active_shuttle_count'      => $active_shuttle_count,      
             'pending_reservation'       => $pending_reservation,  
-            'cancel_reservation'        => $cancel_reservation,
-            'deny_reservation'          => $deny_reservation,   
+            'failed_reservation'        => $failed_reservation,   
             'success_reservation'       => $success_reservation,
             'total_reservation'         => $total_reservation,
             'total_income'              => $total_income,

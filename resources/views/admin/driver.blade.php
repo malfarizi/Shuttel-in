@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">No Telephone</label>
+                        <label for="">No Telepon</label>
                         <input type="text" class="form-control integerInput" name="phone_number" 
                             placeholder="Masukan No Telephone">
                     </div>

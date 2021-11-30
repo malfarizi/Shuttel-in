@@ -40,9 +40,9 @@
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $cancel_reservation }}
+                                    {{ $failed_reservation }}
                                 </div>
-                                <div class="card-stats-item-label">Cancel</div>
+                                <div class="card-stats-item-label">Failed</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
@@ -149,12 +149,14 @@
                                         </td>
                                         <td>{{ $payment->total }}</td>
                                         <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-icon icon-left btn-primary" 
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fas fa-info-circle"></i> Detail
-                                            </button>    
-                                            <!-- Modal -->
+                                            <button 
+                                                        type="button" 
+                                                        class="btn btn-icon icon-left btn-primary" 
+                                                        data-toggle="modal" 
+                                                        data-target="#modaldetail-{{ $payment->id }}"
+                                                    >
+                                                        <i class="fas fa-info-circle"></i> Detail
+                                                    </button>
                                         </td>
                                     </tr>    
                                 @empty
@@ -174,25 +176,79 @@
     </section>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($payments as $payment)
+<div class="modal fade" id="modaldetail-{{$payment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Modal title
+                    Detail Booking
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-            ...
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->user->name }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Jadwal Keberangkatan
+                    </label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->dateTimeDepature }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">
+                        Nomor Kursi Yang Dipesan
+                    </label>
+                    <div class="col-sm-5">
+                        @foreach ($payment->booking->bookingDetails as $booking)
+                            {{ $booking->seat_number }}
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Rute</label>
+                    <div class="col-sm-12">
+                        {{ $payment->booking->schedule->route->depature_arrival }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Shuttle</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->nopol }} 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Nama Driver</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->driver->driver_name }} 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-7 col-form-label">Nomor Telepon Driver</label>
+                    <div class="col-sm-5">
+                        {{ $payment->booking->schedule->route->shuttle->driver->phone_number }} 
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="sumbit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 @endsection

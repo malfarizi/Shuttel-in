@@ -4,7 +4,6 @@
 
 <section id="contact" class="contact">
 
-
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -71,10 +70,10 @@
                             </div> --}}
 
                             <div class="d-grid">
-                                <button class="btn btn-primary text-uppercase fw-bold" type="submit">Ubah Data</button>
+                                <button class="btn btn-primary text-uppercase fw-bold" type="submit">
+                                    Ubah Data
+                                </button>
                             </div>
-
-
                         </form>
                     </div>
                 </div>
