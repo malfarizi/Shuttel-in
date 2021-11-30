@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index() {
         return view('admin.customer', [
             'title'     => 'Data Customer',
-            'customers' => User::where('role', 'Customer')->take(200)->get()
+            'customers' => User::where('role', 'Customer')->get()
         ]);
     }
 
@@ -24,10 +24,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.profile', [
-            'title' => 'Halaman Ubah Akun',
-            'user'  => $user
-        ]);
+        return view('admin.profile', compact('user'))->withTitle('Halaman Ubah Akun');
     }
 
     /**

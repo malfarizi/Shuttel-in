@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Models\Route;
-use App\Models\Payment;
 use App\Models\Booking;
-use App\Models\Schedule;
+use App\Models\Payment;
 
 use Illuminate\Http\Request;
 
@@ -27,7 +25,7 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function reservasi(Schedule $schedule)
+    public function reservasi(\App\Models\Schedule $schedule)
     {   
         $exists_seat = DB::table('booking_details')
                             ->join('bookings', 'bookings.id', 'booking_details.booking_id')
@@ -35,11 +33,8 @@ class BookingController extends Controller
                             ->pluck('seat_number')
                             ->toArray();
 
-        return view('customer.reservasi', [
-            'title'         => 'Reservasi', 
-            'schedule'      => $schedule,
-            'exists_seat'   => $exists_seat
-        ]);
+        return view('customer.reservasi', compact('schedule', 'exists_seat'))
+                ->withTitle('Daftar Jadwal');
     }
 
     /**
@@ -51,7 +46,7 @@ class BookingController extends Controller
     {
          $id = auth()->user()->id;
 
-        $payments = DB::table('payments')
+         $payments = DB::table('payments')
                         ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
                         ->join('users', 'users.id', '=', 'bookings.user_id')
                         ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
@@ -67,6 +62,7 @@ class BookingController extends Controller
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
             'payments'  => $payments,
+             //dd($payments)
         ]);
     }
 
@@ -109,7 +105,7 @@ class BookingController extends Controller
         DB::transaction(function () use($request) {
             $booking = Booking::create([
                 'id'          => 'SANBOX-'.uniqid(),
-                'user_id'     => auth()->user()->id ?? 1,
+                'user_id'     => auth()->user()->id,
                 'schedule_id' => $request->schedule_id,
             ]);
 
@@ -123,17 +119,14 @@ class BookingController extends Controller
                     'seat_number'  => $seat_number_array[$i]
                 ]);    
             }
-            
-            Schedule::find($booking->schedule->id)->decrement('seat_number', $count_seat_booking);
-            
-            $payment = Payment::create([
-                'booking_id'    => $booking->id,
-                'total'         => $request->total
-            ]);
+
+            $booking->schedule->decrement('seat_capacity', $count_seat_booking);
+
+            $booking->payment()->create($request->only('total'));
             
             $payload = [
                 'customer_details' => [
-                    'first_name' => auth()->user()->name ?? 'Farhan',
+                    'first_name' => auth()->user()->name,
                 ],
                 'transaction_details' => [
                     'order_id'      => $booking->id,

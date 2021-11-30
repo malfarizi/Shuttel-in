@@ -76,6 +76,7 @@ class Payment extends Model
 
     public function scopeTotalIncome($query)
     {
-        return $query->whereIn('status', ['capture', 'settlement'])->sum('total');
+        $total = $query->whereIn('status', ['capture', 'settlement'])->sum('total');
+        return "Rp. ".number_format($total, 0, ',', '.');
     }
 }

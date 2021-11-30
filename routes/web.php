@@ -56,13 +56,13 @@ Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
 
 // Other Page
 Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
-Route::get('/jadwal', ScheduleController::class);
+Route::get('/jadwal', [ScheduleController::class,'index']); 
 
 //Reservasi
 Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
 
 //Get Status Payment
-Route::get('/api/midtrans/payments/getStatus/{id}', [PaymentController::class, 'getStatus'])->name('payments.status');
+Route::post('/api/midtrans/payments/notification', [PaymentController::class, 'notification']);
 
 // Profil
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');

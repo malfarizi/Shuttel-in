@@ -1,29 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 </head>
+
 <body>
 	<style type="text/css">
-		.tg  {border-collapse:collapse;border-spacing:0;}
-		.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-		  overflow:hidden;padding:10px 5px;word-break:normal;}
-		.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-		  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-		.tg .tg-km2t{border-color:#ffffff;color:#003049;font-weight:bold;text-align:left;vertical-align:top}
-		.tg .tg-zv41m{border-color:#ffffff;color:#003049;font-weight:bold;text-align:left;vertical-align:top}
-		.tg .tg-zv4m{border-color:#ffffff;color:#003049;text-align:left;vertical-align:top}
-		.tg .tg-8jgo{border-color:#ffffff;color:#003049;text-align:center;vertical-align:top}
-		.tg .tg-78fz{background-color:#fe0000;border-color:#fe0000;color:#ffffff;text-align:center;vertical-align:top}
-		.tg .tg-292r{background-color:#fe0000;border-color:#fe0000;color:#ffffff;text-align:left;vertical-align:middle}
-		.tg .tg-xaus{background-color:#fe0000;border-color:#ffffff;color:#ffffff;text-align:center;vertical-align:top}
-		.tg .tg-yj3z{background-color:#fe0000;border-color:#fe0000;color:#ffffff;text-align:center;vertical-align:middle}
-		.tg .tg-50pj{background-color:#fe0000;border-color:#fe0000;text-align:left;vertical-align:top}
-		</style>
-		<table class="tg">
+		.tg {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		.tg td {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+
+		.tg th {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+
+		.tg .tg-km2t {
+			border-color: #ffffff;
+			color: #003049;
+			font-weight: bold;
+			text-align: left;
+			vertical-align: top
+		}
+
+		.tg .tg-zv41m {
+			border-color: #ffffff;
+			color: #003049;
+			font-weight: bold;
+			text-align: left;
+			vertical-align: top
+		}
+
+		.tg .tg-zv4m {
+			border-color: #ffffff;
+			color: #003049;
+			text-align: left;
+			vertical-align: top
+		}
+
+		.tg .tg-8jgo {
+			border-color: #ffffff;
+			color: #003049;
+			text-align: center;
+			vertical-align: top
+		}
+
+		.tg .tg-78fz {
+			background-color: #fe0000;
+			border-color: #fe0000;
+			color: #ffffff;
+			text-align: center;
+			vertical-align: top
+		}
+
+		.tg .tg-292r {
+			background-color: #fe0000;
+			border-color: #fe0000;
+			color: #ffffff;
+			text-align: left;
+			vertical-align: middle
+		}
+
+		.tg .tg-xaus {
+			background-color: #fe0000;
+			border-color: #ffffff;
+			color: #ffffff;
+			text-align: center;
+			vertical-align: top
+		}
+
+		.tg .tg-yj3z {
+			background-color: #fe0000;
+			border-color: #fe0000;
+			color: #ffffff;
+			text-align: center;
+			vertical-align: middle
+		}
+
+		.tg .tg-50pj {
+			background-color: #fe0000;
+			border-color: #fe0000;
+			text-align: left;
+			vertical-align: top
+		}
+	</style>
+	<table class="tg">
 		<thead>
 		  <tr>
 			<th class="tg-zv4m" colspan="3"><img src="{{asset('assets/img/logo shuttle.png')}}" width="200" height="50"></th>
@@ -92,4 +176,5 @@
 		{{-- @endforeach --}}
 		</table>
 </body>
+
 </html>

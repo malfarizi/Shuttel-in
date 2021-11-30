@@ -19,6 +19,7 @@
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets-flexstart/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -56,11 +57,13 @@
           @auth
           <li><a class="nav-link scrollto" href="{{url('riwayat')}}">Reservasi Saya</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
               {{auth()->user()->name}}
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item text-primary" href="{{route('profile.edit', auth()->user()->id)}}">Profil Saya</a></li>
+              <li><a class="dropdown-item text-primary" href="{{route('profile.edit', auth()->user()->id)}}">Profil
+                  Saya</a></li>
               <li>
                 <form action="{{ route('logout')}}" method="POST">
                   @csrf
@@ -69,7 +72,7 @@
                   </button>
                 </form>
               </li>
-              
+
             </ul>
           </li>
           @else
@@ -139,7 +142,7 @@
   <script src="{{asset('assets-flexstart/vendor/purecounter/purecounter.js')}}"></script>
   <script src="{{asset('assets-flexstart/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
   <script src="{{asset('assets-flexstart/vendor/glightbox/js/glightbox.min.js')}}"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Template Main JS File -->
   <script src="{{asset('assets-flexstart/js/main.js')}}"></script>
 

@@ -26,11 +26,14 @@
                         <th scope="row">{{$loop->iteration}}.</th>
                         
                         <td>{{$payment->booking_id}}</td>
-                        <td>{{$payment->depature}} - {{$payment->arrival}}</td>
-                        <td>{{$payment->date_of_depature}} - {{$payment->depature_time}}</td>
-                        <td>{{$payment->seat_number}}</td>
+                        <td>{{ $payment->booking->schedule->route->depature_arrival }}</td>
+                        <td>{{ $payment->booking->schedule->dateTimeDepature }}</td>
+                        <td>
+                        @foreach ($payment->booking->bookingDetails as $booking)
+                            {{ $booking->seat_number }}
+                        @endforeach
                         <td>{{$payment->total}}</td>
-                        <td>{{$payment->status}}</td>
+                        <td> @include('components.badgecustomer', ['status' => $payment->status])</td>
                         <td>
                             {{-- <button type="button" class="btn btn-sm btn-success btn-icon"><i
                                     class="bi bi-eye"></i></button> --}}

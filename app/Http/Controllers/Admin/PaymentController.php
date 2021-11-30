@@ -23,14 +23,10 @@ class PaymentController extends Controller
                         'booking.schedule.route.shuttle', 
                         'booking.bookingDetails'
                     ])
-                    ->take(200)
                     ->latest()
                     ->get();
     
-        return view('admin.payment', [
-            'title'    => 'Data Penjualan',
-            'payments' => $payments,
-        ]);
+        return view('admin.payment', compact('payments'))->withTitle('Data Penjualan');
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use DB;
 use App\Models\User;
+use App\Models\Route;
 use App\Models\UserVerify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,24 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function generateAccountAdmin() {
-        $admin = User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
-            'address' => 'Bandung',
-            'phone_number' => '0898779821',
-            'role' => 'Admin',
-            'password' => 'password',
-            'remember_token' => 'efsdgsgs',
-        ]);
-        
-        return response()->json([
-            'status' => 'berhasil',
-            'admin'  => $admin
-        ]);
-    }
-
     public function register(Request $request) 
     {
         $request->validate([
@@ -90,9 +74,22 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function landingpage()
+    public function landingpage(Request $request)
     {
-        return view('customer.landingpage');
+            $routes = Route::all();
+            $data = DB::table('payments')
+            ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
+            ->join('users', 'users.id', '=', 'bookings.user_id')
+            ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')
+            ->join('booking_details', 'booking_details.booking_id', '=', 'bookings.id')
+            ->join('routes', 'routes.id', '=', 'schedules.route_id')
+            ->join('shuttles', 'shuttles.id', '=', 'routes.shuttle_id')
+            ->select('users.*', 'payments.*', 'schedules.*', 'booking_details.*', 
+                    'routes.*', 'shuttles.*','bookings.*')
+            ->where('bookings.id',$request->search)
+            ->first();
+            
+            return view('customer.landingpage',compact('data','routes'));        
     }
 
     public function edit(User $user)
