@@ -11,7 +11,7 @@
                 <thead c>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Booking Code</th>
+                        <th scope="col">Kode Reservasi</th>
                         <th scope="col">Rute</th>
                         <th scope="col">Jadwal Keberangkatan</th>
                         <th scope="col">Nomor Kursi Yang Dipesan</th>
@@ -32,18 +32,21 @@
                         <td>{{$payment->total}}</td>
                         <td>{{$payment->status}}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success btn-icon"><i
-                                    class="bi bi-eye"></i></button>
+                            {{-- <button type="button" class="btn btn-sm btn-success btn-icon"><i
+                                    class="bi bi-eye"></i></button> --}}
+                        @if($payment->status == 'capture')
                             <a 
                                 href="{{ route('tiket.download', $payment->booking_id) }}" 
                                 target="_blank"
-                                class="btn btn-sm btn-primary btn-icon"
-                            >
-                                <i class="bi bi-printer"></i>
+                                class="btn btn-sm btn-primary btn-icon"                            >
+                            <i class="bi bi-printer"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-warning btn-icon">
-                                <i class="bi bi-cash"></i>
-                            </button>
+                        @elseif($payment->status == "pending")
+                        <button type="button" class="btn btn-sm btn-warning btn-icon">
+                            <i class="bi bi-cash"></i>
+                        </button>
+                        @endif
+                            
                         </td>
                     </tr>
                 @endforeach

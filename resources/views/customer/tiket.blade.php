@@ -26,79 +26,70 @@
 		<table class="tg">
 		<thead>
 		  <tr>
-			<th class="tg-zv4m" colspan="3"><img src="images/logo shuttle.png" width="200" height="50"></th>
+			<th class="tg-zv4m" colspan="3"><img src="{{asset('assets/img/logo shuttle.png')}}" width="200" height="50"></th>
 		  </tr>
 		</thead>
+		{{-- @foreach($datas as $data) --}}
 		<tbody>
 		  <tr>
 			<td class="tg-xaus" colspan="3">TIKET SHUTTLE-IN</td>
 		  </tr>
-		  <tr>
-			<td class="tg-zv4m" colspan="3">Kode Reservasi - STL20211022-001</td>
+		  {{-- <tr>
+			<td class="tg-zv4m" colspan="3">Kode Reservasi - {{$data->id}}</td>
 		  </tr>
 		  <tr>
-			<td class="tg-yj3z">Indramayu</td>
+			<td class="tg-yj3z">{{$data->depature}}</td>
 			<td class="tg-50pj" style="padding-left: 50px"><img src="images/panah.png" alt="">
-			<td class="tg-292r">Bandung</td>
+			<td class="tg-292r">{{$data->arrival}}</td>
 		  </tr>
 		  <tr>
 			<td class="tg-8jgo" colspan="3"><img src="images/barcode.png" alt="" width="330px"></td>
-		  </tr>
+		  </tr> --}}
 		  <tr>
 			<td class="tg-zv41m">Detail Reservasi</td>
 			<td class="tg-zv4m"></td>
 			<td class="tg-zv4m"></td>
 		  </tr>
 		  <tr>
+			<td class="tg-zv4m">Kode Reservasi</td>
+			<td class="tg-zv4m"></td>
+			<td class="tg-zv41m">{{$datas->id}}</td>
+		  </tr>
+		  <tr>
+			<td class="tg-zv4m">Rute</td>
+			<td class="tg-zv4m"></td>
+			<td class="tg-zv41m">{{$datas->depature}} - {{$datas->arrival}}</td>
+		  </tr>
+		  <tr>
 			<td class="tg-zv4m">Pemesan</td>
 			<td class="tg-zv4m"></td>
-			<td class="tg-zv41m">Firman</td>
+			<td class="tg-zv41m">{{$datas->name}}</td>
 		  </tr>
 		  <tr>
 			<td class="tg-zv4m">Tanggal Keberangkatan</td>
 			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m">22-11-2021</td>
+			<td class="tg-zv4m">{{$datas->date_of_depature}}</td>
 		  </tr>
 		  <tr>
 			<td class="tg-zv4m">Waktu Keberangkatan</td>
 			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m">19.00 WIB</td>
+			<td class="tg-zv4m">{{$datas->depature_time}}</td>
 		  </tr>
 		  <tr>
-			<td class="tg-zv4m">No Kursi</td>
+			<td class="tg-zv4m">Nomor Kursi Yang Dipesan</td>
 			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m">2,1</td>
-			
-		  </tr>
-		  <tr>
-			<td class="tg-zv41m">Invoice</td>
-			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m"></td>
-		  </tr>
-		  <tr>
-			<td class="tg-zv4m"><img src="images/wallet.png" alt=""></td>
-			<td class="tg-zv4m">PSN-31314</td>
-			<td class="tg-zv4m"></td>
-		  </tr>
-		  <tr>
-			<td class="tg-zv41m">Firman</td>
-			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m"></td>
-		  </tr>
-		  <tr>
-			<td class="tg-zv4m">Jumlah Kursi</td>
-			<td class="tg-8jgo"> 2 </td>
-			<td class="tg-zv4m">Rp. 280.000</td>
+			<td class="tg-zv4m">{{$datas->seat_number}}</td>
 		  </tr>
 		  <tr>
 			<td class="tg-km2t">Total</td>
 			<td class="tg-zv4m"></td>
-			<td class="tg-zv4m">Rp. 280.000</td>
+			<td class="tg-zv4m">{{$datas->total}}</td>
 		  </tr>
 		  <tr>
 			<td class="tg-78fz" colspan="3">Terima Kasih</td>
 		  </tr>
 		</tbody>
+		{{-- @endforeach --}}
 		</table>
 </body>
 </html>
