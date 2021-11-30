@@ -129,17 +129,18 @@
                     <div class="card-body p-0">
                         <div class="table-responsive table-invoice">
                             <table class="table table-striped">
-                                <tr>
-                                    <th>ID Booking</th>
+                                <tr class="text-center">
+                                    <th>Booking Code</th>
                                     <th>Customer</th>
                                     <th>Status</th>
                                     <th>Total</th>
                                     <th>Action</th>
                                 </tr>
+
                                 @forelse ($payments->take(5) as $payment)
-                                    <tr>
-                                        <td>
-                                            {{ $payment->booking_id }}
+                                    <tr class="text-center">
+                                        <td >
+                                            {{ $payment->booking->booking_code ?? '-' }}
                                         </td>
                                         <td class="font-weight-600">
                                             {{ $payment->booking->user->name }}
@@ -150,13 +151,13 @@
                                         <td>{{ $payment->total_rupiah }}</td>
                                         <td>
                                             <button 
-                                                        type="button" 
-                                                        class="btn btn-icon icon-left btn-primary" 
-                                                        data-toggle="modal" 
-                                                        data-target="#modaldetail-{{ $payment->id }}"
-                                                    >
-                                                        <i class="fas fa-info-circle"></i> Detail
-                                                    </button>
+                                                type="button" 
+                                                class="btn btn-icon icon-left btn-primary" 
+                                                data-toggle="modal" 
+                                                data-target="#modaldetail-{{ $payment->id }}"
+                                            >
+                                                <i class="fas fa-info-circle"></i> Detail
+                                            </button>
                                         </td>
                                     </tr>    
                                 @empty
@@ -166,7 +167,6 @@
                                         </td>
                                     </tr>
                                 @endforelse
-                                
                             </table>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
     </section>
 </div>
 
-@foreach ($payments as $payment)
+@foreach ($payments->take(5) as $payment)
 <div class="modal fade" id="modaldetail-{{$payment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

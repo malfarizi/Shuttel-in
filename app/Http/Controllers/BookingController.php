@@ -44,7 +44,6 @@ class BookingController extends Controller
      */
     public function riwayat()
     {
-         $id = auth()->user()->id;
          $payments = Payment::with([
                             'booking.user', 
                             'booking.schedule.route.shuttle', 
@@ -59,22 +58,22 @@ class BookingController extends Controller
         return view('customer.riwayat', [
             'title'     => 'Data Riwayat Pemesanan',
             'payments'  => $payments,
-             //dd($payments)
         ]);
     }
 
     public function downloadTicket($id) 
     {
         $payment =  Payment::with([
-                    'booking.user', 
-                    'booking.schedule.route.shuttle', 
-                    'booking.bookingDetails'
-                ])
-                ->where('booking_id', $id)
-                ->first();
+                        'booking.user', 
+                        'booking.schedule.route.shuttle', 
+                        'booking.bookingDetails'
+                    ])
+                    ->where('booking_id', $id)
+                    ->first();
                 
         $pdf  = new \Dompdf\Dompdf();
         $view = view('customer.tiket', compact('payment'));
+        
         $pdf->loadHtml($view);
         // $pdf->setPaper('A4', 'landscape');
         $customPaper = array(0,0,390,420);

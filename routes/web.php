@@ -23,9 +23,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 |
 */
 
-// Generate Account Admin
-Route::get('/generateAccount', [UserController::class, 'generateAccountAdmin']);
-
 // Authenticate Login and Logout Customer
 Route::get('/admin/login', [LoginController::class, 'index'])
     ->name('admin.loginpage')
@@ -58,9 +55,6 @@ Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
 Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/jadwal', [ScheduleController::class,'index']);
 
-//Reservasi
-Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
-
 //Get Status Payment
 Route::post('/api/midtrans/payments/notification', [PaymentController::class, 'notification']);
 
@@ -71,5 +65,6 @@ Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.
 Route::middleware('auth')->group( function() {
     Route::post('booking', [BookingController::class, 'store']);
     Route::get('/riwayat', [BookingController::class, 'riwayat']);
+    Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
     Route::get('/print-tiket/{id}', [BookingController::class, 'downloadTicket'])->name('tiket.download');
 });

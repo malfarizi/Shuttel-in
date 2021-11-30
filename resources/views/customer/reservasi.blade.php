@@ -81,7 +81,7 @@
                         <tr>
                             <td>
                                 @if(in_array('4', $exists_seat))
-                                    <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>4</a>
                                 @else
                                     <a class="btn btn-outline-secondary" id="seat_number4" 
                                         href="javascript:void(0)">
@@ -105,7 +105,7 @@
                         <tr>
                             <td>
                                 @if(in_array('6', $exists_seat))
-                                    <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>6</a>
                                 @else
                                     <a class="btn btn-outline-secondary" id="seat_number6" 
                                         href="javascript:void(0)">
@@ -117,7 +117,7 @@
                             <td></td>
                             <td>
                                 @if(in_array('7', $exists_seat))
-                                    <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>7</a>
                                 @else
                                     <a class="btn btn-outline-secondary" id="seat_number7" 
                                         href="javascript:void(0)">
@@ -137,13 +137,13 @@
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" readonly
-                                    value="{{ auth()->user()->name ?? 'Farhan'}}">
+                                    value="{{ auth()->user()->name }}">
                                 <label for="name">Nama</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" value="{{ auth()->user()->phone_number }}"
-                                    readonly>
+                                <input type="text" class="form-control" 
+                                    value="{{ auth()->user()->phone_number }}" readonly>
                                 <label for="number_phone">Nomor Telepon</label>
                             </div>
 

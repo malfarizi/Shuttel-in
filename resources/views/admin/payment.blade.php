@@ -108,7 +108,7 @@
                                                 <td class="text-left">
                                                     {{ $loop->iteration }}.
                                                 </td>
-                                                <td>{{ $payment->booking_code ?? '-' }}</td>
+                                                <td>{{ $payment->booking->booking_code ?? '-' }}</td>
                                                 <td>
                                                     {{ $payment->booking->user->name }}
                                                 </td>

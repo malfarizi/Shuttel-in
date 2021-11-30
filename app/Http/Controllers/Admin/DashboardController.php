@@ -24,12 +24,18 @@ class DashboardController extends Controller
         $active_shuttle_count = Shuttle::activeStatus()->count();
 
         //Payments
-        $payments       = Payment::with('booking.user')->latest()->get();
+        $payments = Payment::with([
+                        'booking.user', 
+                        'booking.schedule.route.shuttle.driver', 
+                        'booking.bookingDetails'
+                    ])
+                    ->latest()
+                    ->get();
 
-        $count_status   = $payments->groupBy('status')->map->count()->except('expired');
+        $count_status = $payments->groupBy('status')->map->count()->except('expired');
         
-        $total_income   = $payments->where('status', 'success')->sum('total');
-        $total_income   = "Rp. ".number_format($total_income, 0, ',', '.');
+        $total_income = $payments->where('status', 'success')->sum('total');
+        $total_income = "Rp. ".number_format($total_income, 0, ',', '.');
         
         return view('admin.dashboard', [
             'title'                 => 'Dashboard',
