@@ -88,6 +88,11 @@ class UserController extends Controller
                                 'routes.*', 'shuttles.*','bookings.*')
                         ->where('bookings.id',$request->search)
                         ->first();
+                        
+            if($request->has('search') && empty($data)) {
+                return view('customer.landingpage', compact('data','routes'))
+                    ->with('error', 'Oops Reservasi Yang Kamu Cari Tidak Ada');    
+            }
             
             return view('customer.landingpage',compact('data','routes'));        
     }

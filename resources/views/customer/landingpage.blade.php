@@ -87,12 +87,14 @@
         </div>
       </div>
     </section>
-    @else
+    @endif
+    
+    @if($error)
     <section id="services" class="services">
       <div class="row gy-4">
         <div class="col-lg-12 col-md-12" data-aos="fade-up" data-aos-delay="200">
           <div class="service-box blue text-center">
-            <h1>Oops Reservasi Yang Kamu Cari Tidak Ada</h1>
+            <h1>{{ $error }}</h1>
           </div>
         </div>
       </div>
