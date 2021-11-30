@@ -112,20 +112,10 @@ class BookingController extends Controller
                     'seat_number'  => $seat_number_array[$i]
                 ]);    
             }
-<<<<<<< HEAD
-            
-            Schedule::find($booking->schedule->id)->decrement('seat_capacity', $count_seat_booking);
-            
-            $payment = Payment::create([
-                'booking_id'    => $booking->id,
-                'total'         => $request->total
-            ]);
-=======
 
             $booking->schedule->decrement('seat_capacity', $count_seat_booking);
 
             $booking->payment()->create($request->only('total'));
->>>>>>> 2a35d11ec96c8fe17b1654430fb4799ef357d8f8
             
             $payload = [
                 'customer_details' => [

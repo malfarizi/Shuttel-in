@@ -41,8 +41,8 @@
                             </a>
                             @endif
                             @if ($payment->status == 'pending')
-                            <button type="button" class="btn btn-sm btn-warning btn-icon">
-                                <i class="bi bi-cash"></i>
+                            <button type="button" class="btn btn-sm btn-warning btn-icon"
+                                onclick="snap.pay('{{$payment->snap_token}}')"><i class="bi bi-cash"></i>
                             </button>
                             @endif
                         </td>
