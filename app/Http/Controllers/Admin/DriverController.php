@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Driver;
 use Illuminate\Http\Request;
 
@@ -15,20 +16,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return view('admin.driver', [
-            'title'   => 'Data Driver',
-            'drivers' => Driver::latest()->get()
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $drivers = Driver::latest()->get();
+        return view('admin.driver', compact('drivers'))->withTitle('Data Driver');
     }
 
     /**
@@ -52,28 +41,6 @@ class DriverController extends Controller
         
         $data->save();
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Driver $driver)
-    {
-        dd($driver->driver_name);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Driver $driver)
-    {
-        //
     }
 
     /**

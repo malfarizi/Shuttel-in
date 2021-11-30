@@ -31,10 +31,8 @@ class DashboardController extends Controller
         $total_reservation    = Payment::count();
 
         $total_income         = Payment::totalIncome();
-        $total_income         = "Rp. ".number_format($total_income, 0, ',', '.');
         $payments             = Payment::with('booking')
                                     ->latest()
-                                    ->status('pending')
                                     ->take(5)
                                     ->get();
      

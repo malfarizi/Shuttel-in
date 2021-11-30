@@ -13,24 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function generateAccountAdmin() {
-        $admin = User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
-            'address' => 'Bandung',
-            'phone_number' => '0898779821',
-            'role' => 'Admin',
-            'password' => 'password',
-            'remember_token' => 'efsdgsgs',
-        ]);
-        
-        return response()->json([
-            'status' => 'berhasil',
-            'admin'  => $admin
-        ]);
-    }
-
     public function register(Request $request) 
     {
         $request->validate([

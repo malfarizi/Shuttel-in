@@ -34,11 +34,15 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-success btn-icon"><i
                                     class="bi bi-eye"></i></button>
-                            <a href="{{url ('/print-tiket')}}" type="button" class="btn btn-sm btn-primary btn-icon"><i
-                                    class="bi bi-printer"></i></a>
+                            @if ( $payment->status == 'success')
+                            <a href="{{ route('tiket.download', $payment->booking_id) }}" target="_blank"
+                                class="btn btn-sm btn-primary btn-icon">
+                                <i class="bi bi-printer"></i>
+                            </a>
+                            @endif
                             @if ($payment->status == 'pending')
-                            <button type="button" class="btn btn-sm btn-warning btn-icon"
-                                onclick="snap.pay('{{$payment->snap_token}}')"><i class="bi bi-cash"></i>
+                            <button type="button" class="btn btn-sm btn-warning btn-icon">
+                                <i class="bi bi-cash"></i>
                             </button>
                             @endif
                         </td>

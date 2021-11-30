@@ -119,8 +119,8 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control"
-                                    value="{{ auth()->user()->phone_number ?? '0827343'}}" readonly>
+                                <input type="text" class="form-control" value="{{ auth()->user()->phone_number }}"
+                                    readonly>
                                 <label for="number_phone">Nomer Telepon</label>
                             </div>
 
