@@ -12,8 +12,8 @@ class ScheduleController extends Controller
     public function index(Request $request)
     {
             $routes   = Route::all();
-            $routesid = Route::where('depature', 'LIKE', '%'.$request->depature.'%')
-                            ->where('arrival', 'LIKE', '%'.$request->arrival.'%')
+            $routesid = Route::where('depature', $request->depature)
+                            ->where('arrival', $request->arrival)
                             ->value('id');
             //dd($routesid);
             if(empty($routesid)){
@@ -25,7 +25,7 @@ class ScheduleController extends Controller
                                 ->paginate(8);
             }
             
-            if(empty($request->depature) && empty($request->arrival)){
+            if(empty($request->all())){
                 $schedules = Schedule::with('route')
                                 ->where('date_of_depature', '<', today())
                                 ->paginate(8);
