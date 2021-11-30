@@ -67,7 +67,7 @@ class BookingController extends Controller
 
     public function downloadTicket($id) 
     {
-        $data =  Payment::with([
+        $payment =  Payment::with([
                     'booking.user', 
                     'booking.schedule.route.shuttle', 
                     'booking.bookingDetails'
@@ -76,7 +76,7 @@ class BookingController extends Controller
                 ->first();
                 
         $pdf  = new \Dompdf\Dompdf();
-        $view = view('customer.tiket', compact('data'));
+        $view = view('customer.tiket', compact('payment'));
         $pdf->loadHtml($view);
         $pdf->setPaper('A4', 'landscape');
         

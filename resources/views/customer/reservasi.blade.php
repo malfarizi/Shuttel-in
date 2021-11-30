@@ -17,15 +17,15 @@
                     </div>
                     <div class="col-11">
 
-                        <h5>{{ $schedule->date_of_depature ?? '16 November 2021' }}</h5>
-                        <h5>{{ $schedule->route->depature ?? 'Indramayu' }}
+                        <h5>{{ $schedule->date_of_depature }}</h5>
+                        <h5>{{ $schedule->route->depature }}
                             <i class="bi bi-arrow-right-square"></i>
-                            {{ $schedule->route->arrival ?? 'Bandung' }}
+                            {{ $schedule->route->arrival }}
                         </h5>
                         <h5>Tersedia
-                            <strong>{{ $schedule->seat_capacity ?? '6' }} dari 7</strong> Kursi
+                            <strong>{{ $schedule->seat_capacity }} dari 7</strong> Kursi
                         </h5>
-                        <h5 id="price">{{ $schedule->route->price_rupiah ?? 'Rp.140.000' }}</h5>
+                        <h5 id="price">{{ $schedule->route->price_rupiah }}</h5>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,14 @@
                         <tr>
                             <td>
                                 @if(in_array('1', $exists_seat))
-                                <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>
+                                        1
+                                    </a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number1" href="javascript:void(0)">1</a>
+                                    <a class="btn btn-outline-secondary" 
+                                        id="seat_number1" href="javascript:void(0)">
+                                        1
+                                    </a>
                                 @endif
                             </td>
                             <td></td>
@@ -53,53 +58,71 @@
                             <td></td>
                             <td>
                                 @if(in_array('2', $exists_seat))
-                                <a class="btn btn-danger" disabled>2</a>
+                                    <a class="btn btn-danger" disabled>2</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number2" href="javascript:void(0)">2</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number2" 
+                                        href="javascript:void(0)">
+                                        2
+                                    </a>
                                 @endif
                             </td>
                             <td></td>
                             <td>
                                 @if(in_array('3', $exists_seat))
-                                <a class="btn btn-danger" disabled>3</a>
+                                    <a class="btn btn-danger" disabled>3</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number3" href="javascript:void(0)">3</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number3" 
+                                        href="javascript:void(0)">
+                                        3
+                                    </a>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('4', $exists_seat))
-                                <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number4" href="javascript:void(0)">4</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number4" 
+                                        href="javascript:void(0)">
+                                        4
+                                    </a>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('5', $exists_seat))
-                                <a class="btn btn-danger" disabled>5</a>
+                                    <a class="btn btn-danger" disabled>5</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number5" href="javascript:void(0)">5</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number5" 
+                                        href="javascript:void(0)">
+                                        5
+                                    </a>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 @if(in_array('6', $exists_seat))
-                                <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number6" href="javascript:void(0)">6</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number6" 
+                                        href="javascript:void(0)">
+                                        6
+                                    </a>
                                 @endif
                             </td>
                             <td></td>
                             <td></td>
                             <td>
                                 @if(in_array('7', $exists_seat))
-                                <a class="btn btn-danger" disabled>1</a>
+                                    <a class="btn btn-danger" disabled>1</a>
                                 @else
-                                <a class="btn btn-outline-secondary" id="seat_number7" href="javascript:void(0)">7</a>
+                                    <a class="btn btn-outline-secondary" id="seat_number7" 
+                                        href="javascript:void(0)">
+                                        7
+                                    </a>
                                 @endif
                             </td>
                         </tr>

@@ -40,9 +40,9 @@
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $cancel_reservation }}
+                                    {{ $failed_reservation }}
                                 </div>
-                                <div class="card-stats-item-label">Cancel</div>
+                                <div class="card-stats-item-label">Failed</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">

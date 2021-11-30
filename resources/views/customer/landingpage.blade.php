@@ -24,7 +24,6 @@
           <h5>Cek Reservasi</h5>
           <div class="row">
             <form action="{{url('/')}}" method="GET">
-              @csrf
               <div class="input-group ">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-card-list"></i></span>
@@ -37,22 +36,23 @@
           <div class="row mt-4">
             <h5>Reservasi Online</h5>
             <form action="{{url('/jadwal')}}" method="GET">
-              @csrf
               <div class="form-group">
                 <select class="select2-single-placeholder form-control" name="depature" id="depature"
-                  style="width: 100%">
+                  style="width: 100%" required>
                   <option value="">Pilih depature</option>
+                  
                   @foreach ($routes as $item)
-                  <option value="{{$item->depature}}">{{$item->depature}}</option>
+                    <option value="{{$item->depature}}">{{$item->depature}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="form-group mt-2">
-                <select class="select2-single-placeholder form-control" name="depature" id="depature"
-                  style="width: 100%">
+                <select class="select2-single-placeholder form-control" 
+                  name="arrival" id="depature" style="width: 100%" required>
                   <option value="">Pilih arrival</option>
+                  
                   @foreach ($routes as $item)
-                  <option value="{{$item->arrival}}">{{$item->arrival}}</option>
+                    <option value="{{$item->arrival}}">{{$item->arrival}}</option>
                   @endforeach
                 </select>
               </div>
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    @if ($data != null)
+    @if (!empty($data))
     {{-- Hidden kalo ga ada yang nyari kode reservasi --}}
     <section id="services" class="services">
       <div class="row gy-4">
@@ -77,8 +77,12 @@
               <li class="list-group-item">{{$data->depature}} - {{$data->arrival}}</li>
               <li class="list-group-item">{{$data->booking_id}}</li>
             </ul>
-            <button type="button" class="btn  btn-primary"><span>Cetak Tiket</span> <i
-                class="bi bi-printer"></i></button>
+            @if ($data->status === 'success')
+              <a href="{{ route('tiket.download', $data->booking_id) }}" 
+                  target="_blank" class="btn btn-sm btn-primary btn-icon">
+                  <span>Cetak Tiket</span> <i class="bi bi-printer"></i>
+              </a>
+            @endif
           </div>
         </div>
       </div>

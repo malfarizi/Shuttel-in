@@ -8,12 +8,12 @@
     <div class="container mt-5" data-aos="fade-up">
         <div class="box">
             <table class=" table table-responsive table-borderless">
-                <thead c>
+                <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Booking Code</th>
                         <th scope="col">Rute</th>
-                        <th scope="col">Jadwal Keberangkatan</th>
+                        <th scope="col" width="2">Jadwal Keberangkatan</th>
                         <th scope="col">Nomor Kursi Yang Dipesan</th>
                         <th scope="col">Total</th>
                         <th scope="col">Status</th>
@@ -30,20 +30,28 @@
                         <td>{{$payment->date_of_depature}} - {{$payment->depature_time}}</td>
                         <td>{{$payment->seat_number}}</td>
                         <td>{{$payment->total}}</td>
-                        <td> @include('components.badgecustomer', ['status' => $payment->status])</td>
+                        <td> 
+                            @include('components.badge', [
+                                'status'        => $payment->status,
+                                'isBootstrap5'  => 1
+                            ])
+                        </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-success btn-icon"><i
-                                    class="bi bi-eye"></i></button>
-                            @if ( $payment->status == 'success')
-                            <a href="{{ route('tiket.download', $payment->booking_id) }}" target="_blank"
-                                class="btn btn-sm btn-primary btn-icon">
-                                <i class="bi bi-printer"></i>
-                            </a>
+                            <button type="button" class="btn btn-sm btn-success btn-icon">
+                                <i class="bi bi-eye"></i>
+                            </button>
+
+                            @if ($payment->status === 'success')
+                                <a href="{{ route('tiket.download', $payment->booking_id) }}" 
+                                    target="_blank" class="btn btn-sm btn-primary btn-icon">
+                                    <i class="bi bi-printer"></i>
+                                </a>
                             @endif
                             @if ($payment->status == 'pending')
-                            <button type="button" class="btn btn-sm btn-warning btn-icon"
-                                onclick="snap.pay('{{$payment->snap_token}}')"><i class="bi bi-cash"></i>
-                            </button>
+                                <button type="button" class="btn btn-sm btn-warning btn-icon"
+                                    onclick="snap.pay('{{$payment->snap_token}}')">
+                                    <i class="bi bi-cash"></i>
+                                </button>
                             @endif
                         </td>
                     </tr>
@@ -54,6 +62,7 @@
     </div>
 </section><!-- End Pricing Section -->
 @endsection
+
 @push('scripts')
 <!-- MIDTRANS -->
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"

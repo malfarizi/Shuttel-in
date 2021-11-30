@@ -56,7 +56,7 @@ Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
 
 // Other Page
 Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
-Route::get('/jadwal', [ScheduleController::class,'index']); 
+Route::get('/jadwal', [ScheduleController::class,'index']);
 
 //Reservasi
 Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');

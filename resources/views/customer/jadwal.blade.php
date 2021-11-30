@@ -10,28 +10,28 @@
             <div class="box mt-5">
                 <div class="row">
                     <div class="col-lg-6 col-md-3">
-                        <h1><i class="bi bi-geo-alt"></i> Bandung <i class="bi bi-arrow-right-square"></i>
-                            Indramayu
+                        <h1>
+                            <i class="bi bi-geo-alt"></i> Bandung 
+                            <i class="bi bi-arrow-right-square"></i> Indramayu
                         </h1>
                     </div>
                     <div class="col-lg-6 col-md-3">
                         <form action="{{url('/jadwal')}}" method="GET">
-                            @csrf
                             <div class="form-group">
-                                <select class="select2-single-placeholder form-control" name="depature" id="depature"
-                                    style="width: 100%">
-                                    <option value="">Pilih depature</option>
+                                <select class="select2-single-placeholder form-control" 
+                                    name="depature" id="depature" style="width: 100%">
+                                    <option value="">Pilih keberangkatan</option>
                                     @foreach ($routes as $item)
-                                    <option value="{{$item->depature}}">{{$item->depature}}</option>
+                                        <option value="{{$item->depature}}">{{$item->depature}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mt-2">
-                                <select class="select2-single-placeholder form-control" name="depature" id="depature"
-                                    style="width: 100%">
-                                    <option value="">Pilih arrival</option>
+                                <select class="select2-single-placeholder form-control" 
+                                    name="arrival" id="depature" style="width: 100%">
+                                    <option value="">Pilih tujuan</option>
                                     @foreach ($routes as $item)
-                                    <option value="{{$item->arrival}}">{{$item->arrival}}</option>
+                                        <option value="{{$item->arrival}}">{{$item->arrival}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -46,7 +46,7 @@
         </header>
 
         <div class="row gy-4 mt-4" data-aos="fade-left">
-            @foreach($schedules as $schedule)
+            @forelse ($schedules as $schedule)
             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="box">
                     <img src="assets-flexstart/img/pricing-free.png" class="img-fluid" alt="">
@@ -73,12 +73,15 @@
                     @endif
                 </div>
             </div>
-            @endforeach
+            @empty
+                <h3>Maaf Tidak Tersedia</h3>
+            @endforelse
         </div>
-
-        <div class="d-flex justify-content-center mt-5">
-            {!! $schedules->links() !!}
-        </div>
+        @if (!empty($schedules))
+            <div class="d-flex justify-content-center mt-5">
+                {!! $schedules->links() !!}
+            </div>
+        @endif
     </div>
 
 </section><!-- End Pricing Section -->
