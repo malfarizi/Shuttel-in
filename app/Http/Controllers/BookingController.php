@@ -45,13 +45,14 @@ class BookingController extends Controller
     public function riwayat()
     {
          $id = auth()->user()->id;
-
          $payments = Payment::with([
                             'booking.user', 
                             'booking.schedule.route.shuttle', 
                             'booking.bookingDetails'
                         ])
-                        // ->where()
+                        ->whereHas('booking.user', function($query) {
+                            $query->where('id', auth()->user()->id);
+                        })
                         ->latest()
                         ->get();
 

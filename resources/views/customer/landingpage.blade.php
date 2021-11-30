@@ -89,7 +89,7 @@
     </section>
     @endif
     
-    @if($error)
+    @if(!empty($error))
     <section id="services" class="services">
       <div class="row gy-4">
         <div class="col-lg-12 col-md-12" data-aos="fade-up" data-aos-delay="200">
