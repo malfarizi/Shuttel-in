@@ -96,7 +96,7 @@ class BookingController extends Controller
     {
         DB::transaction(function () use($request) {
             $booking = Booking::create([
-                'id'          => 'SANBOX-'.uniqid(),
+                'id'          => 'Shuttle-'.uniqid(),
                 'user_id'     => auth()->user()->id,
                 'schedule_id' => $request->schedule_id,
             ]);

@@ -11,7 +11,11 @@ class ScheduleController extends Controller
 {
     public function index(Request $request)
     {
-            $routes   = Route::all();
+
+        $path = public_path("/json/cities.json");   
+        //decode to get data json
+        $cities = json_decode(file_get_contents($path));
+
             $routesid = Route::where('depature', $request->depature)
                             ->where('arrival', $request->arrival)
                             ->value('id');
@@ -33,6 +37,6 @@ class ScheduleController extends Controller
                                 ->withQueryString();
             }
 
-            return view('customer.jadwal', compact('schedules','routes'))->withTitle('Daftar Jadwal');
+            return view('customer.jadwal', compact('schedules','cities'))->withTitle('Daftar Jadwal');
     }
 }

@@ -10,28 +10,29 @@
             <div class="box mt-5">
                 <div class="row">
                     <div class="col-lg-6 col-md-3">
-                        <h1>
-                            <i class="bi bi-geo-alt"></i> Bandung 
-                            <i class="bi bi-arrow-right-square"></i> Indramayu
-                        </h1>
+
                     </div>
                     <div class="col-lg-6 col-md-3">
                         <form action="{{url('/jadwal')}}" method="GET">
                             <div class="form-group">
-                                <select class="select2-single-placeholder form-control" 
-                                    name="depature" id="depature" style="width: 100%">
-                                    <option value="">Pilih Keberangkatan</option>
-                                    @foreach ($routes as $item)
-                                        <option value="{{$item->depature}}">{{$item->depature}}</option>
+                                <select class="select2-single-placeholder form-control" name="depature" id="depature"
+                                    style="width: 100%">
+                                    <option value="">Pilih keberangkatan</option>
+                                    @foreach ($cities as $city)
+                                    <option value="{{ $city->type. ' ' .$city->city_name }}">
+                                        {{ $city->type. ' ' .$city->city_name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mt-2">
-                                <select class="select2-single-placeholder form-control" 
-                                    name="arrival" id="depature" style="width: 100%">
+                                <select class="select2-single-placeholder form-control" name="arrival" id="arrival"
+                                    style="width: 100%">
                                     <option value="">Pilih Tujuan</option>
-                                    @foreach ($routes as $item)
-                                        <option value="{{$item->arrival}}">{{$item->arrival}}</option>
+                                    @foreach ($route as $city)
+                                    <option value="{{ $city->type. ' ' .$city->city_name }}">
+                                        {{ $city->type. ' ' .$city->city_name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -74,13 +75,13 @@
                 </div>
             </div>
             @empty
-                <h3>Maaf Tidak Tersedia</h3>
+            <h3>Maaf Tidak Tersedia</h3>
             @endforelse
         </div>
         @if (!empty($schedules))
-            <div class="d-flex justify-content-center mt-5">
-                {!! $schedules->links() !!}
-            </div>
+        <div class="d-flex justify-content-center mt-5">
+            {!! $schedules->links() !!}
+        </div>
         @endif
     </div>
 

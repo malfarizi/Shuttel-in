@@ -145,7 +145,20 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Template Main JS File -->
   <script src="{{asset('assets-flexstart/js/main.js')}}"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // Select2 Single  with Placeholder
+        $('#depature').select2({
+          placeholder: 'Pilih Keberangkatan',
+          allowClear: true
+        });
+  
+        $('#arrival').select2({
+          placeholder: 'Pilih Tujuan',
+          allowClear: true
+        });
+    });
+  </script>
   @stack('scripts')
 
 </body>

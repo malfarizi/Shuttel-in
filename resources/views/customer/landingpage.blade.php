@@ -10,15 +10,15 @@
           dan lega. Bisa langsung Booking Online lho..
         </h2>
         @guest
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="/register" class="btn-get-started scrollto 
+        <div data-aos="fade-up" data-aos-delay="600">
+          <div class="text-center text-lg-start">
+            <a href="/register" class="btn-get-started scrollto 
                 d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Daftar Sekarang</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
+              <span>Daftar Sekarang</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
+        </div>
         @endguest
       </div>
       <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
@@ -42,19 +42,23 @@
                 <select class="select2-single-placeholder form-control" name="depature" id="depature"
                   style="width: 100%" required>
                   <option value="">Pilih Kebarangkatan</option>
-                  
-                  @foreach ($routes as $item)
-                    <option value="{{$item->depature}}">{{$item->depature}}</option>
+
+                  @foreach ($cities as $city)
+                  <option value="{{ $city->type. ' ' .$city->city_name }}">
+                    {{ $city->type. ' ' .$city->city_name }}
+                  </option>
                   @endforeach
                 </select>
               </div>
               <div class="form-group mt-2">
-                <select class="select2-single-placeholder form-control" 
-                  name="arrival" id="depature" style="width: 100%" required>
+                <select class="select2-single-placeholder form-control" name="arrival" id="arrival" style="width: 100%"
+                  required>
                   <option value="">Pilih Tujuan</option>
-                  
-                  @foreach ($routes as $item)
-                    <option value="{{$item->arrival}}">{{$item->arrival}}</option>
+
+                  @foreach ($cities as $city)
+                  <option value="{{ $city->type. ' ' .$city->city_name }}">
+                    {{ $city->type. ' ' .$city->city_name }}
+                  </option>
                   @endforeach
                 </select>
               </div>
@@ -80,17 +84,17 @@
               <li class="list-group-item">{{$data->booking_id}}</li>
             </ul>
             @if ($data->status === 'success')
-              <a href="{{ route('tiket.download', $data->booking_id) }}" 
-                  target="_blank" class="btn btn-sm btn-primary btn-icon">
-                  <span>Cetak Tiket</span> <i class="bi bi-printer"></i>
-              </a>
+            <a href="{{ route('tiket.download', $data->booking_id) }}" target="_blank"
+              class="btn btn-sm btn-primary btn-icon">
+              <span>Cetak Tiket</span> <i class="bi bi-printer"></i>
+            </a>
             @endif
           </div>
         </div>
       </div>
     </section>
     @endif
-    
+
     @if(!empty($error))
     <section id="services" class="services">
       <div class="row gy-4">
@@ -110,34 +114,3 @@
   @csrf
 </form>
 @endsection
-
-@push('js')
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    // Select2 Single  with Placeholder
-      $('#depature').select2({
-        placeholder: 'This is my placeholder',
-        allowClear: true
-      });
-
-      $('#arrival').select2({
-        placeholder: 'This is my placeholder',
-        allowClear: true
-      });
-  });
-  url = '/';
-  var search = document.getElementById('search');
-        search.addEventListener('click', function () {
-          $.ajax({
-          type: 'GET',
-          url: url,
-          data: {query: query},
-          dataType: 'json', 
-          success: function(data) {
-            console.log(data);
-          }
-        });
-    });
-</script>
-@endpush

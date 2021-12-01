@@ -76,7 +76,10 @@ class UserController extends Controller
 
     public function landingpage(Request $request)
     {
-            $routes = Route::all();
+            $path = public_path("/json/cities.json");   
+            //decode to get data json
+            $cities = json_decode(file_get_contents($path));
+
             $data   = DB::table('payments')
                         ->join('bookings', 'bookings.id', '=', 'payments.booking_id')
                         ->join('users', 'users.id', '=', 'bookings.user_id')
@@ -94,7 +97,7 @@ class UserController extends Controller
                     ->with('error', 'Oops Reservasi Yang Kamu Cari Tidak Ada');    
             }
             
-            return view('customer.landingpage',compact('data','routes'));        
+            return view('customer.landingpage',compact('data','cities'));        
     }
 
     public function edit(User $user)

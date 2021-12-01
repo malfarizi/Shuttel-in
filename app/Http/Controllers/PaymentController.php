@@ -36,11 +36,12 @@ class PaymentController extends Controller
                 if ($type == 'credit_card') {
                     $fraud == 'challenge'
                         ? $payment->setStatusPending()
-                        : $payment->setStatusSuccess();
+                        : $payment->setStatusSuccess(); $this->bookingCode($payment->booking_id);
                 }
 
             } elseif ($transaction == 'settlement') {
                 $payment->setStatusSuccess();
+                $this->bookingCode($payment->booking_id);
             
             } elseif($transaction == 'pending'){
                 $payment->setStatusPending();
@@ -64,5 +65,10 @@ class PaymentController extends Controller
         $booking = DB::table('booking_details')->whereBookingId($id);
         $booking->decrement('seat_number', $booking->count());
     }
-
+    public function bookingCode($id)
+    {
+        $booking = DB::table('bookings')->id($id);
+        $code = 'RSV-'.uniqid();
+        $booking->uptade('booking_code', $code);
+    }
 }
