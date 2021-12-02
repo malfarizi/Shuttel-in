@@ -10,7 +10,11 @@
             <div class="box mt-5">
                 <div class="row">
                     <div class="col-lg-6 col-md-3">
-
+                        @if (!empty($depature))
+                        <h1><i class="bi bi-geo-alt"></i> {{$depature}} <i class="bi bi-arrow-right-square"></i>
+                            {{$arrival}}
+                        </h1>
+                        @endif
                     </div>
                     <div class="col-lg-6 col-md-3">
                         <form action="{{url('/jadwal')}}" method="GET">
@@ -29,7 +33,7 @@
                                 <select class="select2-single-placeholder form-control" name="arrival" id="arrival"
                                     style="width: 100%">
                                     <option value="">Pilih Tujuan</option>
-                                    @foreach ($route as $city)
+                                    @foreach ($cities as $city)
                                     <option value="{{ $city->type. ' ' .$city->city_name }}">
                                         {{ $city->type. ' ' .$city->city_name }}
                                     </option>

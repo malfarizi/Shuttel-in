@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use PDF;
 use App\Models\Booking;
 use App\Models\Payment;
 
@@ -70,20 +71,10 @@ class BookingController extends Controller
                     ])
                     ->where('booking_id', $id)
                     ->first();
-                
-        $pdf  = new \Dompdf\Dompdf();
-        $view = view('customer.tiket', compact('payment'));
-        
-        $pdf->loadHtml($view);
-        // $pdf->setPaper('A4', 'landscape');
-        $customPaper = array(0,0,390,420);
-        $pdf->setPaper($customPaper);
-        
-        // Render the HTML as PDF
-        $pdf->render();
-
-        // Output the generated PDF to Browser
-        $pdf->stream();
+        $customPaper = array(0,0,390,620);
+        $pdf = PDF::loadView('customer.tiket', compact('payment'))->setPaper($customPaper);
+  
+        return $pdf->stream($payment->booking_id);
     }
 
     /**

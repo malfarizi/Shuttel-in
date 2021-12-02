@@ -53,6 +53,16 @@ class Payment extends Model
         $this->attributes['status'] = 'expired';
         self::save();
     }
+
+    public function bookingCode($id)
+    {
+        
+        $code = 'RSV-'.uniqid();
+        $booking =  Booking::findorfail($id);
+        $booking->booking_code = $code;
+        $booking->save();
+        //dd($booking);
+    }
     
     public function getTotalRupiahAttribute($value)
     {

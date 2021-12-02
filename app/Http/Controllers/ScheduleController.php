@@ -19,24 +19,25 @@ class ScheduleController extends Controller
             $routesid = Route::where('depature', $request->depature)
                             ->where('arrival', $request->arrival)
                             ->value('id');
-            
+            $depature = $request->depature;
+            $arrival = $request->arrival;
             if(empty($routesid)){
                 $schedules = [];
             }else{
                 $schedules = Schedule::with('route')
                                 ->where('route_id', $routesid)
-                                ->where('date_of_depature', '<', today())
+                                ->where('date_of_depature', '>', today())
                                 ->paginate(8)
                                 ->withQueryString();
             }
             
             if(empty($request->all())){
                 $schedules = Schedule::with('route')
-                                ->where('date_of_depature', '<', today())
+                                ->where('date_of_depature', '>', today())
                                 ->paginate(8)
                                 ->withQueryString();
             }
 
-            return view('customer.jadwal', compact('schedules','cities'))->withTitle('Daftar Jadwal');
+            return view('customer.jadwal', compact('schedules','cities','depature','arrival'))->withTitle('Daftar Jadwal');
     }
 }

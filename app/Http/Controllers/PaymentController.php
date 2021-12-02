@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Payment;
+use App\Models\BookingDetail;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -23,15 +25,20 @@ class PaymentController extends Controller
 
     public function notification()
     {
-        $notif = new \Midtrans\Notification();
+        // $notif = new \Midtrans\Notification();
+       //Shuttle-61a7cd2ef0ea6 gagal
+       //Shuttle-61a7b787e0056 success
+        $uri     = 'https://api.sandbox.midtrans.com/v2/Shuttle-61a7cd2ef0ea6/status';
+        $headers = [ "Authorization" => "Basic U0ItTWlkLXNlcnZlci1sU1lLQ2UzRktjUmRFMEpXbFhJZjMwQ3I6" ];
 
+        $notif = Http::withHeaders($headers)->get($uri)->json();
+        
         DB::transaction(function () use($notif) {
-            $transaction = $notif->transaction_status;
-            $orderId     = $notif->order_id;
-            $fraud       = $notif->fraud_status;
-            $type        = $notification->payment_type;
+            $transaction = $notif['transaction_status'];
+            $orderId     = $notif['order_id'];
+            $fraud       = $notif['fraud_status'];
+            $type        = $notif['payment_type'];
             $payment     = Payment::where('booking_id', $orderId)->first();
-                
             if ($transaction == 'capture') {
                 if ($type == 'credit_card') {
                     $fraud == 'challenge'
@@ -41,7 +48,7 @@ class PaymentController extends Controller
 
             } elseif ($transaction == 'settlement') {
                 $payment->setStatusSuccess();
-                $this->bookingCode($payment->booking_id);
+                $payment->bookingCode($orderId);
             
             } elseif($transaction == 'pending'){
                 $payment->setStatusPending();
@@ -62,13 +69,41 @@ class PaymentController extends Controller
 
     public function countSeatNumber($id) 
     {
-        $booking = DB::table('booking_details')->whereBookingId($id);
-        $booking->decrement('seat_number', $booking->count());
-    }
+        $schedule = DB::table('bookings')->find($id);
+        $booking = DB::table('booking_details')->whereBookingId($id)->count();
+        //dd($booking);
+        $jadwal = DB::table('schedules')->where('id',$schedule->schedule_id)->increment('seat_capacity' , $booking);
+        $delete =  DB::table('booking_details')->where('booking_id',$id)->delete();
+        //$jadwal->update(['seat_capacity' => $booking]);
+        //$jadwal->increment('seat_capacity' , $booking);
+        //$booking->increment('seat_capacity', $booking->count);
+        // $payments = Payment::with([
+        //     'booking.schedule', 
+        //     'booking.bookingDetails'
+        // ])
+        // ->whereHas('booking.user', function($query) {
+        //     $query->where('id', auth()->user()->id);
+        // })
+        // ->latest()
+        // ->get();
+        
+    } 
+
     public function bookingCode($id)
     {
-        $booking = DB::table('bookings')->id($id);
+        
         $code = 'RSV-'.uniqid();
-        $booking->uptade('booking_code', $code);
+        $booking =  Booking::findorfail($id);
+        $booking->booking_code = $code;
+        $booking->save();
+        //dd($booking);
+    }
+    public function getStatus() 
+    {
+        $uri     = 'https://api.sandbox.midtrans.com/v2/Shuttle-61a7b787e0056/status';
+        $headers = [ "Authorization" => "Basic U0ItTWlkLXNlcnZlci1sU1lLQ2UzRktjUmRFMEpXbFhJZjMwQ3I6" ];
+
+        $response = Http::withHeaders($headers)->get($uri);
+        return $response->json();
     }
 }

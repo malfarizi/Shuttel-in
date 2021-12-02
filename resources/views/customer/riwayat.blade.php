@@ -6,8 +6,8 @@
 <section id="jadwal" class="jadwal">
 
     <div class="container mt-5" data-aos="fade-up">
-        <div class="box">
-            <table class=" table table-responsive table-borderless">
+        <div class="box table table-responsive">
+            <table class="table table-borderless">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -22,40 +22,40 @@
                 </thead>
                 <tbody>
                     @foreach($payments as $payment)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}.</th>
-                            
-                            <td>{{ $payment->booking->booking_code }}</td>
-                            <td>{{ $payment->booking->schedule->route->depature_arrival }}</td>
-                            <td>{{ $payment->booking->schedule->dateTimeDepature }}</td>
-                            <td>
-                                @foreach($payment->booking->bookingDetails as $booking)
-                                    {{ $booking->seat_number }}
-                                @endforeach
-                            </td>
-                            <td>{{$payment->total_rupiah}}</td>
-                            <td> 
-                                @include('components.badge', [
-                                    'status'        => $payment->status,
-                                    'isBootstrap5'  => 1
-                                ])
-                            </td>
-                            <td>
-                                @if ($payment->status === 'success')
-                                    <a href="{{ route('tiket.download', $payment->booking_id) }}" 
-                                        target="_blank" class="btn btn-sm btn-primary btn-icon">
-                                        <i class="bi bi-printer">&nbsp; Cetak</i>
-                                    </a>
-                                @endif
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}.</th>
 
-                                @if ($payment->status === 'pending')
-                                    <button type="button" class="btn btn-sm btn-warning btn-icon"
-                                        onclick="snap.pay('{{$payment->snap_token}}')">
-                                        <i class="bi bi-cash">&nbsp; Bayar</i>
-                                    </button>
-                                @endif
-                            </td>
-                        </tr>
+                        <td>{{ $payment->booking->booking_code }}</td>
+                        <td>{{ $payment->booking->schedule->route->depature_arrival }}</td>
+                        <td>{{ $payment->booking->schedule->dateTimeDepature }}</td>
+                        <td>
+                            @foreach($payment->booking->bookingDetails as $booking)
+                            {{ $booking->seat_number ?? '-' }}
+                            @endforeach
+                        </td>
+                        <td>{{$payment->total_rupiah}}</td>
+                        <td>
+                            @include('components.badge', [
+                            'status' => $payment->status,
+                            'isBootstrap5' => 1
+                            ])
+                        </td>
+                        <td>
+                            @if ($payment->status === 'success')
+                            <a href="{{ route('tiket.download', $payment->booking_id) }}" target="_blank"
+                                class="btn btn-sm btn-primary btn-icon">
+                                <i class="bi bi-printer">&nbsp; Cetak</i>
+                            </a>
+                            @endif
+
+                            @if ($payment->status === 'pending')
+                            <button type="button" class="btn btn-sm btn-warning btn-icon"
+                                onclick="snap.pay('{{$payment->snap_token}}')">
+                                <i class="bi bi-cash">&nbsp; Bayar</i>
+                            </button>
+                            @endif
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

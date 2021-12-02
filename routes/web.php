@@ -56,13 +56,14 @@ Route::get('/', [UserController::class, 'landingpage'])->name('landingpage');
 Route::get('/jadwal', [ScheduleController::class,'index']);
 
 //Get Status Payment
-Route::post('/api/midtrans/payments/notification', [PaymentController::class, 'notification']);
+Route::get('/api/midtrans/notification', [PaymentController::class, 'notification']);
+Route::get('/api/midtrans/getStatus', [PaymentController::class, 'getStatus']);
 
 // Profil
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
 
-Route::middleware('auth')->group( function() {
+Route::middleware(['auth'])->group( function() {
     Route::post('booking', [BookingController::class, 'store']);
     Route::get('/riwayat', [BookingController::class, 'riwayat']);
     Route::get('reservasi/{schedule}', [BookingController::class, 'reservasi'])->name('reservasi');
