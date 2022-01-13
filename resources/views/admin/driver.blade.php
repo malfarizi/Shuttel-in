@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <section class="section">
-        @include('components.breadcrumbs', ['menu' => 'Data Driver'])
+        @include('components.breadcrumbs')
         <div class="section-body">
             <!-- DataTable with Hover -->
             <div class="row">
@@ -63,12 +63,16 @@
                                                 </td>
                                                
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-md" 
-                                                        data-toggle="modal" data-target="#edit-data-{{$driver->id}}">
+                                                    <button 
+                                                        type="button" 
+                                                        class="btn btn-primary btn-md" 
+                                                        data-toggle="modal" 
+                                                        data-target="#edit-data-{{ $driver->id }}"
+                                                    >
                                                         <i class="fas fa-user-edit"></i>
                                                     </button>
                                                     <form 
-                                                        action="{{route('admin.drivers.destroy', $driver->id)}}" 
+                                                        action="{{ route('admin.drivers.destroy', $driver->id) }}" 
                                                         method="POST" 
                                                         class="d-inline"
                                                     >
@@ -138,14 +142,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Pilih Status Driver</label>
-                        <select name="driver_status" class="form-control">
-                            <option value="" disabled selected>
-                                Pilih Status Driver
-                            </option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
-                        </select>
+                        <div class="control-label">Pilih Status Driver</div>
+                        <label class="custom-switch mt-2">
+                          <input type="checkbox" name="driver_status" class="custom-switch-input">
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -160,8 +162,9 @@
 </div>
 
 <!--Modal Edit-->
-@foreach($drivers as $driver)
-<div class="modal fade" id="edit-data-{{$driver->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($drivers as $driver)
+<div class="modal fade" id="edit-data-{{ $driver->id }}" tabindex="-1" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -173,7 +176,8 @@
                 </button>
             </div>
 
-            <form action="{{route('admin.drivers.update', $driver)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.drivers.update', $driver) }}" 
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -181,19 +185,19 @@
                     <div class="form-group">
                         <label for="">Nama Driver</label>
                         <input type="text" class="form-control" name="driver_name"
-                            value="{{$driver->driver_name}}">
+                            value="{{ $driver->driver_name }}">
                     </div>
 
                     <div class="form-group">
-                        <label for="">No Telephone</label>
+                        <label for="">No Telepon</label>
                         <input type="text" class="form-control integerInput" name="phone_number" 
-                            value="{{$driver->phone_number}}">
+                            value="{{ $driver->phone_number }}">
                     </div>
 
                     <div class="form-group">
                         <label for="">Alamat</label>
                         <textarea class="form-control h-25" rows="5" 
-                            name="address">{{$driver->address}}</textarea>
+                            name="address">{{ $driver->address }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -208,23 +212,20 @@
 
 
                     <div class="form-group">
-                        <label for="">Pilih Status Driver</label>
-                        <select name="driver_status" class="form-control">
-                            <option 
-                                value="Aktif" 
-                                {{$driver->driver_status === 'Aktif' ? 'selected' : '' }}
-                            >
-                                Aktif
-                            </option>
-                            <option 
-                                value="Tidak Aktif"
-                                {{$driver->driver_status === 'Tidak Aktif' ? 'selected' : '' }}
-                            >
-                                Tidak Aktif
-                            </option>
-                        </select>
-                    </div> 
+                        <div class="control-label">Pilih Status Driver</div>
+                        <label class="custom-switch mt-2">
+                          <input 
+                            type="checkbox" 
+                            name="driver_status" 
+                            class="custom-switch-input"
+                            @if($driver->driver_status == 'Aktif') checked @endif
+                        >
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
+                    </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         Batal

@@ -14,8 +14,7 @@
             <tr>
                 <td>{{ $payment->booking->user->name }}</td>
                 <td>
-                    {{ $payment->booking->schedule->date_of_depature }}
-                    {{ $payment->booking->schedule->depature_time }}
+                    {{ $payment->booking->schedule->date_time_depature }}
                 </td> 
                 <td>{{ $payment->snap_token ?? '-' }}</td>
                 <td>{{ $payment->booking_code ?? '-' }}</td>

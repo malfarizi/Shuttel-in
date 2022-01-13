@@ -14,8 +14,10 @@ class ShuttleFactory extends Factory
      */
     public function definition()
     {
+        $nopol = strtoupper(Str::random(1)).' '.$this->faker->randomNumber(4).' '.strtoupper(Str::random(rand(2,3)));
+        
         return [
-            'nopol' => strtoupper(Str::random(1)).' '.$this->faker->randomNumber(4).' '.strtoupper(Str::random(rand(2,3))),
+            'nopol'     => $nopol,
             'driver_id' => \App\Models\Driver::inRandomOrder()->first()->id,
             'shuttle_status' => $this->faker->randomElement(['Aktif', 'Tidak Aktif'])
         ];

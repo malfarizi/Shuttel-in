@@ -37,13 +37,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
     
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = bcrypt($value);
     }
     
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function verify()
+    {
+        return $this->hasOne(UserVerify::class);
     }
 }

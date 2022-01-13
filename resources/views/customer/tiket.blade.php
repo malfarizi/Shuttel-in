@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Tiket-{{$payment->booking_id}}</title>
+	<title>Tiket-{{ $payment->booking_id }}</title>
 </head>
 
 <body>
@@ -110,7 +110,9 @@
 	<table class="tg">
 		<thead>
 			<tr>
-				<th class="tg-zv4m" colspan="3"><img src="images/logo_shuttle.png" width="200" height="50"></th>
+				<th class="tg-zv4m" colspan="3">
+					<img src="{{asset('images/logo_shuttle.png')}}" width="200" height="50">
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -118,7 +120,9 @@
 				<td class="tg-xaus" colspan="3">TIKET SHUTTLE-IN</td>
 			</tr>
 			<tr>
-				<td class="tg-zv4m" colspan="3">Kode Reservasi - {{$payment->booking->booking_code}}</td>
+				<td class="tg-zv4m" colspan="3">
+					Kode Reservasi - {{ $payment->booking->booking_code }}
+				</td>
 			</tr>
 			<tr>
 				<td class="tg-yj3z">{{ $payment->booking->schedule->route->depature }}</td>
@@ -126,7 +130,9 @@
 				<td class="tg-292r">{{ $payment->booking->schedule->route->arrival }}</td>
 			</tr>
 			<tr>
-				<td class="tg-8jgo" colspan="3"><img src="images/barcode.png" alt="" width="330px"></td>
+				<td class="tg-8jgo" colspan="3">
+					<img src="{{ asset('images/barcode.png') }}" alt="" width="330px">
+				</td>
 			</tr>
 			<tr>
 				<td class="tg-zv41m">Detail Reservasi</td>
@@ -146,14 +152,14 @@
 			<tr>
 				<td class="tg-zv4m">Waktu Keberangkatan</td>
 				<td class="tg-zv4m"></td>
-				<td class="tg-zv4m" {{ $payment->booking->schedule->depature_time }}</td>
+				<td class="tg-zv4m"> {{ $payment->booking->schedule->depature_time }}</td>
 			</tr>
 			<tr>
 				<td class="tg-zv4m">No Kursi</td>
 				<td class="tg-zv4m"></td>
 				<td class="tg-zv4m">
 					@foreach($payment->booking->bookingDetails as $booking)
-					{{ $booking->seat_number }}
+						{{ $booking->seat_number }} @if(!$loop->last) , @endif
 					@endforeach
 				</td>
 
@@ -164,8 +170,8 @@
 				<td class="tg-zv4m"></td>
 			</tr>
 			<tr>
-				<td class="tg-zv4m"><img src="images/wallet.png" alt=""></td>
-				<td class="tg-zv4m">{{$payment->booking_id}}</td>
+				<td class="tg-zv4m"><img src="{{ asset('images/wallet.png') }}" alt=""></td>
+				<td class="tg-zv4m">{{ $payment->booking_id }}</td>
 				<td class="tg-zv4m"></td>
 			</tr>
 			<tr>
@@ -175,13 +181,13 @@
 			</tr>
 			<tr>
 				<td class="tg-zv4m">Jumlah Kursi</td>
-				<td class="tg-8jgo">{{ $payment->booking->bookingDetails->count() }} </td>
-				<td class="tg-zv4m">{{ $payment->booking->schedule->route->price_rupiah }}</td>
+				<td class="tg-8jgo">{{ $payment->booking->booking_details_count }} </td>
+				<td class="tg-zv4m">@money($payment->booking->schedule->route->price)</td>
 			</tr>
 			<tr>
 				<td class="tg-km2t">Total</td>
 				<td class="tg-zv4m"></td>
-				<td class="tg-zv4m">{{ $payment->total_rupiah }}</td>
+				<td class="tg-zv4m">@money($payment->total)</td>
 			</tr>
 			<tr>
 				<td class="tg-78fz" colspan="3">Terima Kasih</td>
@@ -189,5 +195,4 @@
 		</tbody>
 	</table>
 </body>
-
 </html>

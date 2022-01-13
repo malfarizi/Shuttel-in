@@ -7,18 +7,18 @@ use App\Models\UserVerify;
 
 class VerificationController extends Controller
 {
-    public function verifyAccount($token)
+    public function __invoke($token)
     {
         $verifyUser = UserVerify::where('token', $token)->first();
   
         $message = 'Sorry your email cannot be identified.';
   
-        if(!is_null($verifyUser) ){
+        if(!empty($verifyUser) ){
             $user = $verifyUser->user;
               
             if(!$user->is_email_verified) {
-                $verifyUser->user->is_email_verified = 1;
-                $verifyUser->user->save();
+                $user->is_email_verified = 1;
+                $user->save();
                 $message = "Your e-mail is verified. You can now login.";
             } else {
                 $message = "Your e-mail is already verified. You can now login.";

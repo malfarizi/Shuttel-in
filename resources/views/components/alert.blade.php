@@ -1,4 +1,4 @@
-@if($message = session('success'))
+@if($message = session('success') ?? session('message'))
     <div class="alert alert-success alert-dismissible fade show">
         <strong>{{ $message }}</strong>
         <button 
@@ -25,16 +25,18 @@
         @endif
         <button 
             type="button" 
-            @if($isBootstrap5 ?? '')
+            @isset($isBootstrap5)
                 class="btn-close" 
                 data-bs-dismiss="alert"
             @else
                 class="close text-white" 
                 data-dismiss="alert"
-            @endif
+            @endisset
             aria-label="Close"
         >
-            <span aria-hidden="true"> &times; </span>
+        @empty($isBootstrap5)
+            <span aria-hidden="true"> &times; </span> 
+        @endempty 
         </button>    
     </div>
 @endif

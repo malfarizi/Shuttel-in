@@ -16,10 +16,7 @@ class UserVerify extends Model
      *
      * @return response
      */
-    protected $fillable = [
-        'user_id',
-        'token',
-    ];
+    protected $fillable = ['user_id', 'token'];
   
     /**
      * Write code on Method

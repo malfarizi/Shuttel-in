@@ -14,23 +14,16 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        //customer count
-        $customer_count = User::where('role', 'Customer')->count();
-
-        //Driver count
-        $active_driver_count = Driver::activeStatus()->count();
-        
-        //Shuttle count
+        $customer_count       = User::whereRole('Customer')->count();
+        $active_driver_count  = Driver::activeStatus()->count();
         $active_shuttle_count = Shuttle::activeStatus()->count();
-
-        //Payments
-        $payments = Payment::with([
-                        'booking.user', 
-                        'booking.schedule.route.shuttle.driver', 
-                        'booking.bookingDetails'
-                    ])
-                    ->latest()
-                    ->get();
+        $payments             = Payment::with([
+                                    'booking.user', 
+                                    'booking.schedule.route.shuttle.driver', 
+                                    'booking.bookingDetails'
+                                ])
+                                ->latest()
+                                ->get();
 
         $count_status = $payments->groupBy('status')->map->count()->except('expired');
         

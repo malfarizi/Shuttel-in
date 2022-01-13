@@ -49,12 +49,12 @@
                                         @forelse ($schedules as $schedule)
                                         <tr>
                                             <td>{{ $loop->iteration }}.</td>
-                                            <td>{{ $schedule->date_of_depature }}</td>
+                                            <td>@date($schedule->date_of_depature)</td>
                                             <td>{{ $schedule->depature_time }}</td>
                                             <td width="2">{{ $schedule->seat_capacity }}</td>
                                             <td width="2">{{ $schedule->schedule_status }}</td>
                                             <td>
-                                                {{ $schedule->route->depature_arrival }}
+                                                {{ $schedule->route->getDepatureArrival() }}
                                             </td>
                                             <td>
                                                 <button type="button" 
@@ -107,7 +107,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('admin.schedules.store')}}" method="POST">
+            <form action="{{ route('admin.schedules.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -135,14 +135,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Pilih Status Jadwal</label>
-                        <select name="schedule_status" class="form-control">
-                            <option value="" disabled selected>
-                                Pilih Status Jadwal
-                            </option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
-                        </select>
+                        <div class="control-label">Pilih Status Jadwal</div>
+                        <label class="custom-switch mt-2">
+                          <input type="checkbox" name="schedule_status" class="custom-switch-input">
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -198,11 +196,11 @@
                             @foreach ($routes as $route)
                                 @if($schedule->route_id != $route->id)
                                     <option value="{{ $route->id }}">
-                                        {{ $route->depature_arrival }}
+                                        {{ $route->getDepatureArrival() }}
                                     </option>
                                 @else
                                     <option value="{{ $route->id }}" selected>
-                                        {{ $route->depature_arrival }}
+                                        {{ $route->getDepatureArrival() }}
                                     </option>
                                 @endif
                             @endforeach
@@ -210,23 +208,18 @@
                     </div>
     
                     <div class="form-group">
-                        <label for="">Pilih Status Jadwal</label>
-                        <select name="schedule_status" class="form-control">
-                            <option 
-                                value="Aktif" 
-                                {{ $schedule->schedule_status === 'Aktif' ? 'selected' : '' }}
-                            >
-                                Aktif
-                            </option>
-                            <option 
-                                value="Tidak Aktif"
-                                {{ $schedule->schedule_status === 'Tidak Aktif' ? 'selected' : '' }}
-                            >
-                                Tidak Aktif
-                            </option>
-                        </select>
+                        <div class="control-label">Pilih Status Jadwal</div>
+                        <label class="custom-switch mt-2">
+                          <input 
+                            type="checkbox" 
+                            name="schedule_status" 
+                            class="custom-switch-input"
+                            @if($schedule->schedule_status == 'Aktif') checked @endif
+                        >
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
                     </div>
-    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">

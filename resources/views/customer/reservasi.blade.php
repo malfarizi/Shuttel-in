@@ -25,7 +25,7 @@
                         <h5>Tersedia
                             <strong>{{ $schedule->seat_capacity }} dari 7</strong> Kursi
                         </h5>
-                        <h5 id="price">{{ $schedule->route->price_rupiah }}</h5>
+                        <h5 id="price">@money($schedule->route->price)</h5>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
 @push('scripts')
 <!-- MIDTRANS -->
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
+    data-client-key="{{config('midtrans.client_key')}}"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -182,7 +182,16 @@
             return arr.filter(el => el !== num);
         }
 
+        function currency(const num){
+            if(num !== null) {
+                const format  = num.toString().split('').reverse().join('');
+                const convert = format.match(/\d{1,3}/g);
+                const rupiah  = 'Rp ' + convert.join('.').split('').reverse().join('');
+            }
+        }
+
         let seats = [];
+
         $('#seat_number1').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -194,9 +203,10 @@
             
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+
         $('#seat_number2').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -208,9 +218,10 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+
         $('#seat_number3').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -222,9 +233,10 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+
         $('#seat_number4').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -236,9 +248,10 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+
         $('#seat_number5').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -250,9 +263,10 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+        
         $('#seat_number6').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -264,9 +278,10 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
+
         $('#seat_number7').click(function(){
             if($(this).hasClass('btn btn-outline-secondary')){
                 $(this).removeClass('btn btn-outline-secondary').addClass('btn btn-success');
@@ -278,7 +293,7 @@
 
             let price = "{{ $schedule->route->price }}";
             let total = parseInt(seats.length) * parseInt(price);
-            $('#total').val(total);
+            $('#total').val(currency(total));
             $('#seat_number').val(seats);
         });
     }); 
@@ -287,9 +302,10 @@
         event.preventDefault();
             $.post("{{url('booking')}}",{
             _method: 'POST',
-            _token : '{{ csrf_token() }}',
+            _token: '{{ csrf_token() }}',
             schedule_id: '{{ $schedule->id }}',
             seat_number: $('#seat_number').val(),
+            subtotal: "{{ $schedule->route->price }}",
             total: parseInt($('#total').val())
         },
         function (data, status) {
@@ -297,21 +313,21 @@
             snap.pay(data.snap_token, {
                 // Optional
                 onSuccess: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result);
+                    //console.log(result);
+                    console.log(JSON.stringify(result, null, 2));
+                    location.replace('/');
                 },
                 // Optional
                 onPending: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result);
+                    //console.log(result);
+                    console.log(JSON.stringify(result, null, 2));
+                    location.replace('/');
                 },
                 // Optional
                 onError: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result);
+                    //console.log(result);
+                    console.log(JSON.stringify(result, null, 2));
+                    location.replace('/');
                 },
             });
             return false;

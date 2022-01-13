@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="{{route('admin.payments.export')}}" method="GET">
+                        <form action="{{ route('admin.payments.export') }}" method="GET">
                             @csrf           
                             <div class="card-header">
                                 <div class="form-group mr-3">
@@ -114,12 +114,12 @@
                                                 </td>
                                                 <td>{{ $payment->booking->user->phone_number }}</td>
                                                 <td>
-                                                    {{ $payment->booking->schedule->dateTimeDepature }}
+                                                    {{ $payment->booking->schedule->getDateTimeDepature() }}
                                                 </td> 
                                                 <td>
                                                     @include('components.badge', ['status' => $payment->status ])
                                                 </td>
-                                                <td>{{ $payment->total_rupiah }}</td>
+                                                <td>@money($payment->total)</td>
                                                 <td>
                                                     <button 
                                                         type="button" 
@@ -153,7 +153,7 @@
 
 {{-- Modal Detail --}}
 @foreach ($payments as $payment)
-<div class="modal fade" id="modaldetail-{{$payment->id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modaldetail-{{ $payment->id }}" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -178,7 +178,7 @@
                         Jadwal Keberangkatan
                     </label>
                     <div class="col-sm-12">
-                        {{ $payment->booking->schedule->dateTimeDepature }}
+                        {{ $payment->booking->schedule->getDateTimeDepature() }}
                     </div>
                 </div>
 
@@ -188,7 +188,7 @@
                     </label>
                     <div class="col-sm-5">
                         @foreach ($payment->booking->bookingDetails as $booking)
-                            {{ $booking->seat_number }}
+                            {{ $booking->seat_number }} @if(!$loop->last) {{', '}} @endif
                         @endforeach
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-7 col-form-label">Rute</label>
                     <div class="col-sm-12">
-                        {{ $payment->booking->schedule->route->depature_arrival }}
+                        {{ $payment->booking->schedule->route->getDepatureArrival() }}
                     </div>
                 </div>
 

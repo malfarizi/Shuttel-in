@@ -2,42 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schedule;
 use App\Models\Route;
+use App\Models\Schedule;
 
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
+        $path       = public_path("/json/cities.json");   
+        $cities     = json_decode(file_get_contents($path));
+        
+        $depature   = $request->depature;
+        $arrival    = $request->arrival;
 
-        $path = public_path("/json/cities.json");   
-        //decode to get data json
-        $cities = json_decode(file_get_contents($path));
+        $routesid   = Route::where(compact('depature', 'arrival'))->value('id');    
+        
+        $schedules  = Schedule::query()
+                        ->where('date_of_depature', '>', today())
+                        ->when($request->has(['depature', 'arrival']), function($query) use($routesid) {
+                            return $query->where('route_id', $routesid);
+                        })
+                        ->paginate(8)
+                        ->withQueryString();
 
-            $routesid = Route::where('depature', $request->depature)
-                            ->where('arrival', $request->arrival)
-                            ->value('id');
-            $depature = $request->depature;
-            $arrival = $request->arrival;
-            if(empty($routesid)){
-                $schedules = [];
-            }else{
-                $schedules = Schedule::with('route')
-                                ->where('route_id', $routesid)
-                                ->where('date_of_depature', '>', today())
-                                ->paginate(8)
-                                ->withQueryString();
-            }
-            
-            if(empty($request->all())){
-                $schedules = Schedule::with('route')
-                                ->where('date_of_depature', '>', today())
-                                ->paginate(8)
-                                ->withQueryString();
-            }
-
-            return view('customer.jadwal', compact('schedules','cities','depature','arrival'))->withTitle('Daftar Jadwal');
+        return view('customer.jadwal', compact('schedules','cities','depature','arrival'));
     }
 }
