@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +9,7 @@ class LoginController extends Controller
 {
     public function index() 
     {
-        return view('auth.loginadmin');
+        return view('auth.logincustomer');    
     }
 
     public function authenticate(Request $request) 
@@ -22,15 +19,14 @@ class LoginController extends Controller
             'password'  => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password') + ['role' => 'Admin'];
-        $remember    = $request->remember ? true : false;
-    
-        if (Auth::attempt($credentials, $remember)) {
+        $credentials = $request->only('email', 'password') + ['role' => 'Customer'];
+        
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('/');
         }
 
-        return back()->with('error', 'Email dan password anda salah');
+        return back()->with('error', 'Email  password anda salah');
     }
 
     public function logout()
@@ -38,6 +34,6 @@ class LoginController extends Controller
         auth()->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/admin/login');
+        return redirect('/');
     }
 }

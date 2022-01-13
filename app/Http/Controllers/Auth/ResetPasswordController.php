@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 use DB;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
@@ -45,10 +44,10 @@ class ResetPasswordController extends Controller
             return back()->withInput()->with('error', 'Invalid token!');
         }
 
-        $user = User::where('email', $request->email)
-                    ->update(['password' => $request->password]);
+        $user = User::where('email', $request->email)->first();
+        $user->update($request->only('password'));
 
-        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+        DB::table('password_resets')->where('email', $request->email)->delete();
 
         return redirect('/login')->with('message', 'Your password has been changed!');
     }

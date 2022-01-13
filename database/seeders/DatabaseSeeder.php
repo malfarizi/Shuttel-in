@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        $this->call(UserSeeder::class);
         \App\Models\Driver::factory(100)->create();
         \App\Models\Shuttle::factory(10)->create();
         \App\Models\Route::factory(10)->create();

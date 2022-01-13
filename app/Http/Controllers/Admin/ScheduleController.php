@@ -18,7 +18,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $routes     = Route::all();
-        $schedules  = Schedule::with('route')->latest()->get();
+        $schedules  = Schedule::latest()->get();
         return view('admin.schedule', compact('schedules', 'routes'))->withTitle('Data Jadwal');
     }
 
@@ -31,7 +31,6 @@ class ScheduleController extends Controller
     public function store(ScheduleRequest $request)
     {
         Schedule::create($request->validated());
-
         return back()->withSuccess('Data berhasil ditambahkan');
     }
 
@@ -45,7 +44,6 @@ class ScheduleController extends Controller
     public function update(ScheduleRequest $request, Schedule $schedule)
     {
         $schedule->update($request->validated());
-
         return back()->withSuccess('Data berhasil diubah');
     }
 

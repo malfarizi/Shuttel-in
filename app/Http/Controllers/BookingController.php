@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use DB;
-use PDF;
-use App\Models\Booking;
+use App\Models\Schedule;
 use App\Models\Payment;
 
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
           // Set your Merchant Server Key
-          \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+          \Midtrans\Config::$serverKey = config('midtrans.server_key');
           // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
           \Midtrans\Config::$isProduction = false;
           // Set sanitization on (default)
@@ -21,12 +21,13 @@ class BookingController extends Controller
           // Set 3DS transaction for credit card to true
           \Midtrans\Config::$is3ds = true;
     }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function reservasi(\App\Models\Schedule $schedule)
+    public function reservasi(Schedule $schedule)
     {   
         $exists_seat = DB::table('booking_details')
                             ->join('bookings', 'bookings.id', 'booking_details.booking_id')
@@ -34,8 +35,7 @@ class BookingController extends Controller
                             ->pluck('seat_number')
                             ->toArray();
 
-        return view('customer.reservasi', compact('schedule', 'exists_seat'))
-                ->withTitle('Daftar Jadwal');
+        return view('customer.reservasi', compact('schedule', 'exists_seat'))->withTitle('Daftar Jadwal');
     }
 
     /**
@@ -45,21 +45,11 @@ class BookingController extends Controller
      */
     public function riwayat()
     {
-         $payments = Payment::with([
-                            'booking.user', 
-                            'booking.schedule.route.shuttle', 
-                            'booking.bookingDetails'
-                        ])
-                        ->whereHas('booking.user', function($query) {
-                            $query->where('id', auth()->user()->id);
-                        })
-                        ->latest()
+        $payments = auth()->user()->bookings()
+                        ->with(['payment', 'user', 'bookingDetails', 'schedule.route.shuttle'])
                         ->get();
 
-        return view('customer.riwayat', [
-            'title'     => 'Data Riwayat Pemesanan',
-            'payments'  => $payments,
-        ]);
+        return view('customer.riwayat', compact('payments'))->withTitle('Data Riwayat Pemesanan');
     }
 
     public function downloadTicket($id) 
@@ -71,8 +61,9 @@ class BookingController extends Controller
                     ])
                     ->where('booking_id', $id)
                     ->first();
+
         $customPaper = array(0,0,390,620);
-        $pdf = PDF::loadView('customer.tiket', compact('payment'))->setPaper($customPaper);
+        $pdf = \PDF::loadView('customer.tiket', compact('payment'))->setPaper($customPaper);
   
         return $pdf->stream($payment->booking_id);
     }
@@ -86,26 +77,24 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use($request) {
-            $booking = Booking::create([
-                'id'          => 'Shuttle-'.uniqid(),
-                'user_id'     => auth()->user()->id,
-                'schedule_id' => $request->schedule_id,
-            ]);
+            $booking = auth()->user()->bookings()->firstOrCreate(
+                $request->only('schedule_id'),
+                ['id' => 'Shuttle-'.uniqid()] 
+            );
 
             $seat_number_array  = explode(',',$request->seat_number);
             $count_seat_booking = count($seat_number_array);
-           
-            for ($i = 0; $i < $count_seat_booking; $i++) { 
-                DB::table('booking_details')->insert([
-                    'booking_id'   => $booking->id,
-                    'subtotal'     => $booking->schedule->route->price,
-                    'seat_number'  => $seat_number_array[$i]
-                ]);    
+
+            foreach ($request->seat_number as $seat_number) {
+                $booking->bookingDetails()->create([
+                    ...$request->only('subtotal'),
+                    'seat_number' => $seat_number
+                ]);
             }
 
             $booking->schedule->decrement('seat_capacity', $count_seat_booking);
 
-            $booking->payment()->create($request->only('total'));
+            $booking->payment->create($request->only('total'));
             
             $payload = [
                 'customer_details' => [

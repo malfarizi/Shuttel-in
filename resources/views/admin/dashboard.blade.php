@@ -34,19 +34,19 @@
                         <div class="card-stats-items">
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $count_status->get('pending') }}
+                                    {{ $count_status['pending'] }}
                                 </div>
                                 <div class="card-stats-item-label">Pending</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $count_status->get('failed') }}
+                                    {{ $count_status['failed'] }}
                                 </div>
                                 <div class="card-stats-item-label">Failed</div>
                             </div>
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">
-                                    {{ $count_status->get('success') }}
+                                    {{ $count_status['success'] }}
                                 </div>
                                 <div class="card-stats-item-label">Completed</div>
                             </div>
@@ -148,7 +148,7 @@
                                         <td>
                                             @include('components.badge', ['status' => $payment->status ])
                                         </td>
-                                        <td>{{ $payment->total_rupiah }}</td>
+                                        <td>@money($payment->total)</td>
                                         <td>
                                             <button 
                                                 type="button" 
@@ -177,7 +177,8 @@
 </div>
 
 @foreach ($payments->take(5) as $payment)
-<div class="modal fade" id="modaldetail-{{$payment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modaldetail-{{ $payment->id }}" tabindex="-1" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -191,7 +192,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="col-sm-3 col-form-label">Nama</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-12">
                         {{ $payment->booking->user->name }}
                     </div>
                 </div>
@@ -201,7 +202,7 @@
                         Jadwal Keberangkatan
                     </label>
                     <div class="col-sm-12">
-                        {{ $payment->booking->schedule->dateTimeDepature }}
+                        {{ $payment->booking->schedule->getDateTimeDepature() }}
                     </div>
                 </div>
 
@@ -211,7 +212,7 @@
                     </label>
                     <div class="col-sm-5">
                         @foreach ($payment->booking->bookingDetails as $booking)
-                            {{ $booking->seat_number }}
+                            {{ $booking->seat_number }} @if(!$loop->last) {{', '}} @endif
                         @endforeach
                     </div>
                 </div>

@@ -32,15 +32,15 @@ class ShuttleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nopol'   => 'required',
+            'nopol'             => 'required',
             'shuttle_status'    => 'required',
-            'driver_id'      => 'required',
+            'driver_id'         => 'required',
         ]);
 
-        $data = new Shuttle();
-    	$data->nopol = $request->nopol;
-    	$data->shuttle_status = $request->shuttle_status;
-        $data->driver_id = $request->driver_id;
+        $data                   = new Shuttle();
+    	$data->nopol            = $request->nopol;
+    	$data->shuttle_status   = $request->shuttle_status ? 'Aktif' : 'Tidak Aktif';
+        $data->driver_id        = $request->driver_id;
 
         $data->save();
 

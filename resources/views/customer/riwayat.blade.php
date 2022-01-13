@@ -4,7 +4,6 @@
 
 <!-- ======= riwayat Section ======= -->
 <section id="jadwal" class="jadwal">
-
     <div class="container mt-5" data-aos="fade-up">
         <div class="box table table-responsive">
             <table class="table table-borderless">
@@ -21,40 +20,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $payment)
+                    @foreach ($payments as $payment)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}.</th>
 
-                        <td>{{ $payment->booking->booking_code }}</td>
-                        <td>{{ $payment->booking->schedule->route->depature_arrival }}</td>
-                        <td>{{ $payment->booking->schedule->dateTimeDepature }}</td>
+                        <td>{{ $payment->booking_code }}</td>
+                        <td>{{ $payment->schedule->route->getDepatureArrival() }}</td>
+                        <td>{{ $payment->schedule->getDateTimeDepature() }}</td>
                         <td>
-                            @foreach($payment->booking->bookingDetails as $booking)
-                            {{ $booking->seat_number ?? '-' }}
+                            @foreach($payment->bookingDetails as $booking)
+                                {{ $booking->seat_number ?? '-' }} @if(!$loop->last) , @endif
                             @endforeach
                         </td>
-                        <td>{{$payment->total_rupiah}}</td>
-                        <td>
-                            @include('components.badge', [
-                            'status' => $payment->status,
-                            'isBootstrap5' => 1
-                            ])
-                        </td>
-                        <td>
-                            @if ($payment->status === 'success')
-                            <a href="{{ route('tiket.download', $payment->booking_id) }}" target="_blank"
-                                class="btn btn-sm btn-primary btn-icon">
-                                <i class="bi bi-printer">&nbsp; Cetak</i>
-                            </a>
-                            @endif
+                        @isset($payment->payment)
+                            <td>@money($payment->payment->total)</td>
+                        
+                            <td>
+                                @include('components.badge', [
+                                    'status'        => $payment->payment->status,
+                                    'isBootstrap5'  => 1
+                                ])
+                            </td>
+                            <td>
+                                @if ($payment->payment->status == 'success')
+                                    <a href="{{ route('tiket.download', $payment->id) }}" 
+                                        target="_blank"
+                                        class="btn btn-sm btn-primary btn-icon">
+                                        <i class="bi bi-printer">&nbsp; Cetak</i>
+                                    </a>
+                                @endif
 
-                            @if ($payment->status === 'pending')
-                            <button type="button" class="btn btn-sm btn-warning btn-icon"
-                                onclick="snap.pay('{{$payment->snap_token}}')">
-                                <i class="bi bi-cash">&nbsp; Bayar</i>
-                            </button>
-                            @endif
-                        </td>
+                                @if ($payment->payment->status == 'pending')
+                                    <button type="button" class="btn btn-sm btn-warning btn-icon"
+                                        onclick="snap.pay('{{ $payment->snap_token }}')">
+                                        <i class="bi bi-cash">&nbsp; Bayar</i>
+                                    </button>
+                                @endif
+                            </td>
+                        @endisset
                     </tr>
                     @endforeach
                 </tbody>
@@ -67,14 +70,12 @@
 @push('scripts')
 <!-- MIDTRANS -->
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
+    data-client-key="{{config('midtrans.client_key')}}"></script>
 <script type="text/javascript">
     // For example trigger on button clicked, or any time you need
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-          window.snap.pay('snap_token');
-          // customer will be redirected after completing payment pop-up
+            window.snap.pay('snap_token');
         });
 </script>
 @endpush

@@ -30,4 +30,11 @@ class ScheduleRequest extends FormRequest
             'route_id'         => 'required|exists:App\Models\Route,id'
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([ 
+            'schedule_status' => $this->shuttle_status ? 'Aktif' : 'Tidak Aktif' 
+        ]);
+    }
 }

@@ -10,6 +10,17 @@ class Payment extends Model
     use HasFactory;
 
     protected $guarded = [];
+    
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+    
      /**
      * Set status to Pending
      *
@@ -52,35 +63,5 @@ class Payment extends Model
     {
         $this->attributes['status'] = 'expired';
         self::save();
-    }
-
-    public function bookingCode($id)
-    {
-        
-        $code = 'RSV-'.uniqid();
-        $booking =  Booking::findorfail($id);
-        $booking->booking_code = $code;
-        $booking->save();
-        //dd($booking);
-    }
-    
-    public function getTotalRupiahAttribute($value)
-    {
-        return "Rp. ".number_format($this->total, 0, ',', '.');
-    }
-
-    public function getDateAttribute()
-    {
-        return \Carbon\Carbon::parse($this->created_at)->translatedFormat('l, d F Y');
-    }
-
-    public function booking()
-    {
-        return $this->belongsTo(Booking::class);
-    }
-
-    public function scopeStatus($query, $status)
-    {
-        return $query->where('status', $status);
     }
 }

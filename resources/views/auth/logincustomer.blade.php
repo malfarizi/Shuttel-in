@@ -62,8 +62,6 @@
   <main id="main">
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-
-
       <div class="container">
         <div class="row">
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -85,36 +83,33 @@
                       placeholder="Password">
                     <label for="floatingPassword">Password</label>
                   </div>
-                  <div class="form-check mb-3">
+                  <div class="form-floating mb-3">
                     <a href="{{ route('forget.password.get') }}" class="text-small">
                       Forgot Password?
                     </a>
                   </div>
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                      Login
+                    </button>
                   </div>
                   <hr class="my-4">
                   <div class="text-center w-100">
-                    <p class="text-muted font-weight-bold">Register <a href="{{url('register')}}"
-                        class="text-primary ml-2">Klik Disini</a></p>
+                    <p class="text-muted font-weight-bold">
+                      Register <a href="{{url('register')}}" class="text-primary ml-2">Klik Disini</a>
+                    </p>
                   </div>
-
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </section><!-- End Contact Section -->
-
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
-
-
     <div class="footer-top">
       <div class="container">
         <div class="row gy-4">
@@ -131,7 +126,6 @@
               <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
-
 
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
@@ -154,17 +148,14 @@
         &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- Vendor JS Files -->
   <script src="assets-flexstart/vendor/bootstrap/js/bootstrap.bundle.js"></script>

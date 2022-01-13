@@ -43,9 +43,8 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo shuttle.png" alt="">
+        <img src="{{asset('assets/img/logo_shuttle.png')}}" alt="">
       </a>
 
       <nav id="navbar" class="navbar">
@@ -54,75 +53,74 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
-
 
   <main id="main">
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-
 
       <div class="container">
         <div class="row">
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
               <div class="card-body p-4 p-sm-5">
-                <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
+                <h5 class="card-title text-center mb-5 fw-light fs-5">
+                  Register
+                </h5>
                 <!-- ======= Alert ======= -->
                 <form method="POST" action="/register">
                   @csrf
                   <div class="form-floating mb-3">
-                    <input type="text" name="name" id="floatingInput" placeholder="Nama Anda"
+                    <input type="text" name="name" placeholder="Nama Anda"
                       class="form-control @error('name') is-invalid @enderror">
-                    <label for="floatingInput">Nama</label>
+                    <label for="">Nama</label>
 
                     @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                      <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="text" name="phone_number" id="floatingInput" placeholder="Nomor Telephone"
+                    <input type="text" name="phone_number" placeholder="Nomor Telepon"
                       class="form-control @error('phone_number') is-invalid @enderror">
-                    <label for="floatingInput">Nomor Telephone</label>
+                    <label for="">Nomor Telepon</label>
                     @error('phone_number')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                      <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <textarea name="address" id="floatingInput" placeholder="Alamat"
+                    <textarea name="address" placeholder="Alamat"
                       class="form-control @error('address') is-invalid @enderror"></textarea>
-                    <label for="floatingInput">Alamat</label>
+                    <label for="">Alamat</label>
                     @error('address')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                      <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="email" name="email" id="floatingInput" placeholder="Email"
+                    <input type="email" name="email" placeholder="Email"
                       class="form-control @error('email') is-invalid @enderror">
-                    <label for="floatingInput">Email</label>
+                    <label for="">Email</label>
                     @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                      <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="password" name="password" id="floatingPassword" placeholder="Password"
+                    <input type="password" name="password" placeholder="Password"
                       class="form-control @error('password') is-invalid @enderror">
-                    <label for="floatingPassword">Password</label>
+                    <label for="">Password</label>
                     @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                      <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
 
                   <div class="form-floating mb-3">
-                    <input type="password" name="password_confirmation" id="floatingPassword" placeholder="Password"
+                    <input type="password" name="password_confirmation" placeholder="Password"
                       class="form-control @error('password') is-invalid @enderror">
-                    <label for="floatingPassword">Konfirmasi Password</label>
+                    <label for="">Konfirmasi Password</label>
                   </div>
                   <div class="d-grid">
                     <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
@@ -144,7 +142,6 @@
 
     </section><!-- End Contact Section -->
 
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -158,8 +155,10 @@
             <a href="index.html" class="logo d-flex align-items-center">
               <img src="assets/img/logo shuttle.png" alt="">
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies
-              darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p>
+              Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies
+              darta donna mare fermentum iaculis eu non diam phasellus.
+            </p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

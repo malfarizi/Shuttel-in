@@ -104,15 +104,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Pilih Status Shuttle</label>
-                        <select name="shuttle_status" class="form-control">
-                            <option value="" disabled selected>
-                                Pilih Status Shuttle
-                            </option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
-                            
-                        </select>
+                        <div class="control-label">Pilih Status Shuttle</div>
+                        <label class="custom-switch mt-2">
+                          <input type="checkbox" name="shuttle_status" class="custom-switch-input">
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -121,7 +118,7 @@
                             <option value="" disabled selected>
                                 Pilih Driver
                             </option>
-                            @forelse ($drivers as $driver)
+                            @foreach ($drivers as $driver)
                                 <option value="{{ $driver->id }}">
                                     {{ $driver->driver_name }}
                                 </option>    
@@ -170,22 +167,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Pilih Status Shuttle</label>
-                        <select name="shuttle_status"
-                            class="form-control">
-                            <option 
-                                value="Aktif"
-                                {{$shuttle->shuttle_status === 'Aktif' ? 'selected' : ''}}
-                            >
-                                Aktif
-                            </option>
-                            <option 
-                                value="Tidak Aktif"
-                                {{$shuttle->shuttle_status === 'Tidak Aktif' ? 'selected' : ''}}
-                            >
-                                Tidak Aktif
-                            </option>    
-                        </select>
+                        <div class="control-label">Pilih Status Shuttle</div>
+                        <label class="custom-switch mt-2">
+                          <input 
+                            type="checkbox" 
+                            name="shuttle_status" 
+                            class="custom-switch-input"
+                            @if($shuttle->shuttle_status == 'Aktif') checked @endif
+                        >
+                          <span class="custom-switch-indicator"></span>
+                          <span class="custom-switch-description">Aktif</span>
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -227,7 +219,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/datatables/select.bootstrap4.min.css')}}">
 
     {{-- Select2 CSS Library --}}
-    <link rel="stylesheet" href="{{asset('/assets/css/select2.min.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}"> 
 @endpush
 
 @push('scripts')

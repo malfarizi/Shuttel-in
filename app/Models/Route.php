@@ -11,12 +11,7 @@ class Route extends Model
 
     protected $guarded = [];
 
-    public function getPriceRupiahAttribute()
-    {
-        return "Rp. ".number_format($this->price, 0, ',', '.');
-    }
-
-    public function getDepatureArrivalAttribute() 
+    public function getDepatureArrival() 
     {
         return "{$this->depature} - {$this->arrival}";
     }
@@ -26,7 +21,8 @@ class Route extends Model
         return $this->belongsTo(Shuttle::class);    
     }
 
-    public function schedules() {
+    public function schedules() 
+    {
         return $this->hasMany(Schedule::class);
     }
 }

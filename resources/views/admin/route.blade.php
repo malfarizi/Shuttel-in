@@ -50,7 +50,7 @@
                                             <td>{{ $loop->iteration }}.</td>
                                             <td>{{ $route->depature }}</td>
                                             <td>{{ $route->arrival }}</td>
-                                            <td>{{ $route->price_rupiah }}</td>
+                                            <td>@money($route->price)</td>
                                             <td>{{ $route->shuttle->nopol }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" 
@@ -92,7 +92,7 @@
 <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{route('admin.routes.store')}}" method="POST">
+            <form action="{{ route('admin.routes.store') }}" method="POST">
                 @csrf 
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
@@ -165,7 +165,7 @@
 
 @foreach ($routes as $route)
 <!--Modal Edit-->
-<div class="modal fade" id="edit-data-{{$route->id}}" 
+<div class="modal fade" id="edit-data-{{ $route->id }}" 
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-    public function index() {
-        return view('admin.customer', [
-            'title'     => 'Data Customer',
-            'customers' => User::where('role', 'Customer')->get()
-        ]);
+    public function index() 
+    {
+        $customers = User::whereRole('Customer')->get();
+        return view('admin.customer', compact('customers'))->withTitle('Data Customer');
     }
 
     /**
@@ -34,15 +33,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $request->validate([
-            'name'          => 'required',
-            'phone_number'  => 'required|numeric|max:13',
-            'address'       => 'required'
-        ]);
-
-        $user->update($request->only('name', 'phone_number', 'address'));
+        $user->update($request->validated());
         return back()->withSuccess('Data berhasil diubah');
     }
 }

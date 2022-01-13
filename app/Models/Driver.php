@@ -11,6 +11,11 @@ class Driver extends Model
 
     protected $guarded = [];
 
+    public function getDriverNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
     public function shuttle()
     {
         return $this->hasOne(Shuttle::class);
